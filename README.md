@@ -1,8 +1,6 @@
 # Xga::Ruby
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/xga/ruby`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+XGA client library for Ruby
 
 ## Installation
 
@@ -22,7 +20,11 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+View `sample.rb` in the repo for an example. It will require a local testnet to run.
+
+```sh
+bundle exec ruby sample.rb
+```
 
 ## Development
 
