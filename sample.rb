@@ -58,7 +58,7 @@ txn = {
 }
 
 rpc = Xga::Ruby::Rpc.new('http://localhost:8751')
-signed = Xga::Ruby::Signature.sign_transaction(rpc, txn, [wif], address_prefix, chain_id)
+signed = Xga::Ruby::Auth.sign_transaction(rpc, txn, [wif], address_prefix, chain_id)
 puts %(Creating user named: #{name})
 response = rpc.call('call', ['condenser_api', 'broadcast_transaction_synchronous', [signed]])
 p response

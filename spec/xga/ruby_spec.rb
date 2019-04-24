@@ -26,7 +26,7 @@ RSpec.describe Xga::Ruby do
     end
   end
 
-  describe Xga::Ruby::Signature do
+  describe Xga::Ruby::Auth do
     it 'signs a transaction' do
       fixture = JSON.load(File.open('spec/fixtures/condenser-api-get-transaction-hex-response.json'))
       wifs = ['5JNHfZYKGaomSFvd4NUdQ9qMcEAC43kujbfjueTHpVapX1Kzq2n']
@@ -94,7 +94,7 @@ RSpec.describe Xga::Ruby do
       end
 
       rpc = Xga::Ruby::Rpc.new('http://test.host', client: client)
-      result = Xga::Ruby::Signature.sign_transaction(rpc, txn, wifs, address_prefix, chain_id)
+      result = Xga::Ruby::Auth.sign_transaction(rpc, txn, wifs, address_prefix, chain_id)
       expect(result['operations']).to_not be_nil
       expect(result['operations'].first).to_not be_nil
       expect(result['operations'].first.first).to eq('account_create')

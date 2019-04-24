@@ -35,7 +35,7 @@ module Xga
       end
     end
 
-    class Signature
+    class Auth
       def self.sign_transaction(rpc, txn, wifs, address_prefix, chain_id)
         response = rpc.call('condenser_api.get_transaction_hex', [txn])
         transaction_hex = response['result'][0..-3]
