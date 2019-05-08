@@ -1,9 +1,9 @@
-RSpec.describe Xga::Ruby do
+RSpec.describe Xgt::Ruby do
   it 'has a version number' do
-    expect(Xga::Ruby::VERSION).not_to be nil
+    expect(Xgt::Ruby::VERSION).not_to be nil
   end
 
-  describe Xga::Ruby::Rpc do
+  describe Xgt::Ruby::Rpc do
     it 'can make a network request' do
       fixture = JSON.load(File.open('spec/fixtures/database-api-find-accounts-response.json'))
       client = Faraday::Connection.new(url: @url) do |faraday|
@@ -15,7 +15,7 @@ RSpec.describe Xga::Ruby do
           end
         end
       end
-      rpc = Xga::Ruby::Rpc.new('http://test.host', client: client)
+      rpc = Xgt::Ruby::Rpc.new('http://test.host', client: client)
       response = rpc.call('database_api.find_accounts', { accounts: ['foo45fb448c'] })
       expect(response['jsonrpc']).to eq('2.0')
       expect(response['id']).to_not be_nil
@@ -26,7 +26,7 @@ RSpec.describe Xga::Ruby do
     end
   end
 
-  describe Xga::Ruby::Auth do
+  describe Xgt::Ruby::Auth do
     it 'signs a transaction' do
       wifs = ['5JNHfZYKGaomSFvd4NUdQ9qMcEAC43kujbfjueTHpVapX1Kzq2n']
       chain_id = '18dcf0a285365fc58b71f18b3d3fec954aa0c141c44e4e5cb4cf777b9eab274e'
@@ -119,8 +119,8 @@ RSpec.describe Xga::Ruby do
         end
       end
 
-      rpc = Xga::Ruby::Rpc.new('http://test.host', client: client)
-      result = Xga::Ruby::Auth.sign_transaction(rpc, txn, wifs, chain_id)
+      rpc = Xgt::Ruby::Rpc.new('http://test.host', client: client)
+      result = Xgt::Ruby::Auth.sign_transaction(rpc, txn, wifs, chain_id)
       expect(result['operations']).to_not be_nil
       expect(result['operations'].first).to_not be_nil
       expect(result['operations'].first.first).to eq('account_create')
@@ -129,18 +129,18 @@ RSpec.describe Xga::Ruby do
     end
 
     it 'converts a buffer to base58' do
-      base58 = Xga::Ruby::Auth.to_base_58(Digest::SHA256.digest('Hello, world!'))
+      base58 = Xgt::Ruby::Auth.to_base_58(Digest::SHA256.digest('Hello, world!'))
       expect(base58).to eq('4KjK9yP5KTEkyBznKmB5MVLhgFgRedBprbx4nYMCZQYa')
     end
 
     it 'creates a random wif' do
       random_hex = '35441bba709c1d575776e0758e6a558a412995663ef6a8ad474b209b1ca88a4b'
       allow(SecureRandom).to receive(:hex).with(32) { random_hex }
-      expect(Xga::Ruby::Auth.random_wif).to eq('5JDkC3WTYDkCh9j6S7vrUjY48s9firitFBXMH22wsohtRCxmLnn')
+      expect(Xgt::Ruby::Auth.random_wif).to eq('5JDkC3WTYDkCh9j6S7vrUjY48s9firitFBXMH22wsohtRCxmLnn')
     end
 
     it 'generates a wif' do
-      wif = Xga::Ruby::Auth.generate_wif('foo', 'bar', 'active', 'TST')
+      wif = Xgt::Ruby::Auth.generate_wif('foo', 'bar', 'active', 'TST')
       expect(wif).to eq('TST5xbszT3ZwdQMhaRbbDWLjhNdeskzDvNW2ZaucYoQ9Mq3JHzm3Z')
     end
   end

@@ -1,15 +1,15 @@
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'xga/ruby/version'
+require 'xgt/ruby/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'xga-ruby'
-  spec.version       = Xga::Ruby::VERSION
+  spec.name          = 'xgt-ruby'
+  spec.version       = Xgt::Ruby::VERSION
   spec.authors       = ['Roger Jungemann']
   spec.email         = ['roger@gather.com']
 
-  spec.summary       = %q(XGA client library)
-  spec.homepage      = %q(https://github.com/gather-com/xga-ruby)
+  spec.summary       = %q(XGT client library)
+  spec.homepage      = %q(https://github.com/gather-com/xgt-ruby)
   spec.license       = 'MIT'
 
   # Specify which files should be added to the gem when it is released.

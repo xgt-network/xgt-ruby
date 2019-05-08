@@ -1,7 +1,7 @@
 require 'bundler/setup'
 require 'time'
 require 'json'
-require 'xga/ruby'
+require 'xgt/ruby'
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

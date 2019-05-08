@@ -2,9 +2,9 @@ require 'securerandom'
 require 'faraday'
 require 'faraday_middleware'
 require 'bitcoin'
-require 'xga/ruby/version'
+require 'xgt/ruby/version'
 
-module Xga
+module Xgt
   module Ruby
     class Error < StandardError; end
 

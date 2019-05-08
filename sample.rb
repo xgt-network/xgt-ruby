@@ -1,6 +1,6 @@
 require 'bundler/setup'
 require 'time'
-require 'xga/ruby'
+require 'xgt/ruby'
 
 wif = '5JNHfZYKGaomSFvd4NUdQ9qMcEAC43kujbfjueTHpVapX1Kzq2n'
 address_prefix = 'TST'
@@ -53,8 +53,8 @@ txn = {
   ]
 }
 
-rpc = Xga::Ruby::Rpc.new('http://localhost:8751')
-signed = Xga::Ruby::Auth.sign_transaction(rpc, txn, [wif], chain_id)
+rpc = Xgt::Ruby::Rpc.new('http://localhost:8751')
+signed = Xgt::Ruby::Auth.sign_transaction(rpc, txn, [wif], chain_id)
 puts %(Creating user named: #{name})
 response = rpc.call('call', ['condenser_api', 'broadcast_transaction_synchronous', [signed]])
 p response
