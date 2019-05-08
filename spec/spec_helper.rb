@@ -1,4 +1,5 @@
 require 'bundler/setup'
+require 'time'
 require 'json'
 require 'xga/ruby'
 

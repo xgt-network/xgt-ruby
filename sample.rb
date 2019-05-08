@@ -5,10 +5,8 @@ require 'xga/ruby'
 wif = '5JNHfZYKGaomSFvd4NUdQ9qMcEAC43kujbfjueTHpVapX1Kzq2n'
 address_prefix = 'TST'
 chain_id = '18dcf0a285365fc58b71f18b3d3fec954aa0c141c44e4e5cb4cf777b9eab274e'
-now = (Time.now + 360).utc.iso8601.gsub(/Z$/, '')
 name = 'foo' + SecureRandom.hex(6)
 txn = {
-  'expiration' => now,
   'extensions' => [],
   'operations' => [
     [
@@ -52,13 +50,11 @@ txn = {
         'extensions' => []
       }
     ]
-  ],
-  'ref_block_num' => 34960,
-  'ref_block_prefix' => 883395518
+  ]
 }
 
 rpc = Xga::Ruby::Rpc.new('http://localhost:8751')
-signed = Xga::Ruby::Auth.sign_transaction(rpc, txn, [wif], address_prefix, chain_id)
+signed = Xga::Ruby::Auth.sign_transaction(rpc, txn, [wif], chain_id)
 puts %(Creating user named: #{name})
 response = rpc.call('call', ['condenser_api', 'broadcast_transaction_synchronous', [signed]])
 p response

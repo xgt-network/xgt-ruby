@@ -28,12 +28,9 @@ RSpec.describe Xga::Ruby do
 
   describe Xga::Ruby::Auth do
     it 'signs a transaction' do
-      fixture = JSON.load(File.open('spec/fixtures/condenser-api-get-transaction-hex-response.json'))
       wifs = ['5JNHfZYKGaomSFvd4NUdQ9qMcEAC43kujbfjueTHpVapX1Kzq2n']
-      address_prefix = 'TST'
       chain_id = '18dcf0a285365fc58b71f18b3d3fec954aa0c141c44e4e5cb4cf777b9eab274e'
       txn = {
-        'expiration' => '2019-04-23T20:58:33',
         'extensions' => [],
         'operations' => [
           [
@@ -77,29 +74,74 @@ RSpec.describe Xga::Ruby do
               'extensions' => []
             }
           ]
-        ],
-        'ref_block_num' => 34960,
-        'ref_block_prefix' => 883395518
+        ]
       }
 
       expected_transaction_hex = '9088be8ba734797cbf5c01090000000000000000035445535453000009696e69746d696e65720b666f6f343137303061343401000000000103951f1e294b4f9e535708bcfa85d8d21240bda7585424b2e6fa0d0f1e9a756e8c010001000000000102dab63701259352fa01048a97ac76d44def848552518c7991e4bb2feb893e6eef0100010000000001024343ff4fcd3a2ddfbb53fbd178b09ed02c457dbd88d1ff2f49ce967d7c3f5637010002850edf288f0e9fdc4bf83839d352d3b9e65bdefb309147ad3642b4a63e0a6c660000'
+      i = 0
       client = Faraday::Connection.new(url: @url) do |faraday|
         faraday.request(:json)
         faraday.response(:json)
         faraday.adapter(:test) do |stub|
           stub.post('/') do |env|
-            [200, {}, JSON.dump(fixture)]
+            data = JSON.load(env.body)
+            id = data['id']
+            if i == 0
+              i += 1
+              [200, {}, JSON.dump({
+                'jsonrpc' => '2.0',
+                'id' => id,
+                'result' => {
+                  'time' => '2019-04-30T00:34:12',
+                  'last_irreversible_block_num': 32482872,
+                }
+              })]
+            elsif i == 1
+              i += 1
+              [200, {}, JSON.dump({
+                'jsonrpc' => '2.0',
+                'id' => id,
+                'result' => {
+                  'header' => {
+                    'previous' => '01efa63783c4180b05e39fa94dde4febca9cc91d',
+                  }
+                }
+              })]
+            else
+              i += 1
+              [200, {}, JSON.dump({
+                'jsonrpc' => '2.0',
+                'id' => id,
+                'result' => '37a683c4180b5c9ac75c01090000000000000000035445535453000009696e69746d696e65720b666f6f343137303061343401000000000103951f1e294b4f9e535708bcfa85d8d21240bda7585424b2e6fa0d0f1e9a756e8c010001000000000102dab63701259352fa01048a97ac76d44def848552518c7991e4bb2feb893e6eef0100010000000001024343ff4fcd3a2ddfbb53fbd178b09ed02c457dbd88d1ff2f49ce967d7c3f5637010002850edf288f0e9fdc4bf83839d352d3b9e65bdefb309147ad3642b4a63e0a6c660000ff'
+              })]
+            end
           end
         end
       end
 
       rpc = Xga::Ruby::Rpc.new('http://test.host', client: client)
-      result = Xga::Ruby::Auth.sign_transaction(rpc, txn, wifs, address_prefix, chain_id)
+      result = Xga::Ruby::Auth.sign_transaction(rpc, txn, wifs, chain_id)
       expect(result['operations']).to_not be_nil
       expect(result['operations'].first).to_not be_nil
       expect(result['operations'].first.first).to eq('account_create')
       expect(result['signatures']).to_not be_nil
       expect(result['signatures'].first).to be_a(String)
+    end
+
+    it 'converts a buffer to base58' do
+      base58 = Xga::Ruby::Auth.to_base_58(Digest::SHA256.digest('Hello, world!'))
+      expect(base58).to eq('4KjK9yP5KTEkyBznKmB5MVLhgFgRedBprbx4nYMCZQYa')
+    end
+
+    it 'creates a random wif' do
+      random_hex = '35441bba709c1d575776e0758e6a558a412995663ef6a8ad474b209b1ca88a4b'
+      allow(SecureRandom).to receive(:hex).with(32) { random_hex }
+      expect(Xga::Ruby::Auth.random_wif).to eq('5JDkC3WTYDkCh9j6S7vrUjY48s9firitFBXMH22wsohtRCxmLnn')
+    end
+
+    it 'generates a wif' do
+      wif = Xga::Ruby::Auth.generate_wif('foo', 'bar', 'active', 'TST')
+      expect(wif).to eq('TST5xbszT3ZwdQMhaRbbDWLjhNdeskzDvNW2ZaucYoQ9Mq3JHzm3Z')
     end
   end
 end
