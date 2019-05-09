@@ -93,27 +93,11 @@ module Xgt
         to_base_58(private_key + checksum)
       end
 
-      def self.generate_wif(name, password, role, address_prefix)
+      def self.generate_wif(name, password, role)
         brain_key = (name + role + password).strip.split(/[\t\n\v\f\r ]+/).join(' ')
         key = "\x80".b + Digest::SHA256.digest(brain_key)
         checksum = Digest::SHA256.digest(Digest::SHA256.digest(key))[0...4]
         to_base_58(key + checksum)
-
-        # big_num = OpenSSL::BN.new(Digest::SHA256.hexdigest(brain_key).to_i(16))
-        # private_key = unhexlify('80' + big_num.to_s(16))
-        # private_key = unhexlify('80' + Digest::SHA256.hexdigest(brain_key))
-        # checksum = Digest::SHA256.digest(Digest::SHA256.digest(private_key))[0..4]
-        # to_base_58(private_key + checksum)
-        # group = OpenSSL::PKey::EC::Group.new('secp256k1')
-        # product = group.generator.mul(big_num).to_bn
-
-        # brain_key = (name + role + password).strip.split(/[\t\n\v\f\r ]+/).join(' ')
-        # big_num = OpenSSL::BN.new(Digest::SHA256.hexdigest(brain_key).to_i(16))
-        # group = OpenSSL::PKey::EC::Group.new('secp256k1')
-        # product = group.generator.mul(big_num).to_bn
-        # public_key_buffer = OpenSSL::PKey::EC::Point.new(group, product).to_octet_string(:compressed)
-        # checksum = Digest::RMD160.digest(public_key_buffer)
-        # address_prefix + to_base_58(public_key_buffer + checksum[0...4])
       end
 
       def self.wif_to_public_key(wif, address_prefix)

@@ -140,7 +140,7 @@ RSpec.describe Xgt::Ruby do
     end
 
     it 'generates a wif' do
-      wif = Xgt::Ruby::Auth.generate_wif('foo', 'bar', 'active', 'TST')
+      wif = Xgt::Ruby::Auth.generate_wif('foo', 'bar', 'active')
       expect(wif).to eq('5KGWJaq45hw2JkxyUenjhyTdh1Y3R88RLPeeC7sDRk21dYc2a5D')
     end
 
