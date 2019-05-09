@@ -141,7 +141,13 @@ RSpec.describe Xgt::Ruby do
 
     it 'generates a wif' do
       wif = Xgt::Ruby::Auth.generate_wif('foo', 'bar', 'active', 'TST')
-      expect(wif).to eq('TST5xbszT3ZwdQMhaRbbDWLjhNdeskzDvNW2ZaucYoQ9Mq3JHzm3Z')
+      expect(wif).to eq('5KGWJaq45hw2JkxyUenjhyTdh1Y3R88RLPeeC7sDRk21dYc2a5D')
+    end
+
+    it 'converts a wif into a public key' do
+      wif = '5KGWJaq45hw2JkxyUenjhyTdh1Y3R88RLPeeC7sDRk21dYc2a5D'
+      public_key = Xgt::Ruby::Auth.wif_to_public_key(wif, 'TST')
+      expect(public_key).to eq('TST5xbszT3ZwdQMhaRbbDWLjhNdeskzDvNW2ZaucYoQ9Mq3JHzm3Z')
     end
   end
 end
