@@ -2,6 +2,7 @@ require 'securerandom'
 require 'faraday'
 require 'faraday_middleware'
 require 'bitcoin'
+require 'time'
 require 'xgt/ruby/version'
 
 module Xgt
