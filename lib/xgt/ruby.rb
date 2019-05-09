@@ -29,9 +29,12 @@ module Xgt
           'id' => id
         }
 
-        response = @client.post('/', payload)
         # TODO: Verify status code
-        # TODO: Handle error responses
+        response = @client.post('/', payload)
+        if response.body['error']
+          raise StandardError.new(response.body['error'])
+        end
+
         response.body
       end
     end
