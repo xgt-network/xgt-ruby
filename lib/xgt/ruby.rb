@@ -15,7 +15,7 @@ module Xgt
         @client = client || Faraday::Connection.new(url: @url) do |faraday|
           faraday.request(:json)
           faraday.response(:json)
-          faraday.response(:logger)
+          faraday.response(:logger) if ENV['LOGGING_ENABLED']
           faraday.adapter(Faraday.default_adapter)
         end
       end
