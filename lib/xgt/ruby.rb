@@ -114,57 +114,12 @@ module Xgt
         address_prefix + to_base_58(public_key_buffer + checksum[0...4])
       end
 
-      BASE_58_ALPHABET = '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz'
-
       def self.to_base_58(bytes)
-        alphabet = BASE_58_ALPHABET
-        bytes = bytes.unpack('C*')
-        return '' if bytes.empty?
-        bytes = bytes.dup
-        leading_zeroes = 0
-        loop do
-          break unless leading_zeroes < bytes.length && bytes[leading_zeroes] == 0
-          leading_zeroes += 1
-        end
-        output = ''
-        start_at = leading_zeroes
-        loop do
-          break unless start_at < bytes.length
-          mod = div_mod_58(bytes, start_at)
-          start_at += 1 if bytes[start_at] == 0
-          output = alphabet[mod] + output
-        end
-        if output.length > 0
-          loop do
-            break unless output[0] == alphabet[0]
-            output = output[1..-1]
-          end
-        end
-        loop do
-          break unless leading_zeroes > 0
-          leading_zeroes -= 1
-          output = alphabet[0] + output
-        end
-        output
+        Bitcoin.encode_base58(hexlify(bytes))
       end
 
-      def self.div_mod_58(number, start_at)
-        remaining = 0
-        (start_at...number.length).each do |i|
-          num = (0xff & remaining) * 256 + number[i]
-          number[i] = num / 58
-          remaining = num % 58
-        end
-        remaining
-      end
-
-      def self.fixnum_to_der(fixnum, intended_length)
-        bytes = Array.new(intended_length, 0)
-        (bytes.length - 1).downto(0).each do |i|
-          bytes[i] = fixnum & 0xff
-          fixnum >>= 8
-        end
-        bytes.map { |n| [n.chr].pack('h*') }.join('')
+      def self.from_base_58(string)
+        unhexlify(Bitcoin.decode_base58(string))
       end
 
       def self.hexlify(s)

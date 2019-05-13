@@ -133,6 +133,11 @@ RSpec.describe Xgt::Ruby do
       expect(base58).to eq('4KjK9yP5KTEkyBznKmB5MVLhgFgRedBprbx4nYMCZQYa')
     end
 
+    it 'converts a base58 string to a buffer' do
+      buffer = Xgt::Ruby::Auth.from_base_58('4KjK9yP5KTEkyBznKmB5MVLhgFgRedBprbx4nYMCZQYa')
+      expect(buffer).to eq(Digest::SHA256.digest('Hello, world!'))
+    end
+
     it 'creates a random wif' do
       random_hex = '35441bba709c1d575776e0758e6a558a412995663ef6a8ad474b209b1ca88a4b'
       allow(SecureRandom).to receive(:hex).with(32) { random_hex }
