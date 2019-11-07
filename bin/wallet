@@ -1,0 +1,174 @@
+#!/usr/bin/env ruby
+
+require 'bundler/setup'
+require 'xgt/ruby'
+
+# You can add fixtures and/or initialization code here to make experimenting
+# with your gem easier. You can also use a different console, if you like.
+
+# (If you use this, don't forget to add pry to your Gemfile!)
+# require 'pry'
+# Pry.start
+
+# TODO: Validate
+@host = ENV['HOST'] || 'http://localhost:8751'
+@name = ENV['NAME'] || 'initminer'
+@wifs = ENV['WIFS']&.split(';')&.map { |pair| pair.split(':') }&.to_h \
+  || { 'initminer' => '5JNHfZYKGaomSFvd4NUdQ9qMcEAC43kujbfjueTHpVapX1Kzq2n' }
+@address_prefix = ENV['ADDRESS_PREFIX'] || 'XGT'
+@chain_id = ENV['CHAIN_ID'] || '4e08b752aff5f66e1339cb8c0a8bca14c4ebb238655875db7dade86349091197'
+# TODO: Change this to "XGT"
+@currency_symbol = ENV['CURRENCY_SYMBOL'] || 'STEEM'
+@last_result = nil
+
+BASE_58 = '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz'.split('')
+COLORS = {
+  yellow: 33,
+  magenta: 35,
+  cyan: 36,
+}
+
+def colorize(color, msg)
+  %(\033[#{COLORS[color]}m#{msg}\033[0m)
+end
+
+def logo
+  [
+    colorize(:magenta, '           _'), "\n",
+    colorize(:magenta, '__  ____ _| |_ '), colorize(:yellow, '              _ _     _'), "\n",
+    colorize(:magenta, '\ \/ / _` | __|'), colorize(:yellow, ' __ __ ____ _| | |___| |_'), "\n",
+    colorize(:magenta, ' >  < (_| | |_ '), colorize(:yellow, ' \ V  V / _` | | / -_)  _|'), "\n",
+    colorize(:magenta, '/_/\_\__, |\__|'), colorize(:yellow, '  \_/\_/\__,_|_|_\___|\__|'), "\n",
+    colorize(:magenta, '     |___/'), "\n",
+    "\n",
+    %(Type in "info" and hit enter for a list of commands.), "\n",
+    "\n",
+  ].join('')
+end
+
+def info
+  # TODO
+end
+
+def last_result
+  @last_result
+end
+
+def output_result(hash, indent_level=0)
+  keys_width = hash.keys.sort_by(&:length).last.length
+  hash.each do |(key, value)|
+    if value.respond_to?(:keys)
+      puts colorize(:cyan, %(#{key.ljust(keys_width)} ))
+      output_result(value, indent_level + 1)
+    else
+      puts([' ' * (indent_level * 4), colorize(:cyan, %(#{key.ljust(keys_width)} )), value].join(''))
+    end
+  end
+end
+
+def rpc
+  Xgt::Ruby::Rpc.new(@host)
+end
+
+def chain_properties
+  rpc = Xgt::Ruby::Rpc.new(@host)
+  rpc.call('call', ['condenser_api', 'get_chain_properties', []])
+end
+
+def account_creation_fee
+  chain_properties['account_creation_fee']
+end
+
+def switch_wallet(name)
+  @name = name
+end
+
+def current_wif
+  @wifs[@name]
+end
+
+def random_name
+  %(XGT#{BASE_58.sample(16).join('')})
+end
+
+def create_account()
+  creator_wif = Xgt::Ruby::Auth.generate_wif(@name, current_wif, 'active')
+  name = random_name
+  master = Xgt::Ruby::Auth.random_wif
+  owner_private = Xgt::Ruby::Auth.generate_wif(name, master, 'owner')
+  owner_public = Xgt::Ruby::Auth.wif_to_public_key(owner_private, @address_prefix)
+  active_private = Xgt::Ruby::Auth.generate_wif(name, master, 'active')
+  active_public = Xgt::Ruby::Auth.wif_to_public_key(active_private, @address_prefix)
+  posting_private = Xgt::Ruby::Auth.generate_wif(name, master, 'posting')
+  posting_public = Xgt::Ruby::Auth.wif_to_public_key(posting_private, @address_prefix)
+  memo_private = Xgt::Ruby::Auth.generate_wif(name, master, 'memo')
+  memo_public = Xgt::Ruby::Auth.wif_to_public_key(memo_private, @address_prefix)
+  fee = account_creation_fee
+
+  txn = {
+    'extensions' => [],
+    'operations' => [[
+      'account_create',
+      {
+        'fee' => fee,
+        'creator' => @name,
+        'new_account_name' => name,
+        'owner' => {
+          'weight_threshold' => 1,
+          'account_auths' => [],
+          'key_auths' => [[owner_public, 1]]
+        },
+        'active' => {
+          'weight_threshold' => 1,
+          'account_auths' => [],
+          'key_auths' => [[active_public, 1]]
+        },
+        'posting' => {
+          'weight_threshold' => 1,
+          'account_auths' => [],
+          'key_auths' => [[posting_public, 1]]
+        },
+        'memo_key' => memo_public,
+        'json_metadata' => '',
+        'extensions' => []
+      }
+    ]]
+  }
+
+  signed = Xgt::Ruby::Auth.sign_transaction(rpc, txn, [current_wif], @chain_id)
+  rpc.call('call', ['condenser_api', 'broadcast_transaction_synchronous', [signed]])
+
+  # TODO: Get name from result instead
+  result = {
+    name: name,
+    master: name,
+    owner_private: owner_private,
+    owner_public: owner_public,
+    active_private: active_private,
+    active_public: active_public,
+    posting_private: posting_private,
+    posting_public: posting_public,
+    memo_private: memo_private,
+    memo_public: memo_public
+  }
+
+  @last_result = result
+  nil
+end
+
+def my_account
+  result = rpc.call('condenser_api.get_accounts', [[@name]]).first
+  output_result(result)
+
+  @last_result = result
+  nil
+end
+
+def transfer(to, amount, memo: nil)
+  # TODO
+end
+
+puts logo
+
+require 'irb'
+IRB.start(__FILE__)

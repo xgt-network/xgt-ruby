@@ -14,6 +14,13 @@ module Xgt
         @url = url
         @client = client || Faraday::Connection.new(url: @url) do |faraday|
           faraday.request(:json)
+          faraday.request :retry,
+            max: 10,
+            interval: 0.05,
+            interval_randomness: 0.5,
+            backoff_factor: 2,
+            # TODO: Make this more specific
+            exceptions: ['Error']
           faraday.response(:json)
           faraday.response(:logger) if ENV['LOGGING_ENABLED']
           faraday.adapter(Faraday.default_adapter)
@@ -35,7 +42,12 @@ module Xgt
           raise StandardError.new(response.body['error'])
         end
 
-        response.body
+        unless response.body['result']
+          raise StandardError.new('No result in response body')
+        end
+
+        # TODO: XXX: Breaking change!
+        response.body['result']
       end
     end
 
@@ -43,15 +55,13 @@ module Xgt
       def self.sign_transaction(rpc, txn, wifs, chain_id)
         # Get the last irreversible block number
         response = rpc.call('database_api.get_dynamic_global_properties', {})
-        result = response['result']
-        chain_date = result['time'] + 'Z'
-        last_irreversible_block_num = result['last_irreversible_block_num']
+        chain_date = response['time'] + 'Z'
+        last_irreversible_block_num = response['last_irreversible_block_num']
         ref_block_num = (last_irreversible_block_num - 1) & 0xffff
 
         # Get ref block info to append to the transaction
         response = rpc.call('block_api.get_block_header', { 'block_num' => last_irreversible_block_num })
-        result = response['result']
-        header = result['header']
+        header = response['header']
         head_block_id = (header && header['previous']) ? header['previous'] : '0000000000000000000000000000000000000000'
         ref_block_prefix = [head_block_id].pack('H*')[4...8].unpack('V').first
         expiration = (Time.parse(chain_date) + 600).iso8601.gsub(/Z$/, '')
@@ -63,7 +73,7 @@ module Xgt
 
         # Get a hex digest of the transactioon
         response = rpc.call('condenser_api.get_transaction_hex', [txn])
-        transaction_hex = response['result'][0..-3]
+        transaction_hex = response[0..-3]
         digest_hex = Digest::SHA256.hexdigest(unhexlify(chain_id + transaction_hex))
         private_keys = wifs.map { |wif| Bitcoin::Key.from_base58(wif) }
         ec = Bitcoin::OpenSSL_EC
