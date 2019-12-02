@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 
+require 'logger'
 require 'bundler/setup'
 require 'xgt/ruby'
 
@@ -10,15 +11,21 @@ require 'xgt/ruby'
 # require 'pry'
 # Pry.start
 
+LOGGER = Logger.new($stdout)
+def logger
+  LOGGER
+end
+
 # TODO: Validate
 @host = ENV['HOST'] || 'http://localhost:8751'
-@name = ENV['NAME'] || 'initminer'
-@wifs = ENV['WIFS']&.split(';')&.map { |pair| pair.split(':') }&.to_h \
-  || { 'initminer' => '5JNHfZYKGaomSFvd4NUdQ9qMcEAC43kujbfjueTHpVapX1Kzq2n' }
-@address_prefix = ENV['ADDRESS_PREFIX'] || 'XGT'
-@chain_id = ENV['CHAIN_ID'] || '4e08b752aff5f66e1339cb8c0a8bca14c4ebb238655875db7dade86349091197'
+# @host = ENV['HOST'] || 'http://demo-superproducers-lb-204476872.us-east-1.elb.amazonaws.com:8751'
+@name = ENV['XGT_NAME'] || 'initminer'
+@wifs = ENV['XGT_WIFS']&.split(';')&.map { |pair| pair.split(':').map { |n| n.split(',') } }&.to_h \
+  || { 'initminer' => ['5JNHfZYKGaomSFvd4NUdQ9qMcEAC43kujbfjueTHpVapX1Kzq2n'] }
+@address_prefix = ENV['XGT_ADDRESS_PREFIX'] || 'XGT'
+@chain_id = ENV['XGT_CHAIN_ID'] || '4e08b752aff5f66e1339cb8c0a8bca14c4ebb238655875db7dade86349091197'
 # TODO: Change this to "XGT"
-@currency_symbol = ENV['CURRENCY_SYMBOL'] || 'STEEM'
+@currency_symbol = ENV['XGT_CURRENCY_SYMBOL'] || 'STEEM'
 @last_result = nil
 
 BASE_58 = '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz'.split('')
@@ -46,24 +53,38 @@ def logo
   ].join('')
 end
 
-def info
-  # TODO
+def output_pair(key, value, indent_level)
+  print(%( ) * (4 * indent_level))
+  print(colorize(:cyan, key)) if key
+  print(%( #{value})) if value
+  print(%(\n))
+end
+
+def output_item(key, value, indent_level)
+  if value.respond_to?(:keys) || value.respond_to?(:each)
+    output_pair(key, nil, indent_level)
+    output_result(value, indent_level + 1)
+  else
+    output_pair(key, value, indent_level)
+  end
+end
+
+def output_result(item, indent_level=0)
+  if item.respond_to?(:keys)
+    item.each do |(key, value)|
+      output_item(key, value, indent_level)
+    end
+  elsif item.respond_to?(:each)
+    item.each.with_index do |value, i|
+      output_item(i, value, indent_level)
+    end
+  else
+    output_item(nil, value, indent_level)
+  end
 end
 
 def last_result
   @last_result
-end
-
-def output_result(hash, indent_level=0)
-  keys_width = hash.keys.sort_by(&:length).last.length
-  hash.each do |(key, value)|
-    if value.respond_to?(:keys)
-      puts colorize(:cyan, %(#{key.ljust(keys_width)} ))
-      output_result(value, indent_level + 1)
-    else
-      puts([' ' * (indent_level * 4), colorize(:cyan, %(#{key.ljust(keys_width)} )), value].join(''))
-    end
-  end
 end
 
 def rpc
@@ -71,28 +92,63 @@ def rpc
 end
 
 def chain_properties
+  logger.info(%(Fetching chain properties...))
   rpc = Xgt::Ruby::Rpc.new(@host)
   rpc.call('call', ['condenser_api', 'get_chain_properties', []])
 end
 
 def account_creation_fee
+  logger.info(%(Fetching the current account creation fee...))
   chain_properties['account_creation_fee']
 end
 
-def switch_wallet(name)
-  @name = name
-end
-
-def current_wif
-  @wifs[@name]
+def current_wifs
+  @wifs[@name] || []
 end
 
 def random_name
   %(XGT#{BASE_58.sample(16).join('')})
 end
 
-def create_account()
-  creator_wif = Xgt::Ruby::Auth.generate_wif(@name, current_wif, 'active')
+# --------
+# Commands
+# --------
+
+def info
+  print(%(\n))
+  puts(colorize(:yellow, %(-----)))
+  puts(colorize(:yellow, %(USAGE)))
+  puts(colorize(:yellow, %(-----)))
+  print(%(\n))
+  puts(%(#{colorize(:cyan, 'info')} view this info message))
+  puts(%(#{colorize(:cyan, 'switch_wallet NAME')} switch to another wallet))
+  puts(%(#{colorize(:cyan, 'create_account')} create a new XGT wallet))
+  puts(%(#{colorize(:cyan, 'get_account')} look up your wallet info))
+  puts(%(#{colorize(:cyan, 'get_account NAME')} look up another user's wallet info))
+  puts(%(#{colorize(:cyan, 'transfer TO, AMOUNT')} transfer money to another wallet))
+  puts(%(#{colorize(:cyan, 'transfer TO, AMOUNT, memo: "..."')} transfer money to another wallet))
+  puts(%(#{colorize(:cyan, 'delegate_vesting TO, AMOUNT')} delegate VESTS to another wallet))
+  print(%(\n))
+  puts(colorize(:yellow, %(---------------------)))
+  puts(colorize(:yellow, %(ENVIRONMENT VARIABLES)))
+  puts(colorize(:yellow, %(---------------------)))
+  print(%(\n))
+  puts(%(#{colorize(:cyan, 'XGT_HOST')} a hostname of a valid superproducer))
+  puts(%(#{colorize(:cyan, 'XGT_NAME')} the account name to use by default))
+  puts(%(#{colorize(:cyan, 'XGT_WIFS')} mapping of names to WIFs, like `foo:123,234;bar:345`))
+  puts(%(#{colorize(:cyan, 'XGT_ADDRESS_PREFIX')} the address prefix of the chain))
+  puts(%(#{colorize(:cyan, 'XGT_CHAIN_ID')} the chain ID of the chain))
+  puts(%(#{colorize(:cyan, 'XGT_CURRENCY_SYMBOL')} the currency symbol for transfers))
+  print(%(\n))
+  true
+end
+
+def switch_wallet(name)
+  @name = name
+end
+
+def create_account
+  creator_wif = Xgt::Ruby::Auth.generate_wif(@name, current_wifs.first, 'active')
   name = random_name
   master = Xgt::Ruby::Auth.random_wif
   owner_private = Xgt::Ruby::Auth.generate_wif(name, master, 'owner')
@@ -135,13 +191,18 @@ def create_account()
     ]]
   }
 
-  signed = Xgt::Ruby::Auth.sign_transaction(rpc, txn, [current_wif], @chain_id)
-  rpc.call('call', ['condenser_api', 'broadcast_transaction_synchronous', [signed]])
+  signed = Xgt::Ruby::Auth.sign_transaction(rpc, txn, current_wifs, @chain_id)
+  response = rpc.call('call', ['condenser_api', 'broadcast_transaction_synchronous', [signed]])
+
+  tx_id = response['id']
+  response = rpc.call('condenser_api.get_transaction', [tx_id])
+  _, operation = response['operations'].first
+  name = operation['new_account_name']
 
   # TODO: Get name from result instead
-  result = {
+  response = {
     name: name,
-    master: name,
+    master: master,
     owner_private: owner_private,
     owner_public: owner_public,
     active_private: active_private,
@@ -152,23 +213,68 @@ def create_account()
     memo_public: memo_public
   }
 
-  @last_result = result
-  nil
+  output_result(response)
+  @last_response = response
+  true
 end
 
-def my_account
-  result = rpc.call('condenser_api.get_accounts', [[@name]]).first
-  output_result(result)
-
-  @last_result = result
-  nil
+def get_account(name=@name)
+  response = rpc.call('database_api.find_accounts', { 'accounts' => [name] })
+  output_result(response)
+  @last_result = response
+  true
 end
 
 def transfer(to, amount, memo: nil)
-  # TODO
+  string_amount = '%.3f' % (amount * 0.001)
+  txn = {
+    'extensions' => [],
+    'operations' => [[
+      'transfer',
+      {
+        'from' => @name,
+        'to' => to,
+        'amount' => %(#{string_amount} #{@currency_symbol}),
+        'memo' => memo,
+        'json_metadata' => '',
+        'extensions' => []
+      }
+    ]]
+  }
+
+  logger.info(%(Allocating #{string_amount} #{@currency_symbol} to "#{to}"))
+  signed = Xgt::Ruby::Auth.sign_transaction(rpc, txn, current_wifs, @chain_id)
+  response = rpc.call('call', ['condenser_api', 'broadcast_transaction_synchronous', [signed]])
+  output_result(response)
+  @last_result = response
+  true
 end
 
-puts logo
+def delegate_vesting(name, amount)
+  vesting_shares = "#{'%.6f' % amount.to_i}"
+  txn = {
+    'extensions' => [],
+    'operations' => [[
+      'delegate_vesting_shares',
+      {
+        'delegator' => @name,
+        'delegatee' => name,
+        'vesting_shares' => "#{vesting_shares} VESTS"
+      }
+    ]]
+  }
 
-require 'irb'
-IRB.start(__FILE__)
+  logger.info(%(Delegating #{vesting_shares} VESTS to "#{name}"))
+  signed = Xgt::Ruby::Auth.sign_transaction(rpc, txn, current_wifs, @chain_id)
+  response = rpc.call('call', ['condenser_api', 'broadcast_transaction_synchronous', [signed]])
+  output_result(response)
+  @last_result = response
+  true
+end
+
+if __FILE__ == $0
+  puts logo
+
+  require 'irb'
+  IRB.start(__FILE__)
+end

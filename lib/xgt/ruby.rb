@@ -38,6 +38,10 @@ module Xgt
 
         # TODO: Verify status code
         response = @client.post('/', payload)
+        if !response.body
+          raise StandardError.new(%(No response body! #{response.inspect}))
+        end
+
         if response.body['error']
           raise StandardError.new(response.body['error'])
         end
@@ -74,7 +78,12 @@ module Xgt
         # Get a hex digest of the transactioon
         response = rpc.call('condenser_api.get_transaction_hex', [txn])
         transaction_hex = response[0..-3]
-        digest_hex = Digest::SHA256.hexdigest(unhexlify(chain_id + transaction_hex))
+        # p transaction_hex
+        unhexed = unhexlify(chain_id + transaction_hex)
+        # p unhexed
+        digest_hex = Digest::SHA256.hexdigest(unhexed)
+        # p digest_hex
+        # p wifs
         private_keys = wifs.map { |wif| Bitcoin::Key.from_base58(wif) }
         ec = Bitcoin::OpenSSL_EC
         count = 0
