@@ -11,7 +11,7 @@ require 'xgt/ruby'
 # TODO: Validate
 @host = ENV['HOST'] || 'http://localhost:8751'
 # @host = ENV['HOST'] || 'http://demo-superproducers-lb-204476872.us-east-1.elb.amazonaws.com:8751'
-@name = ENV['XGT_NAME'] || 'initminer'
+@current_name = ENV['XGT_NAME'] || 'initminer'
 @wifs = ENV['XGT_WIFS']&.split(';')&.map { |pair| pair.split(':').map { |n| n.split(',') } }&.to_h \
   || { 'initminer' => ['5JNHfZYKGaomSFvd4NUdQ9qMcEAC43kujbfjueTHpVapX1Kzq2n'] }
 @logger = Logger.new($stdout)
@@ -22,8 +22,12 @@ require 'xgt/ruby'
 # Helpers
 # -------
 
+def current_name
+  @current_name
+end
+
 def current_wifs
-  @wifs[@name] || []
+  @wifs[current_name] || []
 end
 
 def logger
@@ -182,19 +186,19 @@ def info
 end
 
 def switch_wallet(name)
-  @name = name
+  @current_name = name
 end
 
 def create_account
-  creator_wif = Xgt::Ruby::Auth.generate_wif(@name, current_wifs.first, 'active')
+  creator_wif = Xgt::Ruby::Auth.generate_wif(current_name, current_wifs.first, 'active')
   master = Xgt::Ruby::Auth.random_wif
-  owner_private = Xgt::Ruby::Auth.generate_wif(name, master, 'owner')
+  owner_private = Xgt::Ruby::Auth.generate_wif(current_name, master, 'owner')
   owner_public = Xgt::Ruby::Auth.wif_to_public_key(owner_private, address_prefix)
-  active_private = Xgt::Ruby::Auth.generate_wif(name, master, 'active')
+  active_private = Xgt::Ruby::Auth.generate_wif(current_name, master, 'active')
   active_public = Xgt::Ruby::Auth.wif_to_public_key(active_private, address_prefix)
-  posting_private = Xgt::Ruby::Auth.generate_wif(name, master, 'posting')
+  posting_private = Xgt::Ruby::Auth.generate_wif(current_name, master, 'posting')
   posting_public = Xgt::Ruby::Auth.wif_to_public_key(posting_private, address_prefix)
-  memo_private = Xgt::Ruby::Auth.generate_wif(name, master, 'memo')
+  memo_private = Xgt::Ruby::Auth.generate_wif(current_name, master, 'memo')
   memo_public = Xgt::Ruby::Auth.wif_to_public_key(memo_private, address_prefix)
 
   txn = {
@@ -203,7 +207,7 @@ def create_account
       'account_create',
       {
         'fee' => fee,
-        'creator' => @name,
+        'creator' => current_name,
         'owner' => {
           'weight_threshold' => 1,
           'account_auths' => [],
@@ -228,8 +232,7 @@ def create_account
 
   signed = Xgt::Ruby::Auth.sign_transaction(rpc, txn, current_wifs, chain_id)
   response = rpc.call('call', ['condenser_api', 'broadcast_transaction_synchronous', [signed]])
-  transaction_data = rpc.call('condenser_api.get_transaction', [response['id']])
-  account_names = rpc.call('condenser_api.get_account_names_by_block_num', [transaction_data['block_num']])
+  account_names = rpc.call('condenser_api.get_account_names_by_block_num', [response['block_num']])
   account_name = account_names.first
 
   # TODO: Get name from result instead
