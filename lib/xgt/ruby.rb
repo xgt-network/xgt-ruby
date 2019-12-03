@@ -38,16 +38,16 @@ module Xgt
 
         # TODO: Verify status code
         response = @client.post('/', payload)
-        if !response.body
-          raise StandardError.new(%(No response body! #{response.inspect}))
+        unless response.body
+          raise StandardError.new(%(No response body!\n#{response.inspect}))
         end
 
         if response.body['error']
-          raise StandardError.new(response.body['error'])
+          raise StandardError.new(%(Endpoint returned an error response!\n#{JSON.pretty_generate(response.body['error'])}))
         end
 
         unless response.body['result']
-          raise StandardError.new('No result in response body')
+          raise StandardError.new(%(No result in response body!\n#{response.inspect}))
         end
 
         # TODO: XXX: Breaking change!
