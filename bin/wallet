@@ -278,14 +278,14 @@ def list_accounts(name=nil)
   true
 end
 
-def get_account(name=@name)
+def get_account(name=current_name)
   response = rpc.call('database_api.find_accounts', { 'accounts' => [name] })
   output_result(response)
   @last_result = response
   true
 end
 
-def get_resource_params(name=@name)
+def get_resource_params(name=current_name)
   response = rpc.call('rc_api.find_rc_accounts', { 'accounts' => [name] })
   output_result(response)
   @last_result = response
@@ -299,7 +299,7 @@ def transfer(to, amount, memo: nil)
     'operations' => [[
       'transfer',
       {
-        'from' => @name,
+        'from' => current_name,
         'to' => to,
         'amount' => %(#{string_amount} #{currency_symbol}),
         'memo' => memo,
@@ -324,7 +324,7 @@ def delegate_vesting(name, amount)
     'operations' => [[
       'delegate_vesting_shares',
       {
-        'delegator' => @name,
+        'delegator' => current_name,
         'delegatee' => name,
         'vesting_shares' => "#{vesting_shares} VESTS"
       }
