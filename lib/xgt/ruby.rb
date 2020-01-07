@@ -76,14 +76,10 @@ module Xgt
         txn['expiration'] = expiration
 
         # Get a hex digest of the transactioon
-        response = rpc.call('condenser_api.get_transaction_hex', [txn])
+        response = rpc.call('network_broadcast_api.get_transaction_hex', [txn])
         transaction_hex = response[0..-3]
-        # p transaction_hex
         unhexed = unhexlify(chain_id + transaction_hex)
-        # p unhexed
         digest_hex = Digest::SHA256.hexdigest(unhexed)
-        # p digest_hex
-        # p wifs
         private_keys = wifs.map { |wif| Bitcoin::Key.from_base58(wif) }
         ec = Bitcoin::OpenSSL_EC
         count = 0
