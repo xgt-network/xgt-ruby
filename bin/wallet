@@ -183,6 +183,18 @@ def info
   puts(%(#{colorize(:cyan, 'XGT_NAME')} the account name to use by default))
   puts(%(#{colorize(:cyan, 'XGT_WIFS')} mapping of names to WIFs, like `foo:123,234;bar:345`))
   print(%(\n))
+  puts(colorize(:yellow, %(-----)))
+  puts(colorize(:yellow, %(NOTES)))
+  puts(colorize(:yellow, %(-----)))
+  print(%(\n))
+  puts(%(A prettified form of the last result of every call is stored in `last_result`.))
+  print(%(\n))
+  puts(%(An IO containing the raw body of the last result of every call is stored in `last_output`.))
+  print(%(\n))
+  puts(%(You can get an Xgt::Ruby::Rpc instance via `rpc`.))
+  print(%(\n))
+  puts(%(Any method in `bin/wallet` is available from this CLI, so take a look!))
+  print(%(\n))
   true
 end
 
