@@ -331,7 +331,7 @@ def transfer(to, amount, memo: nil)
 end
 
 def delegate_vesting(name, amount)
-  vesting_shares = "#{'%.6f' % amount.to_i}"
+  vesting_shares = "#{'%.6f' % amount}"
   txn = {
     'extensions' => [],
     'operations' => [[

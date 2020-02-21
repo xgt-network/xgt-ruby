@@ -37,15 +37,6 @@ module Xgt
         }
 
         # TODO: Verify status code
-        puts '====='
-        File.open('payloads.txt', 'a') do |f|
-          f.puts(JSON.pretty_generate(payload))
-        end
-        response = @client.post('/', payload)
-        File.open('payloads.txt', 'a') do |f|
-          f.puts(JSON.pretty_generate(response.body))
-        end
-        puts '====='
         unless response.body
           raise StandardError.new(%(No response body!\n#{response.inspect}))
         end
