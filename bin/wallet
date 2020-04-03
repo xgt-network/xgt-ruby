@@ -114,7 +114,8 @@ end
 
 def chain_properties
   return @chain_properties if @chain_properties
-  @chain_properties = rpc.call('condenser_api.get_chain_properties', [])
+  witness_schedule = rpc.call('database_api.get_witness_schedule', {}) || {}
+  @chain_properties = witness_schedule['median_props']
   @chain_properties
 end
 

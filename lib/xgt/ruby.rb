@@ -36,6 +36,8 @@ module Xgt
           'id' => id
         }
 
+        response = @client.post('/', payload)
+
         # TODO: Verify status code
         unless response.body
           raise StandardError.new(%(No response body!\n#{response.inspect}))

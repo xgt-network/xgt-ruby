@@ -12,7 +12,8 @@ require 'xgt/ruby'
 @host = ENV['HOST'] || 'http://localhost:8751'
 
 rpc = Xgt::Ruby::Rpc.new(@host)
-chain_properties = rpc.call('condenser_api.get_chain_properties', [])
+witness_schedule = rpc.call('database_api.get_witness_schedule', {}) || {}
+chain_properties = witness_schedule['median_props']
 config = rpc.call('condenser_api.get_config', [])
 
 @address_prefix = config['STEEM_ADDRESS_PREFIX']
