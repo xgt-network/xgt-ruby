@@ -1,10 +1,11 @@
 require 'xgt/ruby'
 
+# Requires local node: clone into xgt repo, rake run
 
 def create_wallet()
 
   current_name = ENV["NAME"] || "XGT0000000000000"
-  wif = '5JNHfZYKGaomSFvd4NUdQ9qMcEAC43kujbfjueTHpVapX1Kzq2n'
+  wif = ENV["WIF"] || '5JNHfZYKGaomSFvd4NUdQ9qMcEAC43kujbfjueTHpVapX1Kzq2n'
   rpc = Xgt::Ruby::Rpc.new('http://localhost:8751')
   config = rpc.call('database_api.get_config', {})
   address_prefix = config['XGT_ADDRESS_PREFIX']
@@ -51,7 +52,7 @@ def create_wallet()
         'key_auths' => [[social_public, 1]]
       },
       'memo_key' => memo_public,
-      'json_metadata' => '',
+      'json_metadata' => "",
       'extensions' => []
     }
     ]]
@@ -63,7 +64,12 @@ def create_wallet()
   response = rpc.call('network_broadcast_api.broadcast_transaction_synchronous', [signed])
   puts "\e[36m\nResponse:\n\e[0m"
   pp response
-end
 
+  account_names = rpc.call('condenser_api.get_account_names_by_block_num', [response['block_num']])                      
+  account_name = account_names.first 
+  
+  puts("\nAccount name: #{account_name}")
+
+end
 
 create_wallet()
