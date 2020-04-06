@@ -1,0 +1,508 @@
+{
+  "jsonrpc": "2.0",
+  "method": "condenser_api.get_config",
+  "params": [
+
+  ],
+  "id": 1140933800976
+}
+{
+  "jsonrpc": "2.0",
+  "method": "condenser_api.get_config",
+  "params": [
+
+  ],
+  "id": 241202625308532
+}
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "IS_TEST_NET": true,
+    "TESTNET_BLOCK_LIMIT": 3000000,
+    "STEEM_ENABLE_SMT": false,
+    "SBD_SYMBOL": {
+      "nai": "@@000000013",
+      "decimals": 3
+    },
+    "STEEM_INITIAL_VOTE_POWER_RATE": 40,
+    "STEEM_REDUCED_VOTE_POWER_RATE": 10,
+    "STEEM_100_PERCENT": 10000,
+    "STEEM_1_PERCENT": 100,
+    "STEEM_ACCOUNT_RECOVERY_REQUEST_EXPIRATION_PERIOD": 12000000,
+    "STEEM_ACTIVE_CHALLENGE_COOLDOWN": "86400000000",
+    "STEEM_ACTIVE_CHALLENGE_FEE": {
+      "amount": "2000",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "STEEM_ADDRESS_PREFIX": "XGT",
+    "STEEM_APR_PERCENT_MULTIPLY_PER_BLOCK": "102035135585887",
+    "STEEM_APR_PERCENT_MULTIPLY_PER_HOUR": "119577151364285",
+    "STEEM_APR_PERCENT_MULTIPLY_PER_ROUND": "133921203762304",
+    "STEEM_APR_PERCENT_SHIFT_PER_BLOCK": 87,
+    "STEEM_APR_PERCENT_SHIFT_PER_HOUR": 77,
+    "STEEM_APR_PERCENT_SHIFT_PER_ROUND": 83,
+    "STEEM_BANDWIDTH_AVERAGE_WINDOW_SECONDS": 604800,
+    "STEEM_BANDWIDTH_PRECISION": 1000000,
+    "STEEM_BENEFICIARY_LIMIT": 128,
+    "STEEM_BLOCKCHAIN_PRECISION": 1000,
+    "STEEM_BLOCKCHAIN_PRECISION_DIGITS": 3,
+    "STEEM_BLOCKCHAIN_HARDFORK_VERSION": "0.22.0",
+    "STEEM_BLOCKCHAIN_VERSION": "0.22.0",
+    "STEEM_BLOCK_INTERVAL": 3,
+    "STEEM_BLOCKS_PER_DAY": 28800,
+    "STEEM_BLOCKS_PER_HOUR": 1200,
+    "STEEM_BLOCKS_PER_YEAR": 10512000,
+    "STEEM_CASHOUT_WINDOW_SECONDS": 3600,
+    "STEEM_CASHOUT_WINDOW_SECONDS_PRE_HF12": 3600,
+    "STEEM_CASHOUT_WINDOW_SECONDS_PRE_HF17": 3600,
+    "STEEM_CHAIN_ID": "4e08b752aff5f66e1339cb8c0a8bca14c4ebb238655875db7dade86349091197",
+    "STEEM_COMMENT_REWARD_FUND_NAME": "comment",
+    "STEEM_COMMENT_TITLE_LIMIT": 256,
+    "STEEM_CONTENT_APR_PERCENT": 3875,
+    "STEEM_CONTENT_CONSTANT_HF0": "2000000000000",
+    "STEEM_CONTENT_CONSTANT_HF21": "2000000000000",
+    "STEEM_CONTENT_REWARD_PERCENT_HF16": 7500,
+    "STEEM_CONTENT_REWARD_PERCENT_HF21": 6500,
+    "STEEM_CONVERSION_DELAY": "302400000000",
+    "STEEM_CONVERSION_DELAY_PRE_HF_16": "604800000000",
+    "STEEM_CREATE_ACCOUNT_DELEGATION_RATIO": 5,
+    "STEEM_CREATE_ACCOUNT_DELEGATION_TIME": "2592000000000",
+    "STEEM_CREATE_ACCOUNT_WITH_STEEM_MODIFIER": 30,
+    "STEEM_CURATE_APR_PERCENT": 3875,
+    "STEEM_CUSTOM_OP_DATA_MAX_LENGTH": 8192,
+    "STEEM_CUSTOM_OP_ID_MAX_LENGTH": 32,
+    "STEEM_DEFAULT_SBD_INTEREST_RATE": 1000,
+    "STEEM_DOWNVOTE_POOL_PERCENT_HF21": 2500,
+    "STEEM_EQUIHASH_K": 6,
+    "STEEM_EQUIHASH_N": 140,
+    "STEEM_FEED_HISTORY_WINDOW": 84,
+    "STEEM_FEED_HISTORY_WINDOW_PRE_HF_16": 168,
+    "STEEM_FEED_INTERVAL_BLOCKS": 1200,
+    "STEEM_GENESIS_TIME": "2016-01-01T00:00:00",
+    "STEEM_HARDFORK_REQUIRED_WITNESSES": 1,
+    "STEEM_HF21_CONVERGENT_LINEAR_RECENT_CLAIMS": "503600561838938636",
+    "STEEM_INFLATION_NARROWING_PERIOD": 250000,
+    "STEEM_INFLATION_RATE_START_PERCENT": 978,
+    "STEEM_INFLATION_RATE_STOP_PERCENT": 95,
+    "STEEM_INIT_MINER_NAME": "initminer",
+    "STEEM_INIT_PUBLIC_KEY_STR": "XGT6LLegbAgLAy28EHrffBVuANFWcFgmqRMW13wBmTExqFE9SCkg4",
+    "STEEM_INIT_SUPPLY": "250000000000",
+    "STEEM_SBD_INIT_SUPPLY": "7000000000",
+    "STEEM_INIT_TIME": "1970-01-01T00:00:00",
+    "STEEM_IRREVERSIBLE_THRESHOLD": 7500,
+    "STEEM_LIQUIDITY_APR_PERCENT": 750,
+    "STEEM_LIQUIDITY_REWARD_BLOCKS": 1200,
+    "STEEM_LIQUIDITY_REWARD_PERIOD_SEC": 3600,
+    "STEEM_LIQUIDITY_TIMEOUT_SEC": "604800000000",
+    "STEEM_MAX_ACCOUNT_CREATION_FEE": 1000000000,
+    "STEEM_MAX_ACCOUNT_NAME_LENGTH": 16,
+    "STEEM_MAX_ACCOUNT_WITNESS_VOTES": 30,
+    "STEEM_MAX_ASSET_WHITELIST_AUTHORITIES": 10,
+    "STEEM_MAX_AUTHORITY_MEMBERSHIP": 40,
+    "STEEM_MAX_BLOCK_SIZE": 393216000,
+    "STEEM_SOFT_MAX_BLOCK_SIZE": 2097152,
+    "STEEM_MAX_CASHOUT_WINDOW_SECONDS": 86400,
+    "STEEM_MAX_COMMENT_DEPTH": 65535,
+    "STEEM_MAX_COMMENT_DEPTH_PRE_HF17": 6,
+    "STEEM_MAX_FEED_AGE_SECONDS": 604800,
+    "STEEM_MAX_INSTANCE_ID": "281474976710655",
+    "STEEM_MAX_MEMO_SIZE": 2048,
+    "STEEM_MAX_WITNESSES": 33,
+    "STEEM_MAX_VOTED_WITNESSES": 3,
+    "STEEM_MAX_MINER_WITNESSES": 30,
+    "STEEM_MAX_RUNNER_WITNESSES": 0,
+    "STEEM_MAX_PERMLINK_LENGTH": 256,
+    "STEEM_MAX_PROXY_RECURSION_DEPTH": 4,
+    "STEEM_MAX_RATION_DECAY_RATE": 1000000,
+    "STEEM_MAX_RESERVE_RATIO": 20000,
+    "STEEM_MAX_SATOSHIS": "4611686018427387903",
+    "STEEM_MAX_SHARE_SUPPLY": "1000000000000000",
+    "STEEM_MAX_SIG_CHECK_DEPTH": 2,
+    "STEEM_MAX_SIG_CHECK_ACCOUNTS": 125,
+    "STEEM_MAX_TIME_UNTIL_EXPIRATION": 3600,
+    "STEEM_MAX_TRANSACTION_SIZE": 65536,
+    "STEEM_MAX_UNDO_HISTORY": 10000,
+    "STEEM_MAX_URL_LENGTH": 127,
+    "STEEM_MAX_VOTE_CHANGES": 5,
+    "STEEM_MAX_WITHDRAW_ROUTES": 10,
+    "STEEM_MAX_WITNESS_URL_LENGTH": 2048,
+    "STEEM_MIN_ACCOUNT_CREATION_FEE": 0,
+    "STEEM_MIN_ACCOUNT_NAME_LENGTH": 3,
+    "STEEM_MIN_BLOCK_SIZE_LIMIT": 65536,
+    "STEEM_MIN_BLOCK_SIZE": 115,
+    "STEEM_MIN_CONTENT_REWARD": {
+      "amount": "1000",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "STEEM_MIN_CURATE_REWARD": {
+      "amount": "1000",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "STEEM_MIN_PERMLINK_LENGTH": 0,
+    "STEEM_MIN_REPLY_INTERVAL": 20000000,
+    "STEEM_MIN_REPLY_INTERVAL_HF20": 3000000,
+    "STEEM_MIN_ROOT_COMMENT_INTERVAL": 300000000,
+    "STEEM_MIN_COMMENT_EDIT_INTERVAL": 3000000,
+    "STEEM_MIN_VOTE_INTERVAL_SEC": 3,
+    "STEEM_MINER_ACCOUNT": "miners",
+    "STEEM_MINER_PAY_PERCENT": 100,
+    "STEEM_MIN_FEEDS": 11,
+    "STEEM_MINING_REWARD": {
+      "amount": "1000",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "STEEM_MINING_TIME": "2016-01-01T00:00:00",
+    "STEEM_MIN_LIQUIDITY_REWARD": {
+      "amount": "1200000",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "STEEM_MIN_LIQUIDITY_REWARD_PERIOD_SEC": 60000000,
+    "STEEM_MIN_PAYOUT_SBD": {
+      "amount": "20",
+      "precision": 3,
+      "nai": "@@000000013"
+    },
+    "STEEM_MIN_POW_REWARD": {
+      "amount": "1000",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "STEEM_MIN_PRODUCER_REWARD": {
+      "amount": "1000",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "STEEM_MIN_TRANSACTION_EXPIRATION_LIMIT": 15,
+    "STEEM_MIN_TRANSACTION_SIZE_LIMIT": 1024,
+    "STEEM_MIN_UNDO_HISTORY": 10,
+    "STEEM_NULL_ACCOUNT": "null",
+    "STEEM_NUM_INIT_MINERS": 1,
+    "STEEM_OWNER_AUTH_HISTORY_TRACKING_START_BLOCK_NUM": 1,
+    "STEEM_OWNER_AUTH_RECOVERY_PERIOD": 60000000,
+    "STEEM_OWNER_CHALLENGE_COOLDOWN": "86400000000",
+    "STEEM_OWNER_CHALLENGE_FEE": {
+      "amount": "30000",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "STEEM_OWNER_UPDATE_LIMIT": 0,
+    "STEEM_POST_AVERAGE_WINDOW": 86400,
+    "STEEM_POST_REWARD_FUND_NAME": "post",
+    "STEEM_POST_WEIGHT_CONSTANT": 1600000000,
+    "STEEM_POW_APR_PERCENT": 750,
+    "STEEM_PRODUCER_APR_PERCENT": 750,
+    "STEEM_PROXY_TO_SELF_ACCOUNT": "",
+    "STEEM_SBD_INTEREST_COMPOUND_INTERVAL_SEC": 2592000,
+    "STEEM_SECONDS_PER_YEAR": 31536000,
+    "STEEM_PROPOSAL_FUND_PERCENT_HF0": 0,
+    "STEEM_PROPOSAL_FUND_PERCENT_HF21": 1000,
+    "STEEM_RECENT_RSHARES_DECAY_TIME_HF19": "1296000000000",
+    "STEEM_RECENT_RSHARES_DECAY_TIME_HF17": "2592000000000",
+    "STEEM_REVERSE_AUCTION_WINDOW_SECONDS_HF6": 1800,
+    "STEEM_REVERSE_AUCTION_WINDOW_SECONDS_HF20": 900,
+    "STEEM_ROOT_POST_PARENT": "",
+    "STEEM_SAVINGS_WITHDRAW_REQUEST_LIMIT": 100,
+    "STEEM_SAVINGS_WITHDRAW_TIME": "259200000000",
+    "STEEM_SBD_START_PERCENT_HF14": 200,
+    "STEEM_SBD_START_PERCENT_HF20": 900,
+    "STEEM_SBD_STOP_PERCENT_HF14": 500,
+    "STEEM_SBD_STOP_PERCENT_HF20": 1000,
+    "STEEM_SBD_STOP_ADJUST": 5,
+    "STEEM_SECOND_CASHOUT_WINDOW": 259200,
+    "STEEM_SOFT_MAX_COMMENT_DEPTH": 255,
+    "STEEM_START_MINER_VOTING_BLOCK": 864000,
+    "STEEM_START_VESTING_BLOCK": 201600,
+    "STEEM_TEMP_ACCOUNT": "temp",
+    "STEEM_UPVOTE_LOCKOUT_HF7": 60000000,
+    "STEEM_UPVOTE_LOCKOUT_HF17": 300000000,
+    "STEEM_UPVOTE_LOCKOUT_SECONDS": 300,
+    "STEEM_VESTING_FUND_PERCENT_HF16": 1500,
+    "STEEM_VESTING_WITHDRAW_INTERVALS": 13,
+    "STEEM_VESTING_WITHDRAW_INTERVALS_PRE_HF_16": 104,
+    "STEEM_VESTING_WITHDRAW_INTERVAL_SECONDS": 604800,
+    "STEEM_VOTE_DUST_THRESHOLD": 50000000,
+    "STEEM_VOTING_MANA_REGENERATION_SECONDS": 432000,
+    "STEEM_SYMBOL": {
+      "nai": "@@000000021",
+      "decimals": 3
+    },
+    "VESTS_SYMBOL": {
+      "nai": "@@000000037",
+      "decimals": 6
+    },
+    "STEEM_VIRTUAL_SCHEDULE_LAP_LENGTH": "18446744073709551615",
+    "STEEM_VIRTUAL_SCHEDULE_LAP_LENGTH2": "340282366920938463463374607431768211455",
+    "STEEM_MAX_LIMIT_ORDER_EXPIRATION": 2419200,
+    "STEEM_DELEGATION_RETURN_PERIOD_HF0": 3600,
+    "STEEM_DELEGATION_RETURN_PERIOD_HF20": 432000,
+    "STEEM_RD_MIN_DECAY_BITS": 6,
+    "STEEM_RD_MAX_DECAY_BITS": 32,
+    "STEEM_RD_DECAY_DENOM_SHIFT": 36,
+    "STEEM_RD_MAX_POOL_BITS": 64,
+    "STEEM_RD_MAX_BUDGET_1": "17179869183",
+    "STEEM_RD_MAX_BUDGET_2": 268435455,
+    "STEEM_RD_MAX_BUDGET_3": 2147483647,
+    "STEEM_RD_MAX_BUDGET": 268435455,
+    "STEEM_RD_MIN_DECAY": 64,
+    "STEEM_RD_MIN_BUDGET": 1,
+    "STEEM_RD_MAX_DECAY": 4294967295,
+    "STEEM_ACCOUNT_SUBSIDY_PRECISION": 10000,
+    "STEEM_WITNESS_SUBSIDY_BUDGET_PERCENT": 12500,
+    "STEEM_WITNESS_SUBSIDY_DECAY_PERCENT": 330000,
+    "STEEM_DEFAULT_ACCOUNT_SUBSIDY_DECAY": 347321,
+    "STEEM_DEFAULT_ACCOUNT_SUBSIDY_BUDGET": 797,
+    "STEEM_DECAY_BACKSTOP_PERCENT": 9000,
+    "STEEM_BLOCK_GENERATION_POSTPONED_TX_LIMIT": 5,
+    "STEEM_PENDING_TRANSACTION_EXECUTION_LIMIT": 200000,
+    "STEEM_TREASURY_ACCOUNT": "steem.dao",
+    "STEEM_TREASURY_FEE": 10000,
+    "STEEM_PROPOSAL_MAINTENANCE_PERIOD": 3600,
+    "STEEM_PROPOSAL_MAINTENANCE_CLEANUP": 86400,
+    "STEEM_PROPOSAL_SUBJECT_MAX_LENGTH": 80,
+    "STEEM_PROPOSAL_MAX_IDS_NUMBER": 5
+  },
+  "id": "241202625308532"
+}
+{
+  "jsonrpc": "2.0",
+  "method": "condenser_api.get_chain_properties",
+  "params": [
+
+  ],
+  "id": 253294701531947
+}
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "account_creation_fee": "0.000 TESTS",
+    "maximum_block_size": 131072,
+    "sbd_interest_rate": 1000,
+    "account_subsidy_budget": 797,
+    "account_subsidy_decay": 347321
+  },
+  "id": "253294701531947"
+}
+{
+  "jsonrpc": "2.0",
+  "method": "database_api.get_dynamic_global_properties",
+  "params": {
+  },
+  "id": 178594443239120
+}
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "id": 0,
+    "head_block_number": 2999999,
+    "head_block_id": "002dc6bf6155f4bd88dd73e6138a54b65467b94b",
+    "time": "2020-03-15T08:34:27",
+    "current_witness": "initminer",
+    "total_pow": "18446744073709551615",
+    "num_pow_witnesses": 0,
+    "virtual_supply": {
+      "amount": "280986785907",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "current_supply": {
+      "amount": "280986785907",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "confidential_supply": {
+      "amount": "0",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "init_sbd_supply": {
+      "amount": "7000000000",
+      "precision": 3,
+      "nai": "@@000000013"
+    },
+    "current_sbd_supply": {
+      "amount": "0",
+      "precision": 3,
+      "nai": "@@000000013"
+    },
+    "confidential_sbd_supply": {
+      "amount": "0",
+      "precision": 3,
+      "nai": "@@000000013"
+    },
+    "total_vesting_fund_steem": {
+      "amount": "25468917699",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "total_vesting_shares": {
+      "amount": "917616483267",
+      "precision": 6,
+      "nai": "@@000000037"
+    },
+    "total_reward_fund_steem": {
+      "amount": "0",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "total_reward_shares2": "0",
+    "pending_rewarded_vesting_shares": {
+      "amount": "0",
+      "precision": 6,
+      "nai": "@@000000037"
+    },
+    "pending_rewarded_vesting_steem": {
+      "amount": "0",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "sbd_interest_rate": 1000,
+    "sbd_print_rate": 10000,
+    "maximum_block_size": 131072,
+    "required_actions_partition_percent": 0,
+    "current_aslot": 44218289,
+    "recent_slots_filled": "340282366920938463463374607431768211455",
+    "participation_count": 128,
+    "last_irreversible_block_num": 2999999,
+    "vote_power_reserve_rate": 10,
+    "delegation_return_period": 432000,
+    "reverse_auction_seconds": 900,
+    "available_account_subsidies": 157691079,
+    "sbd_stop_percent": 1000,
+    "sbd_start_percent": 900,
+    "sbd_stop_adjust": 0,
+    "next_maintenance_time": "2016-01-01T00:00:00",
+    "last_budget_time": "2016-01-01T00:00:00",
+    "content_reward_percent": 7500,
+    "vesting_reward_percent": 1500,
+    "sps_fund_percent": 0,
+    "sps_interval_ledger": {
+      "amount": "0",
+      "precision": 3,
+      "nai": "@@000000013"
+    },
+    "downvote_pool_percent": 0
+  },
+  "id": "178594443239120"
+}
+{
+  "jsonrpc": "2.0",
+  "method": "block_api.get_block_header",
+  "params": {
+    "block_num": 2999999
+  },
+  "id": 218462897774656
+}
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "header": {
+      "previous": "002dc6befc777afc5457b0e3f2302a99acb3df15",
+      "timestamp": "2020-03-15T08:34:27",
+      "witness": "initminer",
+      "transaction_merkle_root": "0000000000000000000000000000000000000000",
+      "extensions": [
+
+      ]
+    }
+  },
+  "id": "218462897774656"
+}
+{
+  "jsonrpc": "2.0",
+  "method": "network_broadcast_api.get_transaction_hex",
+  "params": [
+    {
+      "extensions": [
+
+      ],
+      "operations": [
+        [
+          "account_create",
+          {
+            "fee": "0.000 TESTS",
+            "creator": "XGT0000000000000",
+            "owner": {
+              "weight_threshold": 1,
+              "account_auths": [
+
+              ],
+              "key_auths": [
+                [
+                  "XGT8FNsW2rK64QoDn87nYnH8RqpViqCFNAqL5jJzjPvJt4Uj22qi7",
+                  1
+                ]
+              ]
+            },
+            "active": {
+              "weight_threshold": 1,
+              "account_auths": [
+
+              ],
+              "key_auths": [
+                [
+                  "XGT8YFMMgVFdFkkW5h7RjYJRSjAskhEEJV29MK2sScktuG1AH2Kyi",
+                  1
+                ]
+              ]
+            },
+            "posting": {
+              "weight_threshold": 1,
+              "account_auths": [
+
+              ],
+              "key_auths": [
+                [
+                  "XGT55VoT45ZnNPQzLQ852y8XF477HbWXTqMf4sikuCYC8aBACrsw1",
+                  1
+                ]
+              ]
+            },
+            "memo_key": "XGT74RPCqk1usUsfoowoVuhCEqiTbPxtb1nDuE6JU1JeQDezSBJQ7",
+            "json_metadata": "",
+            "extensions": [
+
+            ]
+          }
+        ]
+      ],
+      "ref_block_num": 50878,
+      "ref_block_prefix": 4235884540,
+      "expiration": "2020-03-15T08:44:27"
+    }
+  ],
+  "id": 151521645869436
+}
+{
+  "jsonrpc": "2.0",
+  "error": {
+    "code": -32002,
+    "message": "Assert Exception:method_itr != api_itr->second.end(): Could not find method get_transaction_hex",
+    "data": {
+      "code": 10,
+      "name": "assert_exception",
+      "message": "Assert Exception",
+      "stack": [
+        {
+          "context": {
+            "level": "error",
+            "file": "json_rpc_plugin.cpp",
+            "line": 209,
+            "method": "find_api_method",
+            "hostname": "",
+            "timestamp": "2020-04-03T17:09:01"
+          },
+          "format": "method_itr != api_itr->second.end(): Could not find method ${method}",
+          "data": {
+            "method": "get_transaction_hex"
+          }
+        }
+      ]
+    }
+  },
+  "id": "151521645869436"
+}

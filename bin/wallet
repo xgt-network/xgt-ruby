@@ -9,8 +9,8 @@ require 'xgt/ruby'
 # ------
 
 # TODO: Validate
-@host = ENV['HOST'] || 'http://localhost:8751'
-# @host = ENV['HOST'] || 'http://test-superproducers-lb-1733239358.us-east-1.elb.amazonaws.com:8751'
+#@host = ENV['HOST'] || 'http://localhost:8751'
+ @host = ENV['HOST'] || 'http://test-superproducers-lb-1733239358.us-east-1.elb.amazonaws.com:8751'
 # @current_name = ENV['XGT_NAME'] || 'initminer'
 @current_name = ENV['XGT_NAME'] || 'XGT0000000000000'
 @wifs = ENV['XGT_WIFS']&.split(';')&.map { |pair| pair.split(':').map { |n| n.split(',') } }&.to_h \

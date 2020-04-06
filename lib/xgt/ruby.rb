@@ -32,9 +32,9 @@ module Xgt
         payload = {
           'jsonrpc' => '2.0',
           'method' => mthd,
-          'params' => params,
           'id' => id
         }
+        payload["params"] = params unless params.nil?
 
         response = @client.post('/', payload)
 
@@ -63,19 +63,16 @@ module Xgt
         chain_date = response['time'] + 'Z'
         last_irreversible_block_num = response['last_irreversible_block_num']
         ref_block_num = (last_irreversible_block_num - 1) & 0xffff
-
         # Get ref block info to append to the transaction
         response = rpc.call('block_api.get_block_header', { 'block_num' => last_irreversible_block_num })
-        header = response['header']
+header = response['header']
         head_block_id = (header && header['previous']) ? header['previous'] : '0000000000000000000000000000000000000000'
         ref_block_prefix = [head_block_id].pack('H*')[4...8].unpack('V').first
         expiration = (Time.parse(chain_date) + 600).iso8601.gsub(/Z$/, '')
-
         # Append ref block info to the transaction
         txn['ref_block_num'] = ref_block_num
         txn['ref_block_prefix'] = ref_block_prefix
         txn['expiration'] = expiration
-
         # Get a hex digest of the transactioon
         response = rpc.call('network_broadcast_api.get_transaction_hex', [txn])
         transaction_hex = response[0..-3]
