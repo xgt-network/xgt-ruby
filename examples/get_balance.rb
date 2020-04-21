@@ -2,7 +2,7 @@ require 'xgt/ruby'
 
 def get_balance(name)
 
-  rpc = Xgt::Ruby::Rpc.new('http://localhost:8751')
+ rpc = Xgt::Ruby::Rpc.new('http://localhost:8751')
   config = rpc.call('database_api.get_config', {})
   chain_id = config['XGT_CHAIN_ID']
   witness_schedule = rpc.call('database_api.get_witness_schedule', {}) || {}
@@ -11,14 +11,18 @@ def get_balance(name)
   amount = fee['amount'].to_f * 0.001
   creation_fee = "#{'%0.3f' % amount} XGT"
   currency_symbol = creation_fee.split(/\s+/).last
-  account_name = rpc.call('database_api.find_accounts', { 'accounts' => [name] })
+  account = rpc.call('database_api.find_accounts', { 'accounts' => [name] })
 
-  raw_balance = account_name['accounts'].first['balance']['amount'].to_i
+  raw_balance = account['accounts'].first['balance']['amount'].to_i
   balance = '%.3f' % (raw_balance * 0.001)
   string_balance = %(#{balance} #{currency_symbol})
   
   puts string_balance
 
+  puts "\n\n"
+
+  puts account
+
 end
 
-get_balance('XGT33jZ19CgU7Qar')
+get_balance('XGT2xtVNz7nxdDp6')

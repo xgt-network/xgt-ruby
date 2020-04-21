@@ -2,7 +2,7 @@ require 'xgt/ruby'
 
 # Requires local node: clone into xgt repo, rake run
 
-def create_wallet()
+def account_create()
 
   current_name = ENV["NAME"] || "XGT0000000000000"
   wif = ENV["WIF"] || '5JNHfZYKGaomSFvd4NUdQ9qMcEAC43kujbfjueTHpVapX1Kzq2n'
@@ -59,11 +59,11 @@ def create_wallet()
   }
 
   puts "\e[36mSent:\n\e[0m"
-  pp txn
+  puts JSON.pretty_generate(txn)
   signed = Xgt::Ruby::Auth.sign_transaction(rpc, txn, [wif], chain_id)
   response = rpc.call('network_broadcast_api.broadcast_transaction_synchronous', [signed])
   puts "\e[36m\nResponse:\n\e[0m"
-  pp response
+  puts JSON.pretty_generate(response)
 
   account_names = rpc.call('condenser_api.get_account_names_by_block_num', [response['block_num']])                      
   account_name = account_names.first 
@@ -72,4 +72,4 @@ def create_wallet()
 
 end
 
-create_wallet()
+account_create()

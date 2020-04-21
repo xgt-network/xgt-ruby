@@ -31,11 +31,11 @@ def transfer(to, transaction_amount, memo:nil)
   }
 
   puts "\e[36mSent:\n\e[0m"
-  pp txn
+  puts JSON.pretty_generate(txn)
   signed = Xgt::Ruby::Auth.sign_transaction(rpc, txn, [wif], chain_id)
   response = rpc.call('call', ['network_broadcast_api', 'broadcast_transaction_synchronous', [signed]])
   puts "\e[36m\nResponse:\n\e[0m"
-  pp response
+  puts JSON.pretty_generate(response)
 end
 
-transfer('XGT33jZ19CgU7Qar', 1000)
+transfer('XGT272PGzYQuoWCe', 1000)
