@@ -17,11 +17,10 @@ def get_balance(name)
   balance = '%.3f' % (raw_balance * 0.001)
   string_balance = %(#{balance} #{currency_symbol})
   
-  puts string_balance
-
+  puts JSON.pretty_generate(string_balance)
   puts "\n\n"
-
-  puts account
+  puts JSON.pretty_generate(account)
+  account
 
 end
 

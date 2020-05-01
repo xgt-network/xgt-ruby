@@ -1,10 +1,16 @@
 require 'xgt/ruby'
 
-def find_accounts(name)
+def find_accounts(wallet_address)
   rpc = Xgt::Ruby::Rpc.new('http://localhost:8751')
-  account = rpc.call('database_api.find_accounts', {'accounts' => [name] })
+  payload = {
+    accounts: [wallet_address]
+  }
+  response = rpc.call('database_api.find_accounts', payload)
   
-  puts JSON.pretty_generate(account)
+  puts JSON.pretty_generate(payload)
+  puts "\n\n"
+  puts JSON.pretty_generate(response)
+  response
 end
 
-find_accounts('XGT23kBBcBgY3g6r')
+find_accounts('XGT22NqCrWPExii6')

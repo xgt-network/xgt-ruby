@@ -1,12 +1,16 @@
 require 'xgt/ruby'
 
-def get_key_references(key)
+def get_key_references(keys)
   rpc = Xgt::Ruby::Rpc.new('http://localhost:8751')
-  rpc.call('account_by_key_api.get_key_references', {'keys' => [key] })
+  payload = {
+    keys: [keys]
+  }
+  response = rpc.call('account_by_key_api.get_key_references', payload)
+
+  puts JSON.pretty_generate(payload)
+  puts "\n\n"
+  puts JSON.pretty_generate(response)
+  response
 end
 
-references = get_key_references('XGT66jpLKLnpwbHoqwn7YMUmzBABoVP1GQeFYAy7rj5dfRYT6GUoR')
-
-puts JSON.pretty_generate({'keys' => ['XGT66jpLKLnpwbHoqwn7YMUmzBABoVP1GQeFYAy7rj5dfRYT6GUoR'] })
-puts "\n"
-puts JSON.pretty_generate(references)
+get_key_references('XGT6ZqzbKbQ7MhGZ2GpbP7tz3f4es2r8qmgP88bgBM6JKzWTWYGkH')

@@ -1,13 +1,12 @@
 require 'xgt/ruby'
+load 'dummy_code.rb'
 
-def list_accounts
+def push_block(signed_transaction)
   rpc = Xgt::Ruby::Rpc.new('http://localhost:8751')
   payload = {
-      start: 0,
-      limit: 1,
-      order: "by_name"
+    signed_block: signed_transaction
   }
-  response = rpc.call('database_api.list_accounts', payload)
+  response = rpc.call('chain_api.push_block', payload)
   
   puts JSON.pretty_generate(payload)
   puts "\n\n"
@@ -15,4 +14,7 @@ def list_accounts
   response
 end
 
-list_accounts
+push_block(Dummy_code.account_create())
+
+
+

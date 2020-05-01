@@ -1,13 +1,12 @@
 require 'xgt/ruby'
+load 'dummy_code.rb'
 
-def list_accounts
+def broadcast_block(signed_block)
   rpc = Xgt::Ruby::Rpc.new('http://localhost:8751')
   payload = {
-      start: 0,
-      limit: 1,
-      order: "by_name"
+    signed_block: signed_block
   }
-  response = rpc.call('database_api.list_accounts', payload)
+  response = rpc.call('network_broadcast_api.broadcast_block', payload)
   
   puts JSON.pretty_generate(payload)
   puts "\n\n"
@@ -15,4 +14,4 @@ def list_accounts
   response
 end
 
-list_accounts
+broadcast_block('0')

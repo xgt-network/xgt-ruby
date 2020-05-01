@@ -36,6 +36,7 @@ def transfer(to, transaction_amount, memo:nil)
   response = rpc.call('call', ['network_broadcast_api', 'broadcast_transaction_synchronous', [signed]])
   puts "\e[36m\nResponse:\n\e[0m"
   puts JSON.pretty_generate(response)
+  response
 end
 
 transfer('XGT272PGzYQuoWCe', 1000)

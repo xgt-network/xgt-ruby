@@ -3,7 +3,6 @@ require 'xgt/ruby'
 # Requires local node: clone into xgt repo, rake run
 
 def account_create()
-
   current_name = ENV["NAME"] || "XGT0000000000000"
   wif = ENV["WIF"] || '5JNHfZYKGaomSFvd4NUdQ9qMcEAC43kujbfjueTHpVapX1Kzq2n'
   rpc = Xgt::Ruby::Rpc.new('http://localhost:8751')

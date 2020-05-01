@@ -8,9 +8,10 @@ def get_transaction_hex(transaction)
   chain_id = config["XGT_CHAIN_ID"]
 
   signed = Xgt::Ruby::Auth.sign_transaction(rpc, transaction, [wif], chain_id)
-  hex_dump = rpc.call('network_broadcast_api.get_transaction_hex', [transaction])
+  response = rpc.call('network_broadcast_api.get_transaction_hex', [transaction])
   
-  puts JSON.pretty_generate(hex_dump)
+  puts JSON.pretty_generate(response)
+  response
 end
 
 get_transaction_hex(Dummy_code.account_create())

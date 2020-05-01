@@ -1,12 +1,15 @@
 require 'xgt/ruby'
 
-def get_version()
+def get_version
   rpc = Xgt::Ruby::Rpc.new('http://localhost:8751')
-  wif = '5JNHfZYKGaomSFvd4NUdQ9qMcEAC43kujbfjueTHpVapX1Kzq2n'
-  output = rpc.call('database_api.get_version', {})
-  puts JSON.pretty_generate(output)
+  payload = {}
+  response = rpc.call('database_api.get_version', payload)
   
+  puts JSON.pretty_generate(payload)
+  puts "\n\n"
+  puts JSON.pretty_generate(response)
+  response
 end
 
-get_version()
+get_version
 
