@@ -1,9 +1,13 @@
 require 'xgt/ruby'
 
-def list_witness_votes
+def list_accounts
   rpc = Xgt::Ruby::Rpc.new('http://localhost:8751')
-  payload = {}
-  response = rpc.call('database_api.list_witness_votes', payload)
+  payload = {
+    start: 0,
+    limit: 5,
+    order: "by_name"
+  }
+  response = rpc.call('database_api.list_accounts', payload)
   
   puts JSON.pretty_generate(payload)
   puts "\n\n"
@@ -11,4 +15,4 @@ def list_witness_votes
   response
 end
 
-list_witness_votes
+list_accounts

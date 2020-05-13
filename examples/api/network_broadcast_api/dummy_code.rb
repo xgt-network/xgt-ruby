@@ -32,32 +32,34 @@ def Dummy_code.account_create()
   memo_public = Xgt::Ruby::Auth.wif_to_public_key(memo_private, address_prefix)
 
   txn = {
-    'extensions' => [],
-    'operations' => [[
-      'account_create',
-    {
-      'fee' => creation_fee,
-      'creator' => current_name,
-      'recovery' => {
-        'weight_threshold' => 1,
-        'account_auths' => [],
-        'key_auths' => [[recovery_public, 1]]
-      },
-      'money' => {
-        'weight_threshold' => 1,
-        'account_auths' => [],
-        'key_auths' => [[money_public, 1]]
-      },
-      'social' => {
-        'weight_threshold' => 1,
-        'account_auths' => [],
-        'key_auths' => [[social_public, 1]]
-      },
-      'memo_key' => memo_public,
-      'json_metadata' => "",
-      'extensions' => []
-    }
-    ]]
+    'extensions': [],
+    'operations': [
+      [
+        'account_create',
+        {
+          'fee': creation_fee,
+          'creator': current_name,
+          'recovery': {
+            'weight_threshold': 1,
+            'account_auths': [],
+            'key_auths': [[recovery_public, 1]]
+          },
+          'money': {
+            'weight_threshold': 1,
+            'account_auths': [],
+            'key_auths': [[money_public, 1]]
+          },
+          'social': {
+            'weight_threshold': 1,
+            'account_auths': [],
+            'key_auths': [[social_public, 1]]
+          },
+          'memo_key': memo_public,
+          'json_metadata': "",
+          'extensions': []
+        }
+      ]
+    ]
   }
 
   signed = Xgt::Ruby::Auth.sign_transaction(rpc, txn, [wif], chain_id)

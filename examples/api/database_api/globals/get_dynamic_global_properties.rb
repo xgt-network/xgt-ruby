@@ -6,7 +6,7 @@ def get_dynamic_global_properties
   response = rpc.call('database_api.get_dynamic_global_properties', payload)
   
   puts JSON.pretty_generate(payload)
-  pus "\n\n"
+  puts "\n\n"
   puts JSON.pretty_generate(response)
   response
 end

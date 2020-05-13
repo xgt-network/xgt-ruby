@@ -28,31 +28,36 @@ def account_create()
   memo_private = Xgt::Ruby::Auth.generate_wif(current_name, master, 'memo')
   memo_public = Xgt::Ruby::Auth.wif_to_public_key(memo_private, address_prefix)
 
+  puts JSON.pretty_generate(recovery_private)
+  puts "\n\n"
+  puts JSON.pretty_generate(money_private)
+  puts "\n\n"
+
   txn = {
-    'extensions' => [],
-    'operations' => [[
+    'extensions': [],
+    'operations': [[
       'account_create',
     {
-      'fee' => creation_fee,
-      'creator' => current_name,
-      'recovery' => {
-        'weight_threshold' => 1,
-        'account_auths' => [],
-        'key_auths' => [[recovery_public, 1]]
+      'fee': creation_fee,
+      'creator': current_name,
+      'recovery': {
+        'weight_threshold': 1,
+        'account_auths': [],
+        'key_auths': [[recovery_public, 1]]
       },
-      'money' => {
-        'weight_threshold' => 1,
-        'account_auths' => [],
-        'key_auths' => [[money_public, 1]]
+      'money': {
+        'weight_threshold': 1,
+        'account_auths': [],
+        'key_auths': [[money_public, 1]]
       },
-      'social' => {
-        'weight_threshold' => 1,
-        'account_auths' => [],
-        'key_auths' => [[social_public, 1]]
+      'social': {
+        'weight_threshold': 1,
+        'account_auths': [],
+        'key_auths': [[social_public, 1]]
       },
-      'memo_key' => memo_public,
-      'json_metadata' => "",
-      'extensions' => []
+      'memo_key': memo_public,
+      'json_metadata': "",
+      'extensions': []
     }
     ]]
   }

@@ -1,16 +1,17 @@
 require 'xgt/ruby'
 
-def get_account_history(address)
+def list_witnesses
   rpc = Xgt::Ruby::Rpc.new('http://localhost:8751')
   payload = {
-    account: address
+    start: 0,
+    limit: 1,
+    order: "by_name"
   }
-  response = rpc.call('account_history_api.get_account_history', payload)
-
+  response = rpc.call('database_api.list_witnesses', payload)
   puts JSON.pretty_generate(payload)
   puts "\n\n"
   puts JSON.pretty_generate(response)
   response
 end
 
-get_account_history('XGT22NqCrWPExii6')
+list_witnesses

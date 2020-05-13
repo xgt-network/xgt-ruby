@@ -14,4 +14,4 @@ def get_ops_in_block(block_num)
   response 
 end
 
-get_ops_in_block('7')
+get_ops_in_block('234')
