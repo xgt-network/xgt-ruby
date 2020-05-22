@@ -21,7 +21,7 @@ def transfer
         'transfer',
         {
           'from': 'XGT0000000000000',
-          'to': 'XGT272up7iTGKArE',
+          'to': 'XGT0000000000000',
           'amount': %(#{string_amount} #{currency_symbol}),
           'memo': '',
           'json_metadata': '',

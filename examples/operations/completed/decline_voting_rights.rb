@@ -1,8 +1,8 @@
 require 'xgt/ruby'
 
-def account_witness_vote  
+def decline_voting_rights  
 rpc = Xgt::Ruby::Rpc.new('http://localhost:8751')
-  wif = ENV["WIF"] || '5JNHfZYKGaomSFvd4NUdQ9qMcEAC43kujbfjueTHpVapX1Kzq2n'
+  wif = '5JNHfZYKGaomSFvd4NUdQ9qMcEAC43kujbfjueTHpVapX1Kzq2n'
   config = rpc.call('database_api.get_config', {})
   address_prefix = config['XGT_ADDRESS_PREFIX']
   chain_id = config["XGT_CHAIN_ID"]
@@ -11,19 +11,20 @@ rpc = Xgt::Ruby::Rpc.new('http://localhost:8751')
     "extensions": [],
     "operations": [
       [
-        "account_witness_vote",
+        "decline_voting_rights",
           {
-            "account": "alice",
-            "witness": "bob",
-            "approve": true
+            "account": "XGT0000000000000",
+            "decline": true
           }
       ]
     ]
   }
   
   signed = Xgt::Ruby::Auth.sign_transaction(rpc, txn, [wif], chain_id)
+  puts JSON.pretty_generate(signed)
+  puts "\n\n"
   response = rpc.call('network_broadcast_api.broadcast_transaction_synchronous', [signed])
   puts JSON.pretty_generate(response)
 end
 
-account_witness_vote
+decline_voting_rights

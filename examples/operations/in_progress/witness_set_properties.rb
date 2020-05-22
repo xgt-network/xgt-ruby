@@ -31,27 +31,28 @@ def create_witness
   final_fee = decimal.truncate.to_s + '.' + sprintf('%03d', (decimal.frac * 1000).truncate) + ' ' + components.last
 
   txn = {
-    "extensions": [],
-    "operations": [[
-      "witness_set_properties",
-        {
-          "owner": "XGTzHVtizCYHWHuB",
-          "props": {
-            "account_creation_fee": "",
-            "account_subsidy_budget": 1000,
-            "account_susbsidy_decay": 30000,
-            "maximum_block_size": 65536,
-            "sbd_interest_rate": "0.000 XGT",
-            "sbd_exhange_rate": {
-              "base": "0.000 ",
-              "quote": "0.000 XGT"
-            }
-            "url": "http://test.host",
-            "new_signing_key": "key",
-          }
-          "extensions": []
-        }
-    ]]
+    "operations": [
+      [
+        "witness_set_properties",
+          {
+            "owner": "XGT0000000000000",
+            "props": {
+              "account_creation_fee": "",
+              "account_subsidy_budget": 1000,
+              "account_susbsidy_decay": 30000,
+              "maximum_block_size": 65536,
+              "sbd_interest_rate": "0.000 XGT",
+              "sbd_exhange_rate": {
+                "base": "0.000 ",
+                "quote": "0.000 XGT"
+              },
+              "url": "http://test.host",
+              "new_signing_key": "5Kgsi9os8SG8kdg3ZVb4gjWnZhXYb4xLoYFEkQEWLkzodahY2dn",
+            },
+            "extensions": [],
+          },
+      ],
+    ],
   }
 
   signed = Xgt::Ruby::Auth.sign_transaction(rpc, txn, [recovery_wif], chain_id)

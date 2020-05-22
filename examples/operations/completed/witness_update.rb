@@ -15,14 +15,16 @@ end
 
 def create_witness
   rpc = Xgt::Ruby::Rpc.new("http://localhost:8751")
-  recovery_wif = '5HuaEH6V5aCRLWDuSnYD85udENVoqrUMrnUbHajavK26bZqY5Tj'
+  recovery_wif = '5Kgsi9os8SG8kdg3ZVb4gjWnZhXYb4xLoYFEkQEWLkzodahY2dn'
   config = rpc.call('database_api.get_config', {})
   witness_schedule = rpc.call('database_api.get_witness_schedule', {}) || {}
   chain_properties = witness_schedule['median_props']
   address_prefix = config['XGT_ADDRESS_PREFIX']
   chain_id = config['XGT_CHAIN_ID']
-  signing_private = Xgt::Ruby::Auth.random_wif
+  #signing_private = Xgt::Ruby::Auth.random_wif
+  signing_private = '5Kgsi9os8SG8kdg3ZVb4gjWnZhXYb4xLoYFEkQEWLkzodahY2dn'
   signing_public = Xgt::Ruby::Auth.wif_to_public_key(signing_private, address_prefix)
+  # signing_public = 'XGT5vo6scECKXXQX741BJ8GbfCiSi6HeRuiLShSnUMvg9yEqx1rgm'
   amount = (chain_properties['account_creation_fee'] || {})['amount'].to_f * 0.001
   currency_symbol = config['XGT_SYMBOL_STR']
   fee = "#{'%0.3f' % amount} #{currency_symbol}"
@@ -35,7 +37,7 @@ def create_witness
     'operations': [[
       'witness_update',
         {
-          'owner': 'XGT272up7iTGKArE',
+          'owner': 'XGT28Ab1ezDunt2g',
           'url': 'http://test.host',
           'block_signing_key': signing_public,
           'props': {
