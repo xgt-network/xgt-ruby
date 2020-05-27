@@ -3,6 +3,7 @@ require 'xgt/ruby'
 def create_proposal  
 rpc = Xgt::Ruby::Rpc.new('http://localhost:8751')
   wif = ENV["WIF"] || '5JNHfZYKGaomSFvd4NUdQ9qMcEAC43kujbfjueTHpVapX1Kzq2n'
+  receiver = ENV["RECEIVER"] || 'XGT0000000000001'
   config = rpc.call('database_api.get_config', {})
   address_prefix = config['XGT_ADDRESS_PREFIX']
   chain_id = config["XGT_CHAIN_ID"]
@@ -15,11 +16,11 @@ rpc = Xgt::Ruby::Rpc.new('http://localhost:8751')
         "create_proposal",
           {
             "creator": "XGT0000000000000",
-            "receiver": "XGT22axtVs39wpg9",
-            "start_date": "2020-05-23T09:00:00",
-            "end_date": "2020-05-24T09:00:00",
+            "receiver": receiver,
+            "start_date": "2020-05-24T09:00:00",
+            "end_date": "2020-05-25T09:00:00",
             "daily_pay": "3000.000 SBD",
-            "amount": 3000,
+            "amount": 8000,
             "precision": 3,
             "nai": "@@000000013",
             "subject": "subject",

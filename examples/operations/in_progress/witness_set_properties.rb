@@ -15,7 +15,7 @@ end
 
 def create_witness
   rpc = Xgt::Ruby::Rpc.new("http://localhost:8751")
-  recovery_wif = '5HuaEH6V5aCRLWDuSnYD85udENVoqrUMrnUbHajavK26bZqY5Tj'
+  recovery_wif = '5JkEZbn8i8BDRpzTAt38Cj9jhAytkcsPuxbFB6R8kd2L7sGWcbE'
   config = rpc.call('database_api.get_config', {})
   witness_schedule = rpc.call('database_api.get_witness_schedule', {}) || {}
   chain_properties = witness_schedule['median_props']
@@ -31,28 +31,16 @@ def create_witness
   final_fee = decimal.truncate.to_s + '.' + sprintf('%03d', (decimal.frac * 1000).truncate) + ' ' + components.last
 
   txn = {
-    "operations": [
-      [
-        "witness_set_properties",
-          {
-            "owner": "XGT0000000000000",
-            "props": {
-              "account_creation_fee": "",
-              "account_subsidy_budget": 1000,
-              "account_susbsidy_decay": 30000,
-              "maximum_block_size": 65536,
-              "sbd_interest_rate": "0.000 XGT",
-              "sbd_exhange_rate": {
-                "base": "0.000 ",
-                "quote": "0.000 XGT"
-              },
-              "url": "http://test.host",
-              "new_signing_key": "5Kgsi9os8SG8kdg3ZVb4gjWnZhXYb4xLoYFEkQEWLkzodahY2dn",
-            },
-            "extensions": [],
-          },
-      ],
-    ],
+    "operations": [[
+      "witness_set_properties",
+      {
+        "owner": "XGT25svCHdyiRN1C",
+        "maximum_block_size": 65536,
+        "props": [
+          "new_signing_key": "5JANXuPvF1DuhEpf2AKCDhMgaY7ZhYj6qM6HtKUfvnLkuZ6JwGZ",
+        ]
+      }
+    ]]
   }
 
   signed = Xgt::Ruby::Auth.sign_transaction(rpc, txn, [recovery_wif], chain_id)

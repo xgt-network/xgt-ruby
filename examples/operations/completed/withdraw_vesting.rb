@@ -1,7 +1,7 @@
 require 'xgt/ruby'
 
-def feed_publish  
-rpc = Xgt::Ruby::Rpc.new('http://localhost:8751')
+def withdraw_vesting  
+  rpc = Xgt::Ruby::Rpc.new('http://localhost:8751')
   wif = '5JNHfZYKGaomSFvd4NUdQ9qMcEAC43kujbfjueTHpVapX1Kzq2n'
   config = rpc.call('database_api.get_config', {})
   address_prefix = config['XGT_ADDRESS_PREFIX']
@@ -11,21 +11,10 @@ rpc = Xgt::Ruby::Rpc.new('http://localhost:8751')
     "extensions": [],
     "operations": [
       [
-        "feed_publish",
+        "withdraw_vesting",
           {
-            "publisher": "XGT0000000000000",
-            "exchange_rate": {
-              #"base": {
-                "amount": 0.000,
-                "precision": 3,
-                "nai": "@@000000013",
-              #},
-              #"quote": {
-                "amount": 100.000,
-                "precision": 3,
-                "nai": "@@000000021",
-              #}
-            }
+            "account": "XGT0000000000000",
+            "vesting_shares": "1.000000 VESTS",
           }
       ]
     ]
@@ -38,4 +27,4 @@ rpc = Xgt::Ruby::Rpc.new('http://localhost:8751')
   puts JSON.pretty_generate(response)
 end
 
-feed_publish
+withdraw_vesting
