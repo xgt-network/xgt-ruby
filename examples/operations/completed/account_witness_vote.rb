@@ -12,11 +12,11 @@ def account_witness_vote
     "operations": [
       [
         "account_witness_vote",
-          {
-            "account": "XGT28Ab1ezDunt2g",
-            "witness": "XGT0000000000000",
-            "approve": true
-          }
+        {
+          "account": "XGT28Ab1ezDunt2g",
+          "witness": "XGT0000000000000",
+          "approve": true
+        }
       ]
     ]
   }

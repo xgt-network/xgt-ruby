@@ -12,12 +12,12 @@ rpc = Xgt::Ruby::Rpc.new('http://localhost:8751')
     "operations": [
       [
         "custom_json",
-          {
-            "required_auths": [],
-            "required_social_auths": ["XGT0000000000000"],
-            "id": "follow",
-            "json": "[\"follow\",{\"follower\":\"steemit\",\"following\":\"alice\",\"what\":[\"blog\"]}]"
-          }
+        {
+          "required_auths": [],
+          "required_social_auths": ["XGT0000000000000"],
+          "id": "follow",
+          "json": "[\"follow\",{\"follower\":\"steemit\",\"following\":\"alice\",\"what\":[\"blog\"]}]"
+        }
       ]
     ]
   }

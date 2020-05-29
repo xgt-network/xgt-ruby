@@ -7,7 +7,7 @@ def transfer_to_vesting
   address_prefix = config['XGT_ADDRESS_PREFIX']
   chain_id = config['XGT_CHAIN_ID']
 
-   txn = {
+  txn = {
     "extensions": [],
     "operations": [
       [
@@ -30,5 +30,3 @@ def transfer_to_vesting
 end
 
 transfer_to_vesting
-
-

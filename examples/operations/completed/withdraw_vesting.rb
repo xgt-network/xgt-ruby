@@ -12,10 +12,10 @@ def withdraw_vesting
     "operations": [
       [
         "withdraw_vesting",
-          {
-            "account": "XGT0000000000000",
-            "vesting_shares": "1.000000 VESTS",
-          }
+        {
+          "account": "XGT0000000000000",
+          "vesting_shares": "1.000000 VESTS",
+        }
       ]
     ]
   }

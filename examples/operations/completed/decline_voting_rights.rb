@@ -1,7 +1,7 @@
 require 'xgt/ruby'
 
 def decline_voting_rights  
-rpc = Xgt::Ruby::Rpc.new('http://localhost:8751')
+  rpc = Xgt::Ruby::Rpc.new('http://localhost:8751')
   wif = '5JNHfZYKGaomSFvd4NUdQ9qMcEAC43kujbfjueTHpVapX1Kzq2n'
   config = rpc.call('database_api.get_config', {})
   address_prefix = config['XGT_ADDRESS_PREFIX']
@@ -12,10 +12,10 @@ rpc = Xgt::Ruby::Rpc.new('http://localhost:8751')
     "operations": [
       [
         "decline_voting_rights",
-          {
-            "account": "XGT0000000000000",
-            "decline": true
-          }
+        {
+          "account": "XGT0000000000000",
+          "decline": true
+        }
       ]
     ]
   }

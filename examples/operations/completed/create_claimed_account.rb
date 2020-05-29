@@ -12,42 +12,42 @@ rpc = Xgt::Ruby::Rpc.new('http://localhost:8751')
     "operations": [
       [
         "create_claimed_account",
-          {
-            "creator": "XGT0000000000000",
-            "new_account_name": "XGT1234567890123",
-            "recovery": {
-              "weight_threshold": 1,
-              "account_auths": [],
-              "key_auths": [
-                [
-                  "XGT5b4i9gBqvh4sbgrooXPu2dbGLewNPZkXeuNeBjyiswnu2szgXx",
-                  1
-                ]
+        {
+          "creator": "XGT0000000000000",
+          "new_account_name": "XGT1234567890123",
+          "recovery": {
+            "weight_threshold": 1,
+            "account_auths": [],
+            "key_auths": [
+              [
+                "XGT5b4i9gBqvh4sbgrooXPu2dbGLewNPZkXeuNeBjyiswnu2szgXx",
+                1
               ]
-            },
-            "money": {
-              "weight_threshold": 1,
-              "account_auths": [],
-              "key_auths": [
-                [
-                  "XGT7ko5nzqaYfjbD4tKWGmiy3xtT9eQFZ3Pcmq5JmygTRptWSiVQy",
-                  1
-                ]
+            ]
+          },
+          "money": {
+            "weight_threshold": 1,
+            "account_auths": [],
+            "key_auths": [
+              [
+                "XGT7ko5nzqaYfjbD4tKWGmiy3xtT9eQFZ3Pcmq5JmygTRptWSiVQy",
+                1
               ]
-            },
-            "social": {
-              "weight_threshold": 1,
-              "account_auths": [],
-              "key_auths": [
-                [
-                  "XGT5xAKxnMT2y9VoVJdF63K8xRQAohsiQy9bA33aHeyMB5vgkzaay",
-                  1
-                ]
+            ]
+          },
+          "social": {
+            "weight_threshold": 1,
+            "account_auths": [],
+            "key_auths": [
+              [
+                "XGT5xAKxnMT2y9VoVJdF63K8xRQAohsiQy9bA33aHeyMB5vgkzaay",
+                1
               ]
-            },
-            "memo_key": "XGT8ZSyzjPm48GmUuMSRufkVYkwYbZzbxeMysAVp7KFQwbTf98TcG",
-            "json_metadata": "{}"
-          }
+            ]
+          },
+          "memo_key": "XGT8ZSyzjPm48GmUuMSRufkVYkwYbZzbxeMysAVp7KFQwbTf98TcG",
+          "json_metadata": "{}"
+        }
       ]
     ]
   }

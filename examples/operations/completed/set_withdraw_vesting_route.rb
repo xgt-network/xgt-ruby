@@ -1,7 +1,7 @@
 require 'xgt/ruby'
 
 def set_withdraw_vesting_route  
-rpc = Xgt::Ruby::Rpc.new('http://localhost:8751')
+  rpc = Xgt::Ruby::Rpc.new('http://localhost:8751')
   wif = ENV["WIF"] || '5JNHfZYKGaomSFvd4NUdQ9qMcEAC43kujbfjueTHpVapX1Kzq2n'
   config = rpc.call('database_api.get_config', {})
   address_prefix = config['XGT_ADDRESS_PREFIX']
@@ -12,12 +12,12 @@ rpc = Xgt::Ruby::Rpc.new('http://localhost:8751')
     "operations": [
       [
         "set_withdraw_vesting_route",
-          {
-            "from_account": "XGT0000000000000",
-            "to_account": "XGT28Ab1ezDunt2g",
-            "percent": 10000,
-            "auto_vest": true
-          }
+        {
+          "from_account": "XGT0000000000000",
+          "to_account": "XGT28Ab1ezDunt2g",
+          "percent": 10000,
+          "auto_vest": true
+        }
       ]
     ]
   }

@@ -1,8 +1,8 @@
 require 'xgt/ruby'
 
 def update_proposal_votes  
-rpc = Xgt::Ruby::Rpc.new('http://localhost:8751')
-  wif = ENV["WIF"] || '5JNHfZYKGaomSFvd4NUdQ9qMcEAC43kujbfjueTHpVapX1Kzq2n'
+  rpc = Xgt::Ruby::Rpc.new('http://localhost:8751')
+  wif = '5JNHfZYKGaomSFvd4NUdQ9qMcEAC43kujbfjueTHpVapX1Kzq2n'
   config = rpc.call('database_api.get_config', {})
   address_prefix = config['XGT_ADDRESS_PREFIX']
   chain_id = config["XGT_CHAIN_ID"]

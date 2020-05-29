@@ -13,7 +13,7 @@ def msg(message)
   puts "\e[36m#{message}\e[0m"
 end
 
-def create_witness
+def witness_set_properties
   rpc = Xgt::Ruby::Rpc.new("http://localhost:8751")
   recovery_wif = '5JkEZbn8i8BDRpzTAt38Cj9jhAytkcsPuxbFB6R8kd2L7sGWcbE'
   config = rpc.call('database_api.get_config', {})
@@ -34,7 +34,7 @@ def create_witness
     "operations": [[
       "witness_set_properties",
       {
-        "owner": "XGT25svCHdyiRN1C",
+        "owner": "XGT0000000000000",
         "maximum_block_size": 65536,
         "props": [
           "new_signing_key": "5JANXuPvF1DuhEpf2AKCDhMgaY7ZhYj6qM6HtKUfvnLkuZ6JwGZ",
@@ -59,6 +59,4 @@ def create_witness
   }
 end
 
-create_witness
-
-
+witness_set_properties

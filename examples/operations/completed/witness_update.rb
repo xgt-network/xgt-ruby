@@ -5,15 +5,13 @@ require 'benchmark'
 require 'yaml'
 require 'bigdecimal'
 require 'uri'
-require 'openssl'
-$LOAD_PATH.unshift(%(#{File.dirname(__FILE__)}/../xgt-ruby/lib))
 require'xgt/ruby'
 
 def msg(message)
   puts "\e[36m#{message}\e[0m"
 end
 
-def create_witness
+def witness_update
   rpc = Xgt::Ruby::Rpc.new("http://localhost:8751")
   recovery_wif = '5Kgsi9os8SG8kdg3ZVb4gjWnZhXYb4xLoYFEkQEWLkzodahY2dn'
   config = rpc.call('database_api.get_config', {})
@@ -21,10 +19,8 @@ def create_witness
   chain_properties = witness_schedule['median_props']
   address_prefix = config['XGT_ADDRESS_PREFIX']
   chain_id = config['XGT_CHAIN_ID']
-  #signing_private = Xgt::Ruby::Auth.random_wif
   signing_private = '5Kgsi9os8SG8kdg3ZVb4gjWnZhXYb4xLoYFEkQEWLkzodahY2dn'
   signing_public = Xgt::Ruby::Auth.wif_to_public_key(signing_private, address_prefix)
-  # signing_public = 'XGT5vo6scECKXXQX741BJ8GbfCiSi6HeRuiLShSnUMvg9yEqx1rgm'
   amount = (chain_properties['account_creation_fee'] || {})['amount'].to_f * 0.001
   currency_symbol = config['XGT_SYMBOL_STR']
   fee = "#{'%0.3f' % amount} #{currency_symbol}"
@@ -64,5 +60,5 @@ def create_witness
   }
 end
 
-create_witness
+witness_update
 

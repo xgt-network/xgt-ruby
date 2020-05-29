@@ -12,15 +12,13 @@ rpc = Xgt::Ruby::Rpc.new('http://localhost:8751')
     "operations": [
       [
         "claim_account",
-          {
-            #"fee": {
-              "amount": "0.000 XGT",
-              "precision": 3,
-              "nai": "@@000000021",
-            #},
-            "creator": "XGT0000000000000",
-            "extensions": []
-          }
+        {
+          "amount": "0.000 XGT",
+          "precision": 3,
+          "nai": "@@000000021",
+          "creator": "XGT0000000000000",
+          "extensions": []
+        }
       ]
     ]
   }

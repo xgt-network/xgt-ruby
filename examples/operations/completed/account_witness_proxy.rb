@@ -7,15 +7,15 @@ def account_witness_proxy
   address_prefix = config['XGT_ADDRESS_PREFIX']
   chain_id = config['XGT_CHAIN_ID']
 
-   txn = {
+  txn = {
     "extensions": [],
     "operations": [
       [
         "account_witness_proxy",
-          {
-            "account": "XGT29ZJ2QvhkV4wM",
-            "proxy": "XGT0000000000000"
-          }
+        {
+          "account": "XGT29ZJ2QvhkV4wM",
+          "proxy": "XGT0000000000000"
+        }
       ]
     ]
   }
