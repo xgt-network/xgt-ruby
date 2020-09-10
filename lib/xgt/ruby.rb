@@ -8,6 +8,13 @@ require 'xgt/ruby/version'
 module Xgt
   module Ruby
     class Error < StandardError; end
+    class RpcError < Error
+      attr_reader :response
+      def initialize(msg, response)
+	super(msg)
+	@response = response
+      end
+    end
 
     class Rpc
       def initialize(url, client: nil)
@@ -40,15 +47,15 @@ module Xgt
 
         # TODO: Verify status code
         unless response.body
-          raise StandardError.new(%(No response body!\n#{response.inspect}))
+          raise RpcError.new(%(No response body!\n#{response.inspect}), response)
         end
 
         if response.body['error']
-          raise StandardError.new(%(Endpoint returned an error response!\n#{JSON.pretty_generate(response.body['error'])}))
+          raise RpcError.new(%(Endpoint returned an error response!\n#{JSON.pretty_generate(response.body['error'])}), response)
         end
 
         unless response.body['result']
-          raise StandardError.new(%(No result in response body!\n#{response.inspect}))
+          raise RpcError.new(%(No result in response body!\n#{response.inspect}), response)
         end
 
         # TODO: XXX: Breaking change!

@@ -9,12 +9,17 @@ require 'xgt/ruby'
 # ------
 
 # TODO: Validate
-#@host = ENV['HOST'] || 'http://localhost:8751'
- @host = ENV['HOST'] || 'http://test-superproducers-lb-1733239358.us-east-1.elb.amazonaws.com:8751'
+#@host = ENV['XGT_HOST'] || 'http://localhost:8751'
+ @host = ENV['XGT_HOST'] || 'http://test-superproducers-lb-1733239358.us-east-1.elb.amazonaws.com:8751'
 # @current_name = ENV['XGT_NAME'] || 'initminer'
 @current_name = ENV['XGT_NAME'] || 'XGT0000000000000'
-@wifs = ENV['XGT_WIFS']&.split(';')&.map { |pair| pair.split(':').map { |n| n.split(',') } }&.to_h \
-  || { 'XGT0000000000000' => ['5JNHfZYKGaomSFvd4NUdQ9qMcEAC43kujbfjueTHpVapX1Kzq2n'] }
+default_wifs = { 'XGT0000000000000' => ['5JNHfZYKGaomSFvd4NUdQ9qMcEAC43kujbfjueTHpVapX1Kzq2n'] }
+@wifs = ENV['XGT_WIFS'] \
+  &.split(';') \
+  &.map { |pair| pair.split(':') } \
+  &.map { |pair| [pair[0], pair[1].split(',')] } \
+  &.to_h \
+  || default_wifs
 @logger = Logger.new($stdout)
 @last_result = nil
 @last_output = StringIO.new
@@ -121,36 +126,31 @@ end
 
 def config
   return @config if @config
-  @config = rpc.call('condenser_api.get_config', [])
+  @config = rpc.call('database_api.get_config', {})
   @config
 end
 
 def address_prefix
   return @address_prefix if @address_prefix
-  @address_prefix = config['STEEM_ADDRESS_PREFIX']
+  @address_prefix = config['XGT_ADDRESS_PREFIX']
   logger.info(%(Retrieved address prefix... #{@address_prefix}))
   @address_prefix
 end
 
 def chain_id
   return @chain_id if @chain_id
-  @chain_id = config['STEEM_CHAIN_ID']
+  @chain_id = config['XGT_CHAIN_ID']
   logger.info(%(Retrieved chain ID... #{@chain_id}))
   @chain_id
 end
 
 def fee
-  return @fee if @fee
-  @fee = chain_properties['account_creation_fee']
-  logger.info(%(Retrieved account creation fee... #{@fee}))
-  @fee
+  amount = (chain_properties['account_creation_fee'] || {})['amount'].to_f * 0.001
+  %(#{'%0.3f' % amount} #{currency_symbol})
 end
 
 def currency_symbol
-  return @currency_symbol if @currency_symbol
-  @currency_symbol = fee.split(/\s+/).last
-  logger.info(%(Retrieved currency symbol... #{@currency_symbol}))
-  @currency_symbol
+  config['XGT_SYMBOL_STR']
 end
 
 # --------
@@ -170,10 +170,7 @@ def info
   puts(%(#{colorize(:cyan, 'list_accounts NAME')} stream a full list of accounts, starting with NAME))
   puts(%(#{colorize(:cyan, 'get_account')} look up your wallet info))
   puts(%(#{colorize(:cyan, 'get_account NAME')} look up another user's wallet info))
-  puts(%(#{colorize(:cyan, 'get_resource_params')} look up your rc info))
-  puts(%(#{colorize(:cyan, 'get_resource_params NAME')} look up another user's rc info))
   puts(%(#{colorize(:cyan, 'transfer TO, AMOUNT')} transfer money to another wallet))
-  puts(%(#{colorize(:cyan, 'transfer TO, AMOUNT, memo: "..."')} transfer money to another wallet))
   puts(%(#{colorize(:cyan, 'delegate_vesting TO, AMOUNT')} delegate VESTS to another wallet))
   print(%(\n))
   puts(colorize(:yellow, %(---------------------)))
@@ -204,14 +201,13 @@ def switch_wallet(name)
 end
 
 def create_account
-  creator_wif = Xgt::Ruby::Auth.generate_wif(current_name, current_wifs.first, 'active')
   master = Xgt::Ruby::Auth.random_wif
-  owner_private = Xgt::Ruby::Auth.generate_wif(current_name, master, 'owner')
-  owner_public = Xgt::Ruby::Auth.wif_to_public_key(owner_private, address_prefix)
-  active_private = Xgt::Ruby::Auth.generate_wif(current_name, master, 'active')
-  active_public = Xgt::Ruby::Auth.wif_to_public_key(active_private, address_prefix)
-  posting_private = Xgt::Ruby::Auth.generate_wif(current_name, master, 'posting')
-  posting_public = Xgt::Ruby::Auth.wif_to_public_key(posting_private, address_prefix)
+  recovery_private = Xgt::Ruby::Auth.generate_wif(current_name, master, 'recovery')
+  recovery_public = Xgt::Ruby::Auth.wif_to_public_key(recovery_private, address_prefix)
+  money_private = Xgt::Ruby::Auth.generate_wif(current_name, master, 'money')
+  money_public = Xgt::Ruby::Auth.wif_to_public_key(money_private, address_prefix)
+  social_private = Xgt::Ruby::Auth.generate_wif(current_name, master, 'social')
+  social_public = Xgt::Ruby::Auth.wif_to_public_key(social_private, address_prefix)
   memo_private = Xgt::Ruby::Auth.generate_wif(current_name, master, 'memo')
   memo_public = Xgt::Ruby::Auth.wif_to_public_key(memo_private, address_prefix)
 
@@ -222,20 +218,20 @@ def create_account
       {
         'fee' => fee,
         'creator' => current_name,
-        'owner' => {
+        'recovery' => {
           'weight_threshold' => 1,
           'account_auths' => [],
-          'key_auths' => [[owner_public, 1]]
+          'key_auths' => [[recovery_public, 1]]
         },
-        'active' => {
+        'money' => {
           'weight_threshold' => 1,
           'account_auths' => [],
-          'key_auths' => [[active_public, 1]]
+          'key_auths' => [[money_public, 1]]
         },
-        'posting' => {
+        'social' => {
           'weight_threshold' => 1,
           'account_auths' => [],
-          'key_auths' => [[posting_public, 1]]
+          'key_auths' => [[social_public, 1]]
         },
         'memo_key' => memo_public,
         'json_metadata' => '',
@@ -245,20 +241,20 @@ def create_account
   }
 
   signed = Xgt::Ruby::Auth.sign_transaction(rpc, txn, current_wifs, chain_id)
-  response = rpc.call('call', ['condenser_api', 'broadcast_transaction_synchronous', [signed]])
-  account_names = rpc.call('condenser_api.get_account_names_by_block_num', [response['block_num']])
+  response = rpc.call('network_broadcast_api.broadcast_transaction_synchronous', [signed])
+  account_names = rpc.call('account_by_key_api.get_key_references', { 'keys' => [recovery_public] }).fetch('accounts').first
   account_name = account_names.first
 
   # TODO: Get name from result instead
   response = {
     name: account_name,
     master: master,
-    owner_private: owner_private,
-    owner_public: owner_public,
-    active_private: active_private,
-    active_public: active_public,
-    posting_private: posting_private,
-    posting_public: posting_public,
+    recovery_private: recovery_private,
+    recovery_public: recovery_public,
+    money_private: money_private,
+    money_public: money_public,
+    social_private: social_private,
+    social_public: social_public,
     memo_private: memo_private,
     memo_public: memo_public
   }
@@ -294,20 +290,27 @@ end
 
 def get_account(name=current_name)
   response = rpc.call('database_api.find_accounts', { 'accounts' => [name] })
-  output_result(response)
+  account = response['accounts'][0]
+  account.keys.each do |key|
+    account.delete(key) if key.match(/withdraw/)
+    account.delete(key) if key.match(/delegate/)
+    account.delete(key) if key.match(/vest/)
+    account.delete(key) if key.match(/sbd/)
+    account.delete(key) if key.match(/saving/)
+    account.delete(key) if key.match(/comment/)
+    account.delete(key) if key.match(/reward/)
+    account.delete(key) if key.match(/proxy/)
+    account.delete(key) if key.match(/proxied/)
+    account.delete(key) if key.match(/lifetime/)
+    account.delete(key) if key.match(/social/)
+    account.delete(key) if key.match(/mined/)
+  end
+  output_result(account)
   @last_result = response
   true
 end
 
-def get_resource_params(name=current_name)
-  response = rpc.call('rc_api.find_rc_accounts', { 'accounts' => [name] })
-  output_result(response)
-  @last_result = response
-  true
-end
-
-def transfer(to, amount, memo: nil)
-  string_amount = '%.3f' % (amount * 0.001)
+def transfer(to, amount)
   txn = {
     'extensions' => [],
     'operations' => [[
@@ -315,17 +318,14 @@ def transfer(to, amount, memo: nil)
       {
         'from' => current_name,
         'to' => to,
-        'amount' => %(#{string_amount} #{currency_symbol}),
-        'memo' => memo,
-        'json_metadata' => '',
-        'extensions' => []
+        'amount' => amount
       }
     ]]
   }
 
-  logger.info(%(Allocating #{string_amount} #{currency_symbol} to "#{to}"))
+  logger.info(%(Allocating #{amount} to "#{to}"))
   signed = Xgt::Ruby::Auth.sign_transaction(rpc, txn, current_wifs, chain_id)
-  response = rpc.call('call', ['condenser_api', 'broadcast_transaction_synchronous', [signed]])
+  response = rpc.call('network_broadcast_api.broadcast_transaction_synchronous', [signed])
   output_result(response)
   @last_result = response
   true
@@ -347,7 +347,7 @@ def delegate_vesting(name, amount)
 
   logger.info(%(Delegating #{vesting_shares} VESTS to "#{name}"))
   signed = Xgt::Ruby::Auth.sign_transaction(rpc, txn, current_wifs, chain_id)
-  response = rpc.call('call', ['condenser_api', 'broadcast_transaction_synchronous', [signed]])
+  response = rpc.call('network_broadcast_api.broadcast_transaction_synchronous', [signed])
   output_result(response)
   @last_result = response
   true
