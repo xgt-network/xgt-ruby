@@ -41,7 +41,7 @@ module Xgt
           'method' => mthd,
           'id' => id
         }
-        payload["params"] = params unless params.nil?
+        payload['params'] = params unless params.nil?
 
         response = @client.post('/', payload)
 
