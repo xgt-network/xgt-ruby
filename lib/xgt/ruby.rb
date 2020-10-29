@@ -61,6 +61,27 @@ module Xgt
         # TODO: XXX: Breaking change!
         response.body['result']
       end
+
+      def broadcast_transaction(txn, wifs, chain_id)
+        signed = Xgt::Ruby::Auth.sign_transaction(self, txn, [wif], chain_id)
+        response = self.call('network_broadcast_api.broadcast_transaction', [signed])
+	response['id']
+      end
+
+      def transaction_ready?(id)
+        begin
+          self.call('wallet_history_api.get_transaction', { 'id' => id })
+	  true
+        rescue Xgt::Ruby::RpcError => e
+          message = e&.response
+                     &.body
+                     &.fetch('error', nil)
+                     &.fetch('message', nil)
+	  wait_regexps = Regexp.union('Unknown Transaction', %r(transaction.*?>.*?trx_in_block))
+	  raise e unless message.match(wait_regexps)
+	  false
+        end
+      end
     end
 
     class Auth
@@ -72,7 +93,7 @@ module Xgt
         ref_block_num = (last_irreversible_block_num - 1) & 0xffff
         # Get ref block info to append to the transaction
         response = rpc.call('block_api.get_block_header', { 'block_num' => last_irreversible_block_num })
-header = response['header']
+        header = response['header']
         head_block_id = (header && header['previous']) ? header['previous'] : '0000000000000000000000000000000000000000'
         ref_block_prefix = [head_block_id].pack('H*')[4...8].unpack('V').first
         expiration = (Time.parse(chain_date) + 600).iso8601.gsub(/Z$/, '')
