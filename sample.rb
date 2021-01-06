@@ -8,82 +8,31 @@ require 'xgt/ruby'
 
 # XXX: A transaction may require multiple wifs, if using multisig!
 @wif = ENV['WIF'] || '5JNHfZYKGaomSFvd4NUdQ9qMcEAC43kujbfjueTHpVapX1Kzq2n'
-@name = ENV['NAME'] || 'initminer'
+@name = ENV['NAME'] || 'XGT0000000000000000000000000000000000000000'
 @host = ENV['HOST'] || 'http://localhost:8751'
+@address_prefix = 'XGT'
 
 rpc = Xgt::Ruby::Rpc.new(@host)
-witness_schedule = rpc.call('database_api.get_witness_schedule', {}) || {}
-chain_properties = witness_schedule['median_props']
-config = rpc.call('condenser_api.get_config', [])
-
-@address_prefix = config['STEEM_ADDRESS_PREFIX']
-@chain_id = config['STEEM_CHAIN_ID']
-@fee = chain_properties['account_creation_fee']
-
-creator_wif = Xgt::Ruby::Auth.generate_wif(@name, @wif, 'active')
-master = Xgt::Ruby::Auth.random_wif
-owner_private = Xgt::Ruby::Auth.generate_wif(@name, master, 'owner')
-owner_public = Xgt::Ruby::Auth.wif_to_public_key(owner_private, @address_prefix)
-active_private = Xgt::Ruby::Auth.generate_wif(@name, master, 'active')
-active_public = Xgt::Ruby::Auth.wif_to_public_key(active_private, @address_prefix)
-posting_private = Xgt::Ruby::Auth.generate_wif(@name, master, 'posting')
-posting_public = Xgt::Ruby::Auth.wif_to_public_key(posting_private, @address_prefix)
-memo_private = Xgt::Ruby::Auth.generate_wif(@name, master, 'memo')
-memo_public = Xgt::Ruby::Auth.wif_to_public_key(memo_private, @address_prefix)
-
-# --------------
-# Create account
-# --------------
-
-# Generate the transaction
-txn = {
-  'extensions' => [],
-  'operations' => [
-    [
-      'account_create',
-      {
-        'fee' => @fee,
-        'creator' => @name,
-        'owner' => {
-          'weight_threshold' => 1,
-          'account_auths' => [],
-          'key_auths' => [[owner_public]]
-        },
-        'active' => {
-          'weight_threshold' => 1,
-          'account_auths' => [],
-          'key_auths' => [[active_public]]
-        },
-        'posting' => {
-          'weight_threshold' => 1,
-          'account_auths' => [],
-          'key_auths' => [[posting_public]]
-        },
-        'memo_key' => memo_public,
-        'json_metadata' => '',
-        'extensions' => []
-      }
-    ]
-  ]
+generate_keys = ->() {
+  master = Xgt::Ruby::Auth.random_wif
+  ks = { 'master' => master }
+  %w(recovery money social memo).each do |role|
+    private_key = Xgt::Ruby::Auth.generate_wif(@name, master, 'recovery')
+    public_key = Xgt::Ruby::Auth.wif_to_public_key(private_key, @address_prefix)
+    ks["#{role}_private"] = private_key
+    ks["#{role}_public"] = public_key
+  end
+  ks
 }
 
-# Sign the transaction
-signed = Xgt::Ruby::Auth.sign_transaction(rpc, txn, [@wif], @chain_id)
+master = Xgt::Ruby::Auth.random_wif
+private_key = Xgt::Ruby::Auth.generate_wif(@name, master, 'recovery')
+public_key = Xgt::Ruby::Auth.wif_to_public_key(private_key, @address_prefix)
+p ['private_key', private_key]
+p ['public_key', public_key]
 
-# Create the user
-puts %(Creating user...)
-response = rpc.call('call', ['condenser_api', 'broadcast_transaction_synchronous', [signed]])
-p response
-puts
-
-# Use the block ID to query for the account name for the new account
-puts %(Fetching account name...)
-account_names = rpc.call('condenser_api.get_account_names_by_block_num', [response['block_num']])
-p account_names
-account_name = account_names.first
-puts
-
-# Verify the account
-puts %(Verifying the account named "#{account_name}" was created...)
-response = rpc.call('database_api.find_accounts', { 'accounts' => [account_name] })
-p response
+response = rpc.call('wallet_by_key_api.generate_wallet_name', {
+  'recovery_keys' => [public_key]
+})
+wallet_name = response['wallet_name']
+p wallet_name

@@ -63,7 +63,7 @@ module Xgt
       end
 
       def broadcast_transaction(txn, wifs, chain_id)
-        signed = Xgt::Ruby::Auth.sign_transaction(self, txn, [wif], chain_id)
+        signed = Xgt::Ruby::Auth.sign_transaction(self, txn, wifs, chain_id)
         response = self.call('network_broadcast_api.broadcast_transaction', [signed])
 	response['id']
       end
