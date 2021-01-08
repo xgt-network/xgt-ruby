@@ -2,6 +2,7 @@ require 'securerandom'
 require 'faraday'
 require 'faraday_middleware'
 require 'bitcoin'
+require 'base58'
 require 'time'
 require 'xgt/ruby/version'
 
@@ -11,8 +12,8 @@ module Xgt
     class RpcError < Error
       attr_reader :response
       def initialize(msg, response)
-	super(msg)
-	@response = response
+        super(msg)
+        @response = response
       end
     end
 
@@ -65,21 +66,21 @@ module Xgt
       def broadcast_transaction(txn, wifs, chain_id)
         signed = Xgt::Ruby::Auth.sign_transaction(self, txn, wifs, chain_id)
         response = self.call('network_broadcast_api.broadcast_transaction', [signed])
-	response['id']
+        response['id']
       end
 
       def transaction_ready?(id)
         begin
           self.call('wallet_history_api.get_transaction', { 'id' => id })
-	  true
+          true
         rescue Xgt::Ruby::RpcError => e
           message = e&.response
                      &.body
                      &.fetch('error', nil)
                      &.fetch('message', nil)
-	  wait_regexps = Regexp.union('Unknown Transaction', %r(transaction.*?>.*?trx_in_block))
-	  raise e unless message.match(wait_regexps)
-	  false
+          wait_regexps = Regexp.union('Unknown Transaction', %r(transaction.*?>.*?trx_in_block))
+          raise e unless message.match(wait_regexps)
+          false
         end
       end
     end
@@ -153,6 +154,13 @@ module Xgt
         public_key_buffer = OpenSSL::PKey::EC::Point.new(group, product).to_octet_string(:compressed)
         checksum = Digest::RMD160.digest(public_key_buffer)
         address_prefix + to_base_58(public_key_buffer + checksum[0...4])
+      end
+
+      def self.generate_wallet_name(*public_keys)
+        hashed = Digest::SHA256.hexdigest(public_keys.join(''))
+	base58 = Base58.binary_to_base58([hashed].pack('H*'), :bitcoin, true)
+	address_prefix = 'XGT'
+	"#{address_prefix}#{base58[0...40]}"
       end
 
       def self.to_base_58(bytes)
