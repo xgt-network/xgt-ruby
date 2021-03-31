@@ -25,8 +25,9 @@ generate_keys = ->() {
   ks
 }
 
-master = Xgt::Ruby::Auth.random_wif
-private_key = Xgt::Ruby::Auth.generate_wif(@name, master, 'recovery')
+#master = Xgt::Ruby::Auth.random_wif
+#private_key = Xgt::Ruby::Auth.generate_wif(@name, master, 'recovery')
+private_key = '5Kb8kLf9zgWQnogidDA76MzL6TsZZY36hWXMssSzNydYXYB9KF'
 public_key = Xgt::Ruby::Auth.wif_to_public_key(private_key, @address_prefix)
 p ['private_key', private_key]
 p ['public_key', public_key]
@@ -36,3 +37,5 @@ response = rpc.call('wallet_by_key_api.generate_wallet_name', {
 })
 wallet_name = response['wallet_name']
 p wallet_name
+
+p Xgt::Ruby::Auth.generate_wallet_name(public_key)
