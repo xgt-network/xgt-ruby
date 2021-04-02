@@ -78,7 +78,7 @@ module Xgt
                      &.body
                      &.fetch('error', nil)
                      &.fetch('message', nil)
-          wait_regexps = Regexp.union('Unknown Transaction', %r(transaction.*?>.*?trx_in_block))
+          wait_regexps = Regexp.union(%r(transaction.*?>.*?trx_in_block))
           raise e unless message.match(wait_regexps)
           false
         end
