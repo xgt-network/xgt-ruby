@@ -1,0 +1,438 @@
+#!/usr/bin/env ruby
+
+require 'logger'
+require 'bundler/setup'
+require 'xgt/ruby'
+require 'bigdecimal'
+
+# ------
+# Config
+# ------
+
+# TODO: Validate
+@host = ENV['XGT_HOST'] || 'http://localhost:8751'
+@current_name = ENV['XGT_NAME'] || 'XGT0000000000000000000000000000000000000000'
+default_wifs = {
+  'XGT0000000000000000000000000000000000000000' => [
+    '5JNHfZYKGaomSFvd4NUdQ9qMcEAC43kujbfjueTHpVapX1Kzq2n'
+  ]
+}
+@wifs = ENV['XGT_WIFS'] \
+  &.split(';') \
+  &.map { |pair| pair.split(':') } \
+  &.map { |pair| [pair[0], pair[1].split(',')] } \
+  &.to_h \
+  || default_wifs
+@logger = Logger.new($stdout)
+@last_result = nil
+@last_output = StringIO.new
+
+# -------
+# Helpers
+# -------
+
+def current_name
+  @current_name
+end
+
+def current_wifs
+  @wifs[current_name] || []
+end
+
+def logger
+  @logger
+end
+
+def last_result
+  @last_result
+end
+
+def last_output
+  @last_output
+end
+
+COLORS = {
+  yellow: 33,
+  magenta: 35,
+  cyan: 36,
+}
+
+def colorize(color, msg)
+  %(\033[#{COLORS[color]}m#{msg}\033[0m)
+end
+
+def logo
+  [
+    colorize(:magenta, '           _'), "\n",
+    colorize(:magenta, '__  ____ _| |_ '), colorize(:yellow, '              _ _     _'), "\n",
+    colorize(:magenta, '\ \/ / _` | __|'), colorize(:yellow, ' __ __ ____ _| | |___| |_'), "\n",
+    colorize(:magenta, ' >  < (_| | |_ '), colorize(:yellow, ' \ V  V / _` | | / -_)  _|'), "\n",
+    colorize(:magenta, '/_/\_\__, |\__|'), colorize(:yellow, '  \_/\_/\__,_|_|_\___|\__|'), "\n",
+    colorize(:magenta, '     |___/'), "\n",
+    "\n",
+    %(Type in "info" and hit enter for a list of commands.), "\n",
+    "\n",
+  ].join('')
+end
+
+def output_pair(key, value, indent_level)
+  @last_output << %( ) * (4 * indent_level)
+  @last_output << key if key
+  @last_output << %( #{value}) if value
+  @last_output << %(\n)
+  $stdout << %( ) * (4 * indent_level)
+  $stdout << colorize(:cyan, key) if key
+  $stdout << %( #{value}) if value
+  $stdout << %(\n)
+end
+
+def output_item(key, value, indent_level)
+  if value.respond_to?(:keys) || value.respond_to?(:each)
+    output_pair(key, nil, indent_level)
+    output_subresult(value, indent_level + 1)
+  else
+    output_pair(key, value, indent_level)
+  end
+end
+
+def output_subresult(item, indent_level=0)
+  if item.respond_to?(:keys)
+    item.each do |(key, value)|
+      output_item(key, value, indent_level)
+    end
+  elsif item.respond_to?(:each)
+    item.each.with_index do |value, i|
+      output_item(i, value, indent_level)
+    end
+  else
+    output_item(nil, value, indent_level)
+  end
+end
+
+def output_result(item)
+  @last_output = StringIO.new
+  output_subresult(item)
+  @last_output.rewind
+  nil
+end
+
+def rpc
+  Xgt::Ruby::Rpc.new(@host)
+end
+
+def chain_properties
+  return @chain_properties if @chain_properties
+  witness_schedule = rpc.call('database_api.get_witness_schedule', {}) || {}
+  @chain_properties = witness_schedule['median_props']
+  @chain_properties
+end
+
+def config
+  return @config if @config
+  @config = rpc.call('database_api.get_config', {})
+  @config
+end
+
+def address_prefix
+  return @address_prefix if @address_prefix
+  @address_prefix = config['XGT_ADDRESS_PREFIX']
+  logger.info(%(Retrieved address prefix... #{@address_prefix}))
+  @address_prefix
+end
+
+def chain_id
+  return @chain_id if @chain_id
+  @chain_id = config['XGT_CHAIN_ID']
+  logger.info(%(Retrieved chain ID... #{@chain_id}))
+  @chain_id
+end
+
+def precision
+  8 # TODO: Make dynamic
+end
+
+def fee
+  (chain_properties['account_creation_fee'] || {})['amount']
+end
+
+def currency_symbol
+  config['XGT_SYMBOL_STR']
+end
+
+# --------
+# Commands
+# --------
+
+def info
+  print(%(\n))
+  puts(colorize(:yellow, %(-----)))
+  puts(colorize(:yellow, %(USAGE)))
+  puts(colorize(:yellow, %(-----)))
+  print(%(\n))
+  puts(%(#{colorize(:cyan, 'info')} view this info message))
+  puts(%(#{colorize(:cyan, 'switch_wallet NAME')} switch to another wallet))
+  puts(%(#{colorize(:cyan, 'create_wallet')} create a new XGT wallet))
+  puts(%(#{colorize(:cyan, 'list_wallets')} stream a full list of wallets))
+  puts(%(#{colorize(:cyan, 'list_wallets NAME')} stream a full list of wallets, starting with NAME))
+  puts(%(#{colorize(:cyan, 'get_wallet')} look up your wallet info))
+  puts(%(#{colorize(:cyan, 'get_wallet NAME')} look up another user's wallet info))
+  puts(%(#{colorize(:cyan, 'transfer TO, AMOUNT')} transfer money to another wallet))
+  print(%(\n))
+  puts(colorize(:yellow, %(---------------------)))
+  puts(colorize(:yellow, %(ENVIRONMENT VARIABLES)))
+  puts(colorize(:yellow, %(---------------------)))
+  print(%(\n))
+  puts(%(#{colorize(:cyan, 'XGT_HOST')} a hostname of a valid superproducer))
+  puts(%(#{colorize(:cyan, 'XGT_NAME')} the wallet name to use by default))
+  puts(%(#{colorize(:cyan, 'XGT_WIFS')} mapping of names to WIFs, like `foo:123,234;bar:345`))
+  print(%(\n))
+  puts(colorize(:yellow, %(-----)))
+  puts(colorize(:yellow, %(NOTES)))
+  puts(colorize(:yellow, %(-----)))
+  print(%(\n))
+  puts(%(A prettified form of the last result of every call is stored in `last_result`.))
+  print(%(\n))
+  puts(%(An IO containing the raw body of the last result of every call is stored in `last_output`.))
+  print(%(\n))
+  puts(%(You can get an Xgt::Ruby::Rpc instance via `rpc`.))
+  print(%(\n))
+  puts(%(Any method in `bin/wallet` is available from this CLI, so take a look!))
+  print(%(\n))
+  true
+end
+
+def switch_wallet(name)
+  @current_name = name
+end
+
+def fetch_wallet_name(public_key)
+  result = rpc.call('wallet_by_key_api.get_key_references', { 'keys' => [public_key] })
+  result&.fetch('wallets', [])&.first&.first
+end
+
+def generate_keys(from_wallet_name=current_name, master_key=current_wifs.first)
+  ks = { 'master' => master_key }
+  %w(recovery money social memo).each do |role|
+    private_key = Xgt::Ruby::Auth.generate_wif(from_wallet_name, master_key, role)
+    public_key = Xgt::Ruby::Auth.wif_to_public_key(private_key, address_prefix)
+    ks["#{role}_private"] = private_key
+    ks["#{role}_public"] = public_key
+  end
+  ks['wallet_name'] = Xgt::Ruby::Auth.generate_wallet_name(ks['recovery_public'])
+  ks
+end
+
+def create_wallet
+  keys = generate_keys
+  txn = {
+    'operations' => [{
+      'type' => 'wallet_create_operation',
+      'value' => {
+        'fee' => {
+          'amount' => fee,
+          'precision' => precision,
+          'nai' => '@@000000021'
+        },
+        'creator' => keys['wallet_name'],
+        'recovery' => {
+          'weight_threshold' => 1,
+          'account_auths' => [],
+          'key_auths' => [[keys['recovery_public'], 1]]
+        },
+        'money' => {
+          'weight_threshold' => 1,
+          'account_auths' => [],
+          'key_auths' => [[keys['money_public'], 1]]
+        },
+        'social' => {
+          'weight_threshold' => 1,
+          'account_auths' => [],
+          'key_auths' => [[keys['social_public'], 1]]
+        },
+        'memo_key' => keys['memo_public'],
+        'json_metadata' => '',
+      }
+    }]
+  }
+
+  id = rpc.broadcast_transaction(txn, current_wifs, chain_id)
+  (puts 'Waiting...' or sleep 1) until fetch_wallet_name(current_name)
+
+  response = keys
+
+  output_result(response)
+  @last_result = response
+  true
+end
+
+def list_wallets(name=nil)
+  enumerator = Enumerator.new do |yielder|
+    last_name = name
+    loop do
+      subresponse = rpc.call('database_api.list_wallets', {
+        'start' => last_name,
+        'limit' => 2,
+        'order' => 'by_name'
+      })
+      wallets = subresponse['wallets']
+      break if wallets.last['name'] == last_name
+      wallets.each do |wallet|
+        next if wallet['name'] == last_name
+        yielder.yield(wallet)
+      end
+      last_name = wallets.last['name']
+    end
+  end
+  response = { 'wallets' => enumerator }
+  output_result(response)
+  @last_result = response
+  true
+end
+
+def get_wallet(name=current_name)
+  response = rpc.call('database_api.find_wallets', { 'wallets' => [name] })
+  wallet = response['wallets'][0]
+  wallet.keys.each do |key|
+    wallet.delete(key) if key.match(/withdraw/)
+    wallet.delete(key) if key.match(/vest/)
+    wallet.delete(key) if key.match(/sbd/)
+    wallet.delete(key) if key.match(/saving/)
+    wallet.delete(key) if key.match(/comment/)
+    wallet.delete(key) if key.match(/reward/)
+    wallet.delete(key) if key.match(/proxy/)
+    wallet.delete(key) if key.match(/proxied/)
+    wallet.delete(key) if key.match(/lifetime/)
+    wallet.delete(key) if key.match(/social/)
+    wallet.delete(key) if key.match(/mined/)
+  end
+  output_result(wallet)
+  @last_result = response
+  true
+end
+
+def transfer(to, amount)
+  txn = {
+    'operations' => [{
+      'type' => 'transfer_operation',
+      'value' => {
+        'amount' => {
+          'amount' => ( amount * (10 ** precision) ).to_i.to_s,
+          'precision' => precision,
+          'nai' => '@@000000021'
+        },
+        'from' => current_name,
+        'to' => to,
+        'json_metadata' => '',
+      }
+    }]
+  }
+
+  logger.info(%(Transferring #{amount} to "#{to}"))
+  id = rpc.broadcast_transaction(txn, current_wifs, chain_id)
+  (puts 'Waiting...' or sleep 1) until rpc.transaction_ready?(id)
+  response = {} # TODO
+  output_result(response)
+  @last_result = response
+  true
+end
+
+def fetch_wallet_name(public_key)
+  result = rpc.call('wallet_by_key_api.get_key_references', { 'keys' => [public_key] })
+  result&.fetch('wallets', [])&.first&.first
+end
+
+def lazy_create(recovery_public)
+  keys = generate_keys(current_name, recovery_public)
+  transfer(keys['wallet_name'], BigDecimal('0.00000001'))
+
+  response = keys
+  output_result(response)
+  @last_result = response
+  true
+end
+
+def lazy_redeem(recovery_private)
+  recovery_public = Xgt::Ruby::Auth.wif_to_public_key(recovery_private, address_prefix)
+  wallet_name = Xgt::Ruby::Auth.generate_wallet_name(recovery_public)
+  keys = generate_keys(current_name, recovery_public).merge('wallet_name' => wallet_name)
+  txn = {
+    'operations' => [{
+      'type' => 'wallet_update_operation',
+      'value' => {
+        'wallet' => wallet_name,
+        'recovery' => {
+          'weight_threshold' => 1,
+          'account_auths' => [],
+          'key_auths' => [[keys['recovery_public'], 1]]
+        },
+        'money' => {
+          'weight_threshold' => 1,
+          'account_auths' => [],
+          'key_auths' => [[keys['money_public'], 1]]
+        },
+        'social' => {
+          'weight_threshold' => 1,
+          'account_auths' => [],
+          'key_auths' => [[keys['social_public'], 1]]
+        },
+        'memo_key' => keys['memo_public'],
+        'json_metadata' => '',
+      }
+    }]
+  }
+  logger.info(%(Redeeming #{wallet_name}"))
+  id = rpc.broadcast_transaction(txn, [recovery_private], chain_id)
+  #(puts 'Waiting...' or sleep 1) until rpc.transaction_ready?(id)
+  (puts 'Waiting...' or sleep 1) until fetch_wallet_name(keys['recovery_public'])
+  response = {} # TODO
+  output_result(response)
+  @last_result = response
+  true
+end
+
+# ----
+# Main
+# ----
+
+def start_console
+  require 'irb'
+	ARGV.clear
+	IRB.setup nil
+
+	IRB.conf[:PROMPT] = {}
+	IRB.conf[:IRB_NAME] = 'wallet'
+	IRB.conf[:PROMPT][:WALLET] = {
+		:PROMPT_I => '%N>> ',
+		:PROMPT_N => '%N>> ',
+		:PROMPT_S => '%N%l> ',
+		:PROMPT_C => '%N*> ',
+		:RETURN => "#=> %s\n"
+	}
+	IRB.conf[:PROMPT_MODE] = :WALLET
+	IRB.conf[:RC] = false
+
+	require 'irb/completion'
+	require 'irb/ext/save-history'
+	IRB.conf[:READLINE] = true
+
+	irb = IRB::Irb.new(IRB::WorkSpace.new(self))
+	IRB.conf[:MAIN_CONTEXT] = irb.context
+
+	trap('SIGINT') do
+		IRB.irb.signal_handle
+	end
+
+	begin
+		catch(:IRB_EXIT) do
+			irb.eval_input
+		end
+	ensure
+		IRB.irb_at_exit
+	end
+end
+
+# Allows for this file to be run as a script or loaded as a library.
+if __FILE__ == $0
+  puts logo
+	start_console
+end

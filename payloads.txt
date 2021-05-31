@@ -1,0 +1,461 @@
+{
+  "jsonrpc": "2.0",
+  "method": "database_api.find_accounts",
+  "params": {
+    "accounts": [
+      "foo45fb448c"
+    ]
+  },
+  "id": 18466466518669
+}
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "accounts": [
+      {
+        "id": 13,
+        "name": "foo45fb448c",
+        "owner": {
+          "weight_threshold": 1,
+          "account_auths": [
+
+          ],
+          "key_auths": [
+            [
+              "TST7xue5ESY1xHhDZj6dw2igXCwoHobA3cnxffacvp4XMzwfzLZu4",
+              1
+            ]
+          ]
+        },
+        "active": {
+          "weight_threshold": 1,
+          "account_auths": [
+
+          ],
+          "key_auths": [
+            [
+              "TST6Yp3zeaYNU7XJF2MxoHhDcWT4vGgVkzTLEvhMY6g5tvmwzn3tN",
+              1
+            ]
+          ]
+        },
+        "posting": {
+          "weight_threshold": 1,
+          "account_auths": [
+
+          ],
+          "key_auths": [
+            [
+              "TST5Q7ZdopjQWZMwiyZk11W5Yhvsfu1PG3f4qsQN58A7XfHP34Hig",
+              1
+            ]
+          ]
+        },
+        "memo_key": "TST5u69JnHZ3oznnwn71J6VA4r5oVJX6Xu3dpbFVoHpJoZXnbDfaW",
+        "json_metadata": "",
+        "proxy": "",
+        "last_owner_update": "1970-01-01T00:00:00",
+        "last_account_update": "1970-01-01T00:00:00",
+        "created": "2019-04-24T06:44:48",
+        "mined": false,
+        "recovery_account": "initminer",
+        "last_account_recovery": "1970-01-01T00:00:00",
+        "reset_account": "null",
+        "comment_count": 0,
+        "lifetime_vote_count": 0,
+        "post_count": 0,
+        "can_vote": true,
+        "voting_manabar": {
+          "current_mana": 0,
+          "last_update_time": 1556088288
+        },
+        "balance": {
+          "amount": "0",
+          "precision": 3,
+          "nai": "@@000000021"
+        },
+        "savings_balance": {
+          "amount": "0",
+          "precision": 3,
+          "nai": "@@000000021"
+        },
+        "sbd_balance": {
+          "amount": "0",
+          "precision": 3,
+          "nai": "@@000000013"
+        },
+        "sbd_seconds": "0",
+        "sbd_seconds_last_update": "1970-01-01T00:00:00",
+        "sbd_last_interest_payment": "1970-01-01T00:00:00",
+        "savings_sbd_balance": {
+          "amount": "0",
+          "precision": 3,
+          "nai": "@@000000013"
+        },
+        "savings_sbd_seconds": "0",
+        "savings_sbd_seconds_last_update": "1970-01-01T00:00:00",
+        "savings_sbd_last_interest_payment": "1970-01-01T00:00:00",
+        "savings_withdraw_requests": 0,
+        "reward_sbd_balance": {
+          "amount": "0",
+          "precision": 3,
+          "nai": "@@000000013"
+        },
+        "reward_steem_balance": {
+          "amount": "0",
+          "precision": 3,
+          "nai": "@@000000021"
+        },
+        "reward_vesting_balance": {
+          "amount": "0",
+          "precision": 6,
+          "nai": "@@000000037"
+        },
+        "reward_vesting_steem": {
+          "amount": "0",
+          "precision": 3,
+          "nai": "@@000000021"
+        },
+        "vesting_shares": {
+          "amount": "0",
+          "precision": 6,
+          "nai": "@@000000037"
+        },
+        "delegated_vesting_shares": {
+          "amount": "0",
+          "precision": 6,
+          "nai": "@@000000037"
+        },
+        "received_vesting_shares": {
+          "amount": "0",
+          "precision": 6,
+          "nai": "@@000000037"
+        },
+        "vesting_withdraw_rate": {
+          "amount": "0",
+          "precision": 6,
+          "nai": "@@000000037"
+        },
+        "next_vesting_withdrawal": "1969-12-31T23:59:59",
+        "withdrawn": 0,
+        "to_withdraw": 0,
+        "withdraw_routes": 0,
+        "curation_rewards": 0,
+        "posting_rewards": 0,
+        "proxied_vsf_votes": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "witnesses_voted_for": 0,
+        "last_post": "1970-01-01T00:00:00",
+        "last_root_post": "1970-01-01T00:00:00",
+        "last_vote_time": "1970-01-01T00:00:00",
+        "post_bandwidth": 0,
+        "pending_claimed_accounts": 0,
+        "is_smt": false
+      }
+    ]
+  },
+  "id": "7133625920894"
+}
+{
+  "jsonrpc": "2.0",
+  "method": "database_api.get_dynamic_global_properties",
+  "params": {
+  },
+  "id": 275146661212172
+}
+{
+  "jsonrpc": "2.0",
+  "id": 275146661212172,
+  "result": {
+    "time": "2019-04-30T00:34:12",
+    "last_irreversible_block_num": 32482872
+  }
+}
+{
+  "jsonrpc": "2.0",
+  "method": "block_api.get_block_header",
+  "params": {
+    "block_num": 32482872
+  },
+  "id": 249008441062077
+}
+{
+  "jsonrpc": "2.0",
+  "id": 249008441062077,
+  "result": {
+    "header": {
+      "previous": "01efa63783c4180b05e39fa94dde4febca9cc91d"
+    }
+  }
+}
+{
+  "jsonrpc": "2.0",
+  "method": "network_broadcast_api.get_transaction_hex",
+  "params": [
+    {
+      "extensions": [
+
+      ],
+      "operations": [
+        [
+          "account_create",
+          {
+            "fee": "0.000 TESTS",
+            "creator": "initminer",
+            "new_account_name": "foo41700a44",
+            "owner": {
+              "weight_threshold": 1,
+              "account_auths": [
+
+              ],
+              "key_auths": [
+                [
+                  "TST7xue5ESY1xHhDZj6dw2igXCwoHobA3cnxffacvp4XMzwfzLZu4",
+                  1
+                ]
+              ]
+            },
+            "active": {
+              "weight_threshold": 1,
+              "account_auths": [
+
+              ],
+              "key_auths": [
+                [
+                  "TST6Yp3zeaYNU7XJF2MxoHhDcWT4vGgVkzTLEvhMY6g5tvmwzn3tN",
+                  1
+                ]
+              ]
+            },
+            "posting": {
+              "weight_threshold": 1,
+              "account_auths": [
+
+              ],
+              "key_auths": [
+                [
+                  "TST5Q7ZdopjQWZMwiyZk11W5Yhvsfu1PG3f4qsQN58A7XfHP34Hig",
+                  1
+                ]
+              ]
+            },
+            "memo_key": "TST5u69JnHZ3oznnwn71J6VA4r5oVJX6Xu3dpbFVoHpJoZXnbDfaW",
+            "json_metadata": "",
+            "extensions": [
+
+            ]
+          }
+        ]
+      ],
+      "ref_block_num": 42551,
+      "ref_block_prefix": 186172547,
+      "expiration": "2019-04-30T00:44:12"
+    }
+  ],
+  "id": 116156454840173
+}
+{
+  "jsonrpc": "2.0",
+  "id": 116156454840173,
+  "result": "37a683c4180b5c9ac75c01090000000000000000035445535453000009696e69746d696e65720b666f6f343137303061343401000000000103951f1e294b4f9e535708bcfa85d8d21240bda7585424b2e6fa0d0f1e9a756e8c010001000000000102dab63701259352fa01048a97ac76d44def848552518c7991e4bb2feb893e6eef0100010000000001024343ff4fcd3a2ddfbb53fbd178b09ed02c457dbd88d1ff2f49ce967d7c3f5637010002850edf288f0e9fdc4bf83839d352d3b9e65bdefb309147ad3642b4a63e0a6c660000ff"
+}
+{
+  "jsonrpc": "2.0",
+  "method": "condenser_api.get_chain_properties",
+  "params": [
+
+  ],
+  "id": 113281388192823
+}
+{
+  "jsonrpc": "2.0",
+  "error": {
+    "code": -32002,
+    "message": "Assert Exception:method_itr != api_itr->second.end(): Could not find method get_chain_properties",
+    "data": {
+      "code": 10,
+      "name": "assert_exception",
+      "message": "Assert Exception",
+      "stack": [
+        {
+          "context": {
+            "level": "error",
+            "file": "json_rpc_plugin.cpp",
+            "line": 209,
+            "method": "find_api_method",
+            "hostname": "",
+            "timestamp": "2020-04-01T19:44:15"
+          },
+          "format": "method_itr != api_itr->second.end(): Could not find method ${method}",
+          "data": {
+            "method": "get_chain_properties"
+          }
+        }
+      ]
+    }
+  },
+  "id": "113281388192823"
+}
+{
+  "jsonrpc": "2.0",
+  "method": "condenser_api.get_chain_properties",
+  "params": [
+
+  ],
+  "id": 197736107532241
+}
+{
+  "jsonrpc": "2.0",
+  "method": "condenser_api.get_chain_properties",
+  "params": [
+
+  ],
+  "id": 168893335992264
+}
+{
+  "jsonrpc": "2.0",
+  "method": "condenser_api.get_chain_properties",
+  "params": [
+
+  ],
+  "id": 159203180196081
+}
+{
+  "jsonrpc": "2.0",
+  "method": "condenser_api.get_chain_properties",
+  "params": [
+
+  ],
+  "id": 162443573580019
+}
+{
+  "jsonrpc": "2.0",
+  "method": "condenser_api.get_chain_properties",
+  "params": [
+
+  ],
+  "id": 265628521302471
+}
+{
+  "jsonrpc": "2.0",
+  "method": "condenser_api.get_chain_properties",
+  "params": [
+
+  ],
+  "id": 23335772442202
+}
+{
+  "jsonrpc": "2.0",
+  "method": "condenser_api.get_chain_properties",
+  "params": [
+
+  ],
+  "id": 189541321007961
+}
+{
+  "jsonrpc": "2.0",
+  "error": {
+    "code": -32002,
+    "message": "Assert Exception:method_itr != api_itr->second.end(): Could not find method get_chain_properties",
+    "data": {
+      "code": 10,
+      "name": "assert_exception",
+      "message": "Assert Exception",
+      "stack": [
+        {
+          "context": {
+            "level": "error",
+            "file": "json_rpc_plugin.cpp",
+            "line": 209,
+            "method": "find_api_method",
+            "hostname": "",
+            "timestamp": "2020-04-03T22:18:41"
+          },
+          "format": "method_itr != api_itr->second.end(): Could not find method ${method}",
+          "data": {
+            "method": "get_chain_properties"
+          }
+        }
+      ]
+    }
+  },
+  "id": "189541321007961"
+}
+{
+  "jsonrpc": "2.0",
+  "method": "condenser_api.get_chain_properties",
+  "params": [
+
+  ],
+  "id": 251458499472850
+}
+{
+  "jsonrpc": "2.0",
+  "error": {
+    "code": -32002,
+    "message": "Assert Exception:method_itr != api_itr->second.end(): Could not find method get_chain_properties",
+    "data": {
+      "code": 10,
+      "name": "assert_exception",
+      "message": "Assert Exception",
+      "stack": [
+        {
+          "context": {
+            "level": "error",
+            "file": "json_rpc_plugin.cpp",
+            "line": 209,
+            "method": "find_api_method",
+            "hostname": "",
+            "timestamp": "2020-04-03T22:50:20"
+          },
+          "format": "method_itr != api_itr->second.end(): Could not find method ${method}",
+          "data": {
+            "method": "get_chain_properties"
+          }
+        }
+      ]
+    }
+  },
+  "id": "251458499472850"
+}
+{
+  "jsonrpc": "2.0",
+  "method": "condenser_api.get_chain_properties",
+  "params": [
+
+  ],
+  "id": 66742030768951
+}
+{
+  "jsonrpc": "2.0",
+  "error": {
+    "code": -32002,
+    "message": "Assert Exception:method_itr != api_itr->second.end(): Could not find method get_chain_properties",
+    "data": {
+      "code": 10,
+      "name": "assert_exception",
+      "message": "Assert Exception",
+      "stack": [
+        {
+          "context": {
+            "level": "error",
+            "file": "json_rpc_plugin.cpp",
+            "line": 209,
+            "method": "find_api_method",
+            "hostname": "",
+            "timestamp": "2020-04-03T23:02:56"
+          },
+          "format": "method_itr != api_itr->second.end(): Could not find method ${method}",
+          "data": {
+            "method": "get_chain_properties"
+          }
+        }
+      ]
+    }
+  },
+  "id": "66742030768951"
+}

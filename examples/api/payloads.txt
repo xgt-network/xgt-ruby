@@ -1,0 +1,3580 @@
+{
+  "jsonrpc": "2.0",
+  "method": "database_api.get_dynamic_global_properties",
+  "params": {
+  },
+  "id": 217510644514853
+}
+{
+  "jsonrpc": "2.0",
+  "method": "database_api.get_dynamic_global_properties",
+  "params": {
+  },
+  "id": 126447720558893
+}
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "id": 0,
+    "head_block_number": 28,
+    "head_block_id": "0000001c3ea3bce0702e7bc60d0176d648bec700",
+    "time": "2020-04-03T17:38:27",
+    "current_witness": "XGT0000000000000",
+    "total_pow": "18446744073709551615",
+    "num_pow_witnesses": 0,
+    "virtual_supply": {
+      "amount": "250000061152",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "current_supply": {
+      "amount": "250000054656",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "confidential_supply": {
+      "amount": "0",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "init_sbd_supply": {
+      "amount": "7000000000",
+      "precision": 3,
+      "nai": "@@000000013"
+    },
+    "current_sbd_supply": {
+      "amount": "6496",
+      "precision": 3,
+      "nai": "@@000000013"
+    },
+    "confidential_sbd_supply": {
+      "amount": "0",
+      "precision": 3,
+      "nai": "@@000000013"
+    },
+    "total_vesting_fund_steem": {
+      "amount": "12348",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "total_vesting_shares": {
+      "amount": "174868",
+      "precision": 6,
+      "nai": "@@000000037"
+    },
+    "total_reward_fund_steem": {
+      "amount": "0",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "total_reward_shares2": "0",
+    "pending_rewarded_vesting_shares": {
+      "amount": "0",
+      "precision": 6,
+      "nai": "@@000000037"
+    },
+    "pending_rewarded_vesting_steem": {
+      "amount": "0",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "sbd_interest_rate": 0,
+    "sbd_print_rate": 10000,
+    "maximum_block_size": 393216000,
+    "required_actions_partition_percent": 2500,
+    "current_aslot": 28,
+    "recent_slots_filled": "340282366920938463463374607431768211455",
+    "participation_count": 128,
+    "last_irreversible_block_num": 18,
+    "target_votes_per_period": 50,
+    "delegation_return_period": 432000,
+    "reverse_auction_seconds": 300,
+    "available_account_subsidies": 22316,
+    "sbd_stop_percent": 1000,
+    "sbd_start_percent": 900,
+    "next_maintenance_time": "2020-04-03T18:37:08",
+    "last_budget_time": "2020-04-03T17:37:08",
+    "content_reward_percent": 6500,
+    "vesting_reward_percent": 1500,
+    "sps_fund_percent": 1000,
+    "sps_interval_ledger": {
+      "amount": "6264",
+      "precision": 3,
+      "nai": "@@000000013"
+    },
+    "downvote_pool_percent": 2500,
+    "smt_creation_fee": {
+      "amount": "1000",
+      "precision": 3,
+      "nai": "@@000000013"
+    }
+  },
+  "id": "126447720558893"
+}
+{
+  "jsonrpc": "2.0",
+  "method": "block_api.get_block_header",
+  "params": {
+    "block_num": 18
+  },
+  "id": 103875971339502
+}
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "header": {
+      "previous": "000000118a9212c14f37196a047468ef5cd92385",
+      "timestamp": "2020-04-03T17:37:57",
+      "witness": "XGT0000000000000",
+      "transaction_merkle_root": "0000000000000000000000000000000000000000",
+      "extensions": [
+
+      ]
+    }
+  },
+  "id": "103875971339502"
+}
+{
+  "jsonrpc": "2.0",
+  "method": "network_broadcast_api.get_transaction_hex",
+  "params": [
+    {
+      "extensions": [
+
+      ],
+      "operations": [
+        [
+          "account_create",
+          {
+            "fee": "0.000 TESTS",
+            "creator": "initminer",
+            "new_account_name": "foo1d02d4633b72",
+            "owner": {
+              "weight_threshold": 1,
+              "account_auths": [
+
+              ],
+              "key_auths": [
+                [
+                  "TST7xue5ESY1xHhDZj6dw2igXCwoHobA3cnxffacvp4XMzwfzLZu4",
+                  1
+                ]
+              ]
+            },
+            "active": {
+              "weight_threshold": 1,
+              "account_auths": [
+
+              ],
+              "key_auths": [
+                [
+                  "TST6Yp3zeaYNU7XJF2MxoHhDcWT4vGgVkzTLEvhMY6g5tvmwzn3tN",
+                  1
+                ]
+              ]
+            },
+            "posting": {
+              "weight_threshold": 1,
+              "account_auths": [
+
+              ],
+              "key_auths": [
+                [
+                  "TST5Q7ZdopjQWZMwiyZk11W5Yhvsfu1PG3f4qsQN58A7XfHP34Hig",
+                  1
+                ]
+              ]
+            },
+            "memo_key": "TST5u69JnHZ3oznnwn71J6VA4r5oVJX6Xu3dpbFVoHpJoZXnbDfaW",
+            "json_metadata": "",
+            "extensions": [
+
+            ]
+          }
+        ]
+      ],
+      "ref_block_num": 17,
+      "ref_block_prefix": 3239219850,
+      "expiration": "2020-04-03T17:48:27"
+    }
+  ],
+  "id": 211323939475760
+}
+{
+  "jsonrpc": "2.0",
+  "error": {
+    "code": -32003,
+    "message": "Assert Exception:false: Cannot parse asset symbol",
+    "data": {
+      "code": 10,
+      "name": "assert_exception",
+      "message": "Assert Exception",
+      "stack": [
+        {
+          "context": {
+            "level": "error",
+            "file": "network_broadcast_api_legacy_asset.cpp",
+            "line": 63,
+            "method": "string_to_asset_num",
+            "hostname": "",
+            "timestamp": "2020-04-03T17:38:26"
+          },
+          "format": "false: Cannot parse asset symbol",
+          "data": {
+          }
+        },
+        {
+          "context": {
+            "level": "warn",
+            "file": "network_broadcast_api_legacy_asset.cpp",
+            "line": 187,
+            "method": "from_string",
+            "hostname": "",
+            "timestamp": "2020-04-03T17:38:26"
+          },
+          "format": "",
+          "data": {
+            "from": "0.000 TESTS"
+          }
+        }
+      ]
+    }
+  },
+  "id": "211323939475760"
+}
+{
+  "jsonrpc": "2.0",
+  "method": "database_api.find_accounts",
+  "params": {
+    "accounts": [
+      "foo742b98e85810"
+    ]
+  },
+  "id": 251918228754044
+}
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "accounts": [
+
+    ]
+  },
+  "id": "251918228754044"
+}
+{
+  "jsonrpc": "2.0",
+  "method": "database_api.find_accounts",
+  "params": {
+    "accounts": [
+      "foo4443bc425a02"
+    ]
+  },
+  "id": 177786009239565
+}
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "accounts": [
+
+    ]
+  },
+  "id": "177786009239565"
+}
+{
+  "jsonrpc": "2.0",
+  "method": "database_api.get_dynamic_global_properties",
+  "params": {
+  },
+  "id": 9533754729416
+}
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "id": 0,
+    "head_block_number": 28,
+    "head_block_id": "0000001c532a2c776bfc4c3e040f5ada7c2050f4",
+    "time": "2020-04-03T22:20:00",
+    "current_witness": "XGT0000000000000",
+    "total_pow": "18446744073709551615",
+    "num_pow_witnesses": 0,
+    "virtual_supply": {
+      "amount": "250000061152",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "current_supply": {
+      "amount": "250000054656",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "confidential_supply": {
+      "amount": "0",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "init_sbd_supply": {
+      "amount": "7000000000",
+      "precision": 3,
+      "nai": "@@000000013"
+    },
+    "current_sbd_supply": {
+      "amount": "6496",
+      "precision": 3,
+      "nai": "@@000000013"
+    },
+    "confidential_sbd_supply": {
+      "amount": "0",
+      "precision": 3,
+      "nai": "@@000000013"
+    },
+    "total_vesting_fund_steem": {
+      "amount": "12348",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "total_vesting_shares": {
+      "amount": "174868",
+      "precision": 6,
+      "nai": "@@000000037"
+    },
+    "total_reward_fund_steem": {
+      "amount": "0",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "total_reward_shares2": "0",
+    "pending_rewarded_vesting_shares": {
+      "amount": "0",
+      "precision": 6,
+      "nai": "@@000000037"
+    },
+    "pending_rewarded_vesting_steem": {
+      "amount": "0",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "sbd_interest_rate": 0,
+    "sbd_print_rate": 10000,
+    "maximum_block_size": 393216000,
+    "required_actions_partition_percent": 2500,
+    "current_aslot": 28,
+    "recent_slots_filled": "340282366920938463463374607431768211455",
+    "participation_count": 128,
+    "last_irreversible_block_num": 18,
+    "target_votes_per_period": 50,
+    "delegation_return_period": 432000,
+    "reverse_auction_seconds": 300,
+    "available_account_subsidies": 22316,
+    "sbd_stop_percent": 1000,
+    "sbd_start_percent": 900,
+    "next_maintenance_time": "2020-04-03T23:18:39",
+    "last_budget_time": "2020-04-03T22:18:39",
+    "content_reward_percent": 6500,
+    "vesting_reward_percent": 1500,
+    "sps_fund_percent": 1000,
+    "sps_interval_ledger": {
+      "amount": "6264",
+      "precision": 3,
+      "nai": "@@000000013"
+    },
+    "downvote_pool_percent": 2500,
+    "smt_creation_fee": {
+      "amount": "1000",
+      "precision": 3,
+      "nai": "@@000000013"
+    }
+  },
+  "id": "9533754729416"
+}
+{
+  "jsonrpc": "2.0",
+  "method": "block_api.get_block_header",
+  "params": {
+    "block_num": 18
+  },
+  "id": 221306465847020
+}
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "header": {
+      "previous": "00000011564f7252ff83e861f6e0ddd39a8df084",
+      "timestamp": "2020-04-03T22:19:30",
+      "witness": "XGT0000000000000",
+      "transaction_merkle_root": "0000000000000000000000000000000000000000",
+      "extensions": [
+
+      ]
+    }
+  },
+  "id": "221306465847020"
+}
+{
+  "jsonrpc": "2.0",
+  "method": "network_broadcast_api.get_transaction_hex",
+  "params": [
+    {
+      "extensions": [
+
+      ],
+      "operations": [
+        [
+          "account_create",
+          {
+            "fee": "0.000 TESTS",
+            "creator": "initminer",
+            "new_account_name": "foo35a1802091c2",
+            "owner": {
+              "weight_threshold": 1,
+              "account_auths": [
+
+              ],
+              "key_auths": [
+                [
+                  "TST7xue5ESY1xHhDZj6dw2igXCwoHobA3cnxffacvp4XMzwfzLZu4",
+                  1
+                ]
+              ]
+            },
+            "active": {
+              "weight_threshold": 1,
+              "account_auths": [
+
+              ],
+              "key_auths": [
+                [
+                  "TST6Yp3zeaYNU7XJF2MxoHhDcWT4vGgVkzTLEvhMY6g5tvmwzn3tN",
+                  1
+                ]
+              ]
+            },
+            "posting": {
+              "weight_threshold": 1,
+              "account_auths": [
+
+              ],
+              "key_auths": [
+                [
+                  "TST5Q7ZdopjQWZMwiyZk11W5Yhvsfu1PG3f4qsQN58A7XfHP34Hig",
+                  1
+                ]
+              ]
+            },
+            "memo_key": "TST5u69JnHZ3oznnwn71J6VA4r5oVJX6Xu3dpbFVoHpJoZXnbDfaW",
+            "json_metadata": "",
+            "extensions": [
+
+            ]
+          }
+        ]
+      ],
+      "ref_block_num": 17,
+      "ref_block_prefix": 1383223126,
+      "expiration": "2020-04-03T22:30:00"
+    }
+  ],
+  "id": 205738254303704
+}
+{
+  "jsonrpc": "2.0",
+  "error": {
+    "code": -32003,
+    "message": "Assert Exception:false: Cannot parse asset symbol",
+    "data": {
+      "code": 10,
+      "name": "assert_exception",
+      "message": "Assert Exception",
+      "stack": [
+        {
+          "context": {
+            "level": "error",
+            "file": "network_broadcast_api_legacy_asset.cpp",
+            "line": 63,
+            "method": "string_to_asset_num",
+            "hostname": "",
+            "timestamp": "2020-04-03T22:20:00"
+          },
+          "format": "false: Cannot parse asset symbol",
+          "data": {
+          }
+        },
+        {
+          "context": {
+            "level": "warn",
+            "file": "network_broadcast_api_legacy_asset.cpp",
+            "line": 187,
+            "method": "from_string",
+            "hostname": "",
+            "timestamp": "2020-04-03T22:20:00"
+          },
+          "format": "",
+          "data": {
+            "from": "0.000 TESTS"
+          }
+        }
+      ]
+    }
+  },
+  "id": "205738254303704"
+}
+{
+  "jsonrpc": "2.0",
+  "method": "database_api.get_dynamic_global_properties",
+  "params": {
+  },
+  "id": 1876473457540
+}
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "id": 0,
+    "head_block_number": 134,
+    "head_block_id": "000000865c5bfbdea62fce1522b48f4a86e5753e",
+    "time": "2020-04-03T22:25:18",
+    "current_witness": "XGT0000000000000",
+    "total_pow": "18446744073709551615",
+    "num_pow_witnesses": 0,
+    "virtual_supply": {
+      "amount": "250000292656",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "current_supply": {
+      "amount": "250000261568",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "confidential_supply": {
+      "amount": "0",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "init_sbd_supply": {
+      "amount": "7000000000",
+      "precision": 3,
+      "nai": "@@000000013"
+    },
+    "current_sbd_supply": {
+      "amount": "31088",
+      "precision": 3,
+      "nai": "@@000000013"
+    },
+    "confidential_sbd_supply": {
+      "amount": "0",
+      "precision": 3,
+      "nai": "@@000000013"
+    },
+    "total_vesting_fund_steem": {
+      "amount": "59094",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "total_vesting_shares": {
+      "amount": "242648",
+      "precision": 6,
+      "nai": "@@000000037"
+    },
+    "total_reward_fund_steem": {
+      "amount": "0",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "total_reward_shares2": "0",
+    "pending_rewarded_vesting_shares": {
+      "amount": "0",
+      "precision": 6,
+      "nai": "@@000000037"
+    },
+    "pending_rewarded_vesting_steem": {
+      "amount": "0",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "sbd_interest_rate": 0,
+    "sbd_print_rate": 10000,
+    "maximum_block_size": 393216000,
+    "required_actions_partition_percent": 2500,
+    "current_aslot": 134,
+    "recent_slots_filled": "340282366920938463463374607431768211455",
+    "participation_count": 128,
+    "last_irreversible_block_num": 124,
+    "target_votes_per_period": 50,
+    "delegation_return_period": 432000,
+    "reverse_auction_seconds": 300,
+    "available_account_subsidies": 106798,
+    "sbd_stop_percent": 1000,
+    "sbd_start_percent": 900,
+    "next_maintenance_time": "2020-04-03T23:18:39",
+    "last_budget_time": "2020-04-03T22:18:39",
+    "content_reward_percent": 6500,
+    "vesting_reward_percent": 1500,
+    "sps_fund_percent": 1000,
+    "sps_interval_ledger": {
+      "amount": "30856",
+      "precision": 3,
+      "nai": "@@000000013"
+    },
+    "downvote_pool_percent": 2500,
+    "smt_creation_fee": {
+      "amount": "1000",
+      "precision": 3,
+      "nai": "@@000000013"
+    }
+  },
+  "id": "1876473457540"
+}
+{
+  "jsonrpc": "2.0",
+  "method": "block_api.get_block_header",
+  "params": {
+    "block_num": 124
+  },
+  "id": 239459792505541
+}
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "header": {
+      "previous": "0000007b9d50a75f0ac88f212ea7ff742d8ceebe",
+      "timestamp": "2020-04-03T22:24:48",
+      "witness": "XGT0000000000000",
+      "transaction_merkle_root": "0000000000000000000000000000000000000000",
+      "extensions": [
+
+      ]
+    }
+  },
+  "id": "239459792505541"
+}
+{
+  "jsonrpc": "2.0",
+  "method": "network_broadcast_api.get_transaction_hex",
+  "params": [
+    {
+      "extensions": [
+
+      ],
+      "operations": [
+        [
+          "account_create",
+          {
+            "fee": "0.000 TESTS",
+            "creator": "initminer",
+            "new_account_name": "foo43e4d88291b4",
+            "owner": {
+              "weight_threshold": 1,
+              "account_auths": [
+
+              ],
+              "key_auths": [
+                [
+                  "TST7xue5ESY1xHhDZj6dw2igXCwoHobA3cnxffacvp4XMzwfzLZu4",
+                  1
+                ]
+              ]
+            },
+            "active": {
+              "weight_threshold": 1,
+              "account_auths": [
+
+              ],
+              "key_auths": [
+                [
+                  "TST6Yp3zeaYNU7XJF2MxoHhDcWT4vGgVkzTLEvhMY6g5tvmwzn3tN",
+                  1
+                ]
+              ]
+            },
+            "posting": {
+              "weight_threshold": 1,
+              "account_auths": [
+
+              ],
+              "key_auths": [
+                [
+                  "TST5Q7ZdopjQWZMwiyZk11W5Yhvsfu1PG3f4qsQN58A7XfHP34Hig",
+                  1
+                ]
+              ]
+            },
+            "memo_key": "TST5u69JnHZ3oznnwn71J6VA4r5oVJX6Xu3dpbFVoHpJoZXnbDfaW",
+            "json_metadata": "",
+            "extensions": [
+
+            ]
+          }
+        ]
+      ],
+      "ref_block_num": 123,
+      "ref_block_prefix": 1604800669,
+      "expiration": "2020-04-03T22:35:18"
+    }
+  ],
+  "id": 174624263486591
+}
+{
+  "jsonrpc": "2.0",
+  "error": {
+    "code": -32003,
+    "message": "Assert Exception:false: Cannot parse asset symbol",
+    "data": {
+      "code": 10,
+      "name": "assert_exception",
+      "message": "Assert Exception",
+      "stack": [
+        {
+          "context": {
+            "level": "error",
+            "file": "network_broadcast_api_legacy_asset.cpp",
+            "line": 63,
+            "method": "string_to_asset_num",
+            "hostname": "",
+            "timestamp": "2020-04-03T22:25:18"
+          },
+          "format": "false: Cannot parse asset symbol",
+          "data": {
+          }
+        },
+        {
+          "context": {
+            "level": "warn",
+            "file": "network_broadcast_api_legacy_asset.cpp",
+            "line": 187,
+            "method": "from_string",
+            "hostname": "",
+            "timestamp": "2020-04-03T22:25:18"
+          },
+          "format": "",
+          "data": {
+            "from": "0.000 TESTS"
+          }
+        }
+      ]
+    }
+  },
+  "id": "174624263486591"
+}
+{
+  "jsonrpc": "2.0",
+  "method": "database_api.get_dynamic_global_properties",
+  "params": {
+  },
+  "id": 255521115353057
+}
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "id": 0,
+    "head_block_number": 139,
+    "head_block_id": "0000008bd733d2406a760135e2e92cce6b04da69",
+    "time": "2020-04-03T22:25:33",
+    "current_witness": "XGT0000000000000",
+    "total_pow": "18446744073709551615",
+    "num_pow_witnesses": 0,
+    "virtual_supply": {
+      "amount": "250000303576",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "current_supply": {
+      "amount": "250000271328",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "confidential_supply": {
+      "amount": "0",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "init_sbd_supply": {
+      "amount": "7000000000",
+      "precision": 3,
+      "nai": "@@000000013"
+    },
+    "current_sbd_supply": {
+      "amount": "32248",
+      "precision": 3,
+      "nai": "@@000000013"
+    },
+    "confidential_sbd_supply": {
+      "amount": "0",
+      "precision": 3,
+      "nai": "@@000000013"
+    },
+    "total_vesting_fund_steem": {
+      "amount": "61299",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "total_vesting_shares": {
+      "amount": "244522",
+      "precision": 6,
+      "nai": "@@000000037"
+    },
+    "total_reward_fund_steem": {
+      "amount": "0",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "total_reward_shares2": "0",
+    "pending_rewarded_vesting_shares": {
+      "amount": "0",
+      "precision": 6,
+      "nai": "@@000000037"
+    },
+    "pending_rewarded_vesting_steem": {
+      "amount": "0",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "sbd_interest_rate": 0,
+    "sbd_print_rate": 10000,
+    "maximum_block_size": 393216000,
+    "required_actions_partition_percent": 2500,
+    "current_aslot": 139,
+    "recent_slots_filled": "340282366920938463463374607431768211455",
+    "participation_count": 128,
+    "last_irreversible_block_num": 129,
+    "target_votes_per_period": 50,
+    "delegation_return_period": 432000,
+    "reverse_auction_seconds": 300,
+    "available_account_subsidies": 110783,
+    "sbd_stop_percent": 1000,
+    "sbd_start_percent": 900,
+    "next_maintenance_time": "2020-04-03T23:18:39",
+    "last_budget_time": "2020-04-03T22:18:39",
+    "content_reward_percent": 6500,
+    "vesting_reward_percent": 1500,
+    "sps_fund_percent": 1000,
+    "sps_interval_ledger": {
+      "amount": "32016",
+      "precision": 3,
+      "nai": "@@000000013"
+    },
+    "downvote_pool_percent": 2500,
+    "smt_creation_fee": {
+      "amount": "1000",
+      "precision": 3,
+      "nai": "@@000000013"
+    }
+  },
+  "id": "255521115353057"
+}
+{
+  "jsonrpc": "2.0",
+  "method": "block_api.get_block_header",
+  "params": {
+    "block_num": 129
+  },
+  "id": 6943479700588
+}
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "header": {
+      "previous": "000000809738072611a01f4c9bd30fe14a516e0d",
+      "timestamp": "2020-04-03T22:25:03",
+      "witness": "XGT0000000000000",
+      "transaction_merkle_root": "0000000000000000000000000000000000000000",
+      "extensions": [
+
+      ]
+    }
+  },
+  "id": "6943479700588"
+}
+{
+  "jsonrpc": "2.0",
+  "method": "network_broadcast_api.get_transaction_hex",
+  "params": [
+    {
+      "extensions": [
+
+      ],
+      "operations": [
+        [
+          "account_create",
+          {
+            "fee": "0.000 TESTS",
+            "creator": "initminer",
+            "new_account_name": "foo8748b72a3d4e",
+            "owner": {
+              "weight_threshold": 1,
+              "account_auths": [
+
+              ],
+              "key_auths": [
+                [
+                  "TST7xue5ESY1xHhDZj6dw2igXCwoHobA3cnxffacvp4XMzwfzLZu4",
+                  1
+                ]
+              ]
+            },
+            "active": {
+              "weight_threshold": 1,
+              "account_auths": [
+
+              ],
+              "key_auths": [
+                [
+                  "TST6Yp3zeaYNU7XJF2MxoHhDcWT4vGgVkzTLEvhMY6g5tvmwzn3tN",
+                  1
+                ]
+              ]
+            },
+            "posting": {
+              "weight_threshold": 1,
+              "account_auths": [
+
+              ],
+              "key_auths": [
+                [
+                  "TST5Q7ZdopjQWZMwiyZk11W5Yhvsfu1PG3f4qsQN58A7XfHP34Hig",
+                  1
+                ]
+              ]
+            },
+            "memo_key": "TST5u69JnHZ3oznnwn71J6VA4r5oVJX6Xu3dpbFVoHpJoZXnbDfaW",
+            "json_metadata": "",
+            "extensions": [
+
+            ]
+          }
+        ]
+      ],
+      "ref_block_num": 128,
+      "ref_block_prefix": 638007447,
+      "expiration": "2020-04-03T22:35:33"
+    }
+  ],
+  "id": 33542467655630
+}
+{
+  "jsonrpc": "2.0",
+  "error": {
+    "code": -32003,
+    "message": "Assert Exception:false: Cannot parse asset symbol",
+    "data": {
+      "code": 10,
+      "name": "assert_exception",
+      "message": "Assert Exception",
+      "stack": [
+        {
+          "context": {
+            "level": "error",
+            "file": "network_broadcast_api_legacy_asset.cpp",
+            "line": 63,
+            "method": "string_to_asset_num",
+            "hostname": "",
+            "timestamp": "2020-04-03T22:25:33"
+          },
+          "format": "false: Cannot parse asset symbol",
+          "data": {
+          }
+        },
+        {
+          "context": {
+            "level": "warn",
+            "file": "network_broadcast_api_legacy_asset.cpp",
+            "line": 187,
+            "method": "from_string",
+            "hostname": "",
+            "timestamp": "2020-04-03T22:25:33"
+          },
+          "format": "",
+          "data": {
+            "from": "0.000 TESTS"
+          }
+        }
+      ]
+    }
+  },
+  "id": "33542467655630"
+}
+{
+  "jsonrpc": "2.0",
+  "method": "database_api.get_dynamic_global_properties",
+  "params": {
+  },
+  "id": 221092243312594
+}
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "id": 0,
+    "head_block_number": 151,
+    "head_block_id": "0000009767560313baa1882f7d0abe314a578464",
+    "time": "2020-04-03T22:26:09",
+    "current_witness": "XGT0000000000000",
+    "total_pow": "18446744073709551615",
+    "num_pow_witnesses": 0,
+    "virtual_supply": {
+      "amount": "250000329784",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "current_supply": {
+      "amount": "250000294752",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "confidential_supply": {
+      "amount": "0",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "init_sbd_supply": {
+      "amount": "7000000000",
+      "precision": 3,
+      "nai": "@@000000013"
+    },
+    "current_sbd_supply": {
+      "amount": "35032",
+      "precision": 3,
+      "nai": "@@000000013"
+    },
+    "confidential_sbd_supply": {
+      "amount": "0",
+      "precision": 3,
+      "nai": "@@000000013"
+    },
+    "total_vesting_fund_steem": {
+      "amount": "66591",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "total_vesting_shares": {
+      "amount": "248810",
+      "precision": 6,
+      "nai": "@@000000037"
+    },
+    "total_reward_fund_steem": {
+      "amount": "0",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "total_reward_shares2": "0",
+    "pending_rewarded_vesting_shares": {
+      "amount": "0",
+      "precision": 6,
+      "nai": "@@000000037"
+    },
+    "pending_rewarded_vesting_steem": {
+      "amount": "0",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "sbd_interest_rate": 0,
+    "sbd_print_rate": 10000,
+    "maximum_block_size": 393216000,
+    "required_actions_partition_percent": 2500,
+    "current_aslot": 151,
+    "recent_slots_filled": "340282366920938463463374607431768211455",
+    "participation_count": 128,
+    "last_irreversible_block_num": 141,
+    "target_votes_per_period": 50,
+    "delegation_return_period": 432000,
+    "reverse_auction_seconds": 300,
+    "available_account_subsidies": 120347,
+    "sbd_stop_percent": 1000,
+    "sbd_start_percent": 900,
+    "next_maintenance_time": "2020-04-03T23:18:39",
+    "last_budget_time": "2020-04-03T22:18:39",
+    "content_reward_percent": 6500,
+    "vesting_reward_percent": 1500,
+    "sps_fund_percent": 1000,
+    "sps_interval_ledger": {
+      "amount": "34800",
+      "precision": 3,
+      "nai": "@@000000013"
+    },
+    "downvote_pool_percent": 2500,
+    "smt_creation_fee": {
+      "amount": "1000",
+      "precision": 3,
+      "nai": "@@000000013"
+    }
+  },
+  "id": "221092243312594"
+}
+{
+  "jsonrpc": "2.0",
+  "method": "block_api.get_block_header",
+  "params": {
+    "block_num": 141
+  },
+  "id": 20421619156598
+}
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "header": {
+      "previous": "0000008cd83b5cbe376b591065d624cd9c46d2f5",
+      "timestamp": "2020-04-03T22:25:39",
+      "witness": "XGT0000000000000",
+      "transaction_merkle_root": "0000000000000000000000000000000000000000",
+      "extensions": [
+
+      ]
+    }
+  },
+  "id": "20421619156598"
+}
+{
+  "jsonrpc": "2.0",
+  "method": "network_broadcast_api.get_transaction_hex",
+  "params": [
+    {
+      "extensions": [
+
+      ],
+      "operations": [
+        [
+          "account_create",
+          {
+            "fee": "0.000 TESTS",
+            "creator": "initminer",
+            "new_account_name": "foo0bd647e98ce9",
+            "owner": {
+              "weight_threshold": 1,
+              "account_auths": [
+
+              ],
+              "key_auths": [
+                [
+                  "TST7xue5ESY1xHhDZj6dw2igXCwoHobA3cnxffacvp4XMzwfzLZu4",
+                  1
+                ]
+              ]
+            },
+            "active": {
+              "weight_threshold": 1,
+              "account_auths": [
+
+              ],
+              "key_auths": [
+                [
+                  "TST6Yp3zeaYNU7XJF2MxoHhDcWT4vGgVkzTLEvhMY6g5tvmwzn3tN",
+                  1
+                ]
+              ]
+            },
+            "posting": {
+              "weight_threshold": 1,
+              "account_auths": [
+
+              ],
+              "key_auths": [
+                [
+                  "TST5Q7ZdopjQWZMwiyZk11W5Yhvsfu1PG3f4qsQN58A7XfHP34Hig",
+                  1
+                ]
+              ]
+            },
+            "memo_key": "TST5u69JnHZ3oznnwn71J6VA4r5oVJX6Xu3dpbFVoHpJoZXnbDfaW",
+            "json_metadata": "",
+            "extensions": [
+
+            ]
+          }
+        ]
+      ],
+      "ref_block_num": 140,
+      "ref_block_prefix": 3193715672,
+      "expiration": "2020-04-03T22:36:09"
+    }
+  ],
+  "id": 60096025486282
+}
+{
+  "jsonrpc": "2.0",
+  "error": {
+    "code": -32003,
+    "message": "Assert Exception:false: Cannot parse asset symbol",
+    "data": {
+      "code": 10,
+      "name": "assert_exception",
+      "message": "Assert Exception",
+      "stack": [
+        {
+          "context": {
+            "level": "error",
+            "file": "network_broadcast_api_legacy_asset.cpp",
+            "line": 63,
+            "method": "string_to_asset_num",
+            "hostname": "",
+            "timestamp": "2020-04-03T22:26:10"
+          },
+          "format": "false: Cannot parse asset symbol",
+          "data": {
+          }
+        },
+        {
+          "context": {
+            "level": "warn",
+            "file": "network_broadcast_api_legacy_asset.cpp",
+            "line": 187,
+            "method": "from_string",
+            "hostname": "",
+            "timestamp": "2020-04-03T22:26:10"
+          },
+          "format": "",
+          "data": {
+            "from": "0.000 TESTS"
+          }
+        }
+      ]
+    }
+  },
+  "id": "60096025486282"
+}
+{
+  "jsonrpc": "2.0",
+  "method": "database_api.get_dynamic_global_properties",
+  "params": {
+  },
+  "id": 233569483148934
+}
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "id": 0,
+    "head_block_number": 164,
+    "head_block_id": "000000a40026f0933cbf148c72419dc2e9f22f9e",
+    "time": "2020-04-03T22:26:48",
+    "current_witness": "XGT0000000000000",
+    "total_pow": "18446744073709551615",
+    "num_pow_witnesses": 0,
+    "virtual_supply": {
+      "amount": "250000358176",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "current_supply": {
+      "amount": "250000320128",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "confidential_supply": {
+      "amount": "0",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "init_sbd_supply": {
+      "amount": "7000000000",
+      "precision": 3,
+      "nai": "@@000000013"
+    },
+    "current_sbd_supply": {
+      "amount": "38048",
+      "precision": 3,
+      "nai": "@@000000013"
+    },
+    "confidential_sbd_supply": {
+      "amount": "0",
+      "precision": 3,
+      "nai": "@@000000013"
+    },
+    "total_vesting_fund_steem": {
+      "amount": "72324",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "total_vesting_shares": {
+      "amount": "253163",
+      "precision": 6,
+      "nai": "@@000000037"
+    },
+    "total_reward_fund_steem": {
+      "amount": "0",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "total_reward_shares2": "0",
+    "pending_rewarded_vesting_shares": {
+      "amount": "0",
+      "precision": 6,
+      "nai": "@@000000037"
+    },
+    "pending_rewarded_vesting_steem": {
+      "amount": "0",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "sbd_interest_rate": 0,
+    "sbd_print_rate": 10000,
+    "maximum_block_size": 393216000,
+    "required_actions_partition_percent": 2500,
+    "current_aslot": 164,
+    "recent_slots_filled": "340282366920938463463374607431768211455",
+    "participation_count": 128,
+    "last_irreversible_block_num": 154,
+    "target_votes_per_period": 50,
+    "delegation_return_period": 432000,
+    "reverse_auction_seconds": 300,
+    "available_account_subsidies": 130708,
+    "sbd_stop_percent": 1000,
+    "sbd_start_percent": 900,
+    "next_maintenance_time": "2020-04-03T23:18:39",
+    "last_budget_time": "2020-04-03T22:18:39",
+    "content_reward_percent": 6500,
+    "vesting_reward_percent": 1500,
+    "sps_fund_percent": 1000,
+    "sps_interval_ledger": {
+      "amount": "37816",
+      "precision": 3,
+      "nai": "@@000000013"
+    },
+    "downvote_pool_percent": 2500,
+    "smt_creation_fee": {
+      "amount": "1000",
+      "precision": 3,
+      "nai": "@@000000013"
+    }
+  },
+  "id": "233569483148934"
+}
+{
+  "jsonrpc": "2.0",
+  "method": "block_api.get_block_header",
+  "params": {
+    "block_num": 154
+  },
+  "id": 81259502989224
+}
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "header": {
+      "previous": "00000099a5e7bfc3228d89de12c5f5810dc4eef4",
+      "timestamp": "2020-04-03T22:26:18",
+      "witness": "XGT0000000000000",
+      "transaction_merkle_root": "0000000000000000000000000000000000000000",
+      "extensions": [
+
+      ]
+    }
+  },
+  "id": "81259502989224"
+}
+{
+  "jsonrpc": "2.0",
+  "method": "network_broadcast_api.get_transaction_hex",
+  "params": [
+    {
+      "extensions": [
+
+      ],
+      "operations": [
+        [
+          "account_create",
+          {
+            "fee": "0.000 TESTS",
+            "creator": "initminer",
+            "new_account_name": "foo5f9886e327c8",
+            "owner": {
+              "weight_threshold": 1,
+              "account_auths": [
+
+              ],
+              "key_auths": [
+                [
+                  "TST7xue5ESY1xHhDZj6dw2igXCwoHobA3cnxffacvp4XMzwfzLZu4",
+                  1
+                ]
+              ]
+            },
+            "active": {
+              "weight_threshold": 1,
+              "account_auths": [
+
+              ],
+              "key_auths": [
+                [
+                  "TST6Yp3zeaYNU7XJF2MxoHhDcWT4vGgVkzTLEvhMY6g5tvmwzn3tN",
+                  1
+                ]
+              ]
+            },
+            "posting": {
+              "weight_threshold": 1,
+              "account_auths": [
+
+              ],
+              "key_auths": [
+                [
+                  "TST5Q7ZdopjQWZMwiyZk11W5Yhvsfu1PG3f4qsQN58A7XfHP34Hig",
+                  1
+                ]
+              ]
+            },
+            "memo_key": "TST5u69JnHZ3oznnwn71J6VA4r5oVJX6Xu3dpbFVoHpJoZXnbDfaW",
+            "json_metadata": "",
+            "extensions": [
+
+            ]
+          }
+        ]
+      ],
+      "ref_block_num": 153,
+      "ref_block_prefix": 3284133797,
+      "expiration": "2020-04-03T22:36:48"
+    }
+  ],
+  "id": 21451943855995
+}
+{
+  "jsonrpc": "2.0",
+  "error": {
+    "code": -32003,
+    "message": "Assert Exception:false: Cannot parse asset symbol",
+    "data": {
+      "code": 10,
+      "name": "assert_exception",
+      "message": "Assert Exception",
+      "stack": [
+        {
+          "context": {
+            "level": "error",
+            "file": "network_broadcast_api_legacy_asset.cpp",
+            "line": 63,
+            "method": "string_to_asset_num",
+            "hostname": "",
+            "timestamp": "2020-04-03T22:26:49"
+          },
+          "format": "false: Cannot parse asset symbol",
+          "data": {
+          }
+        },
+        {
+          "context": {
+            "level": "warn",
+            "file": "network_broadcast_api_legacy_asset.cpp",
+            "line": 187,
+            "method": "from_string",
+            "hostname": "",
+            "timestamp": "2020-04-03T22:26:49"
+          },
+          "format": "",
+          "data": {
+            "from": "0.000 TESTS"
+          }
+        }
+      ]
+    }
+  },
+  "id": "21451943855995"
+}
+{
+  "jsonrpc": "2.0",
+  "method": "database_api.get_dynamic_global_properties",
+  "params": {
+  },
+  "id": 17176135894733
+}
+{
+  "jsonrpc": "2.0",
+  "method": "database_api.get_dynamic_global_properties",
+  "params": {
+  },
+  "id": 133705260777574
+}
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "id": 0,
+    "head_block_number": 215,
+    "head_block_id": "000000d77cdbe2c66d9f34bc13f1e3999e4cbd5d",
+    "time": "2020-04-03T22:29:21",
+    "current_witness": "XGT0000000000000",
+    "total_pow": "18446744073709551615",
+    "num_pow_witnesses": 0,
+    "virtual_supply": {
+      "amount": "250000469560",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "current_supply": {
+      "amount": "250000419680",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "confidential_supply": {
+      "amount": "0",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "init_sbd_supply": {
+      "amount": "7000000000",
+      "precision": 3,
+      "nai": "@@000000013"
+    },
+    "current_sbd_supply": {
+      "amount": "49880",
+      "precision": 3,
+      "nai": "@@000000013"
+    },
+    "confidential_sbd_supply": {
+      "amount": "0",
+      "precision": 3,
+      "nai": "@@000000013"
+    },
+    "total_vesting_fund_steem": {
+      "amount": "94815",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "total_vesting_shares": {
+      "amount": "267977",
+      "precision": 6,
+      "nai": "@@000000037"
+    },
+    "total_reward_fund_steem": {
+      "amount": "0",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "total_reward_shares2": "0",
+    "pending_rewarded_vesting_shares": {
+      "amount": "0",
+      "precision": 6,
+      "nai": "@@000000037"
+    },
+    "pending_rewarded_vesting_steem": {
+      "amount": "0",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "sbd_interest_rate": 0,
+    "sbd_print_rate": 10000,
+    "maximum_block_size": 393216000,
+    "required_actions_partition_percent": 2500,
+    "current_aslot": 215,
+    "recent_slots_filled": "340282366920938463463374607431768211455",
+    "participation_count": 128,
+    "last_irreversible_block_num": 205,
+    "target_votes_per_period": 50,
+    "delegation_return_period": 432000,
+    "reverse_auction_seconds": 300,
+    "available_account_subsidies": 171355,
+    "sbd_stop_percent": 1000,
+    "sbd_start_percent": 900,
+    "next_maintenance_time": "2020-04-03T23:18:39",
+    "last_budget_time": "2020-04-03T22:18:39",
+    "content_reward_percent": 6500,
+    "vesting_reward_percent": 1500,
+    "sps_fund_percent": 1000,
+    "sps_interval_ledger": {
+      "amount": "49648",
+      "precision": 3,
+      "nai": "@@000000013"
+    },
+    "downvote_pool_percent": 2500,
+    "smt_creation_fee": {
+      "amount": "1000",
+      "precision": 3,
+      "nai": "@@000000013"
+    }
+  },
+  "id": "133705260777574"
+}
+{
+  "jsonrpc": "2.0",
+  "method": "block_api.get_block_header",
+  "params": {
+    "block_num": 205
+  },
+  "id": 249151257448998
+}
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "header": {
+      "previous": "000000cc0e977e39833983a8e127e6e6073f391e",
+      "timestamp": "2020-04-03T22:28:51",
+      "witness": "XGT0000000000000",
+      "transaction_merkle_root": "0000000000000000000000000000000000000000",
+      "extensions": [
+
+      ]
+    }
+  },
+  "id": "249151257448998"
+}
+{
+  "jsonrpc": "2.0",
+  "method": "network_broadcast_api.get_transaction_hex",
+  "params": [
+    {
+      "extensions": [
+
+      ],
+      "operations": [
+        [
+          "account_create",
+          {
+            "fee": "0.000 TESTS",
+            "creator": "initminer",
+            "new_account_name": "foo6a92a6d7f23f",
+            "owner": {
+              "weight_threshold": 1,
+              "account_auths": [
+
+              ],
+              "key_auths": [
+                [
+                  "TST7xue5ESY1xHhDZj6dw2igXCwoHobA3cnxffacvp4XMzwfzLZu4",
+                  1
+                ]
+              ]
+            },
+            "active": {
+              "weight_threshold": 1,
+              "account_auths": [
+
+              ],
+              "key_auths": [
+                [
+                  "TST6Yp3zeaYNU7XJF2MxoHhDcWT4vGgVkzTLEvhMY6g5tvmwzn3tN",
+                  1
+                ]
+              ]
+            },
+            "posting": {
+              "weight_threshold": 1,
+              "account_auths": [
+
+              ],
+              "key_auths": [
+                [
+                  "TST5Q7ZdopjQWZMwiyZk11W5Yhvsfu1PG3f4qsQN58A7XfHP34Hig",
+                  1
+                ]
+              ]
+            },
+            "memo_key": "TST5u69JnHZ3oznnwn71J6VA4r5oVJX6Xu3dpbFVoHpJoZXnbDfaW",
+            "json_metadata": "",
+            "extensions": [
+
+            ]
+          }
+        ]
+      ],
+      "ref_block_num": 204,
+      "ref_block_prefix": 964597518,
+      "expiration": "2020-04-03T22:39:21"
+    }
+  ],
+  "id": 80287880275856
+}
+{
+  "jsonrpc": "2.0",
+  "error": {
+    "code": -32003,
+    "message": "Assert Exception:false: Cannot parse asset symbol",
+    "data": {
+      "code": 10,
+      "name": "assert_exception",
+      "message": "Assert Exception",
+      "stack": [
+        {
+          "context": {
+            "level": "error",
+            "file": "network_broadcast_api_legacy_asset.cpp",
+            "line": 63,
+            "method": "string_to_asset_num",
+            "hostname": "",
+            "timestamp": "2020-04-03T22:29:22"
+          },
+          "format": "false: Cannot parse asset symbol",
+          "data": {
+          }
+        },
+        {
+          "context": {
+            "level": "warn",
+            "file": "network_broadcast_api_legacy_asset.cpp",
+            "line": 187,
+            "method": "from_string",
+            "hostname": "",
+            "timestamp": "2020-04-03T22:29:22"
+          },
+          "format": "",
+          "data": {
+            "from": "0.000 TESTS"
+          }
+        }
+      ]
+    }
+  },
+  "id": "80287880275856"
+}
+{
+  "jsonrpc": "2.0",
+  "method": "database_api.get_dynamic_global_properties",
+  "params": {
+  },
+  "id": 166628369686941
+}
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "id": 0,
+    "head_block_number": 264,
+    "head_block_id": "0000010810b71f2c93986d3da1e1939c16a7384d",
+    "time": "2020-04-03T22:31:48",
+    "current_witness": "XGT0000000000000",
+    "total_pow": "18446744073709551615",
+    "num_pow_witnesses": 0,
+    "virtual_supply": {
+      "amount": "250000576576",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "current_supply": {
+      "amount": "250000515328",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "confidential_supply": {
+      "amount": "0",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "init_sbd_supply": {
+      "amount": "7000000000",
+      "precision": 3,
+      "nai": "@@000000013"
+    },
+    "current_sbd_supply": {
+      "amount": "61248",
+      "precision": 3,
+      "nai": "@@000000013"
+    },
+    "confidential_sbd_supply": {
+      "amount": "0",
+      "precision": 3,
+      "nai": "@@000000013"
+    },
+    "total_vesting_fund_steem": {
+      "amount": "116424",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "total_vesting_shares": {
+      "amount": "279789",
+      "precision": 6,
+      "nai": "@@000000037"
+    },
+    "total_reward_fund_steem": {
+      "amount": "0",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "total_reward_shares2": "0",
+    "pending_rewarded_vesting_shares": {
+      "amount": "0",
+      "precision": 6,
+      "nai": "@@000000037"
+    },
+    "pending_rewarded_vesting_steem": {
+      "amount": "0",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "sbd_interest_rate": 0,
+    "sbd_print_rate": 10000,
+    "maximum_block_size": 393216000,
+    "required_actions_partition_percent": 2500,
+    "current_aslot": 264,
+    "recent_slots_filled": "340282366920938463463374607431768211455",
+    "participation_count": 128,
+    "last_irreversible_block_num": 254,
+    "target_votes_per_period": 50,
+    "delegation_return_period": 432000,
+    "reverse_auction_seconds": 300,
+    "available_account_subsidies": 210393,
+    "sbd_stop_percent": 1000,
+    "sbd_start_percent": 900,
+    "next_maintenance_time": "2020-04-03T23:18:39",
+    "last_budget_time": "2020-04-03T22:18:39",
+    "content_reward_percent": 6500,
+    "vesting_reward_percent": 1500,
+    "sps_fund_percent": 1000,
+    "sps_interval_ledger": {
+      "amount": "61016",
+      "precision": 3,
+      "nai": "@@000000013"
+    },
+    "downvote_pool_percent": 2500,
+    "smt_creation_fee": {
+      "amount": "1000",
+      "precision": 3,
+      "nai": "@@000000013"
+    }
+  },
+  "id": "166628369686941"
+}
+{
+  "jsonrpc": "2.0",
+  "method": "block_api.get_block_header",
+  "params": {
+    "block_num": 254
+  },
+  "id": 270054922690337
+}
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "header": {
+      "previous": "000000fd5f1f41da20fa69794ba04a20c89a7562",
+      "timestamp": "2020-04-03T22:31:18",
+      "witness": "XGT0000000000000",
+      "transaction_merkle_root": "0000000000000000000000000000000000000000",
+      "extensions": [
+
+      ]
+    }
+  },
+  "id": "270054922690337"
+}
+{
+  "jsonrpc": "2.0",
+  "method": "network_broadcast_api.get_transaction_hex",
+  "params": [
+    {
+      "extensions": [
+
+      ],
+      "operations": [
+        [
+          "account_create",
+          {
+            "fee": "0.000 TESTS",
+            "creator": "initminer",
+            "new_account_name": "foo4d6510847a36",
+            "owner": {
+              "weight_threshold": 1,
+              "account_auths": [
+
+              ],
+              "key_auths": [
+                [
+                  "TST7xue5ESY1xHhDZj6dw2igXCwoHobA3cnxffacvp4XMzwfzLZu4",
+                  1
+                ]
+              ]
+            },
+            "active": {
+              "weight_threshold": 1,
+              "account_auths": [
+
+              ],
+              "key_auths": [
+                [
+                  "TST6Yp3zeaYNU7XJF2MxoHhDcWT4vGgVkzTLEvhMY6g5tvmwzn3tN",
+                  1
+                ]
+              ]
+            },
+            "posting": {
+              "weight_threshold": 1,
+              "account_auths": [
+
+              ],
+              "key_auths": [
+                [
+                  "TST5Q7ZdopjQWZMwiyZk11W5Yhvsfu1PG3f4qsQN58A7XfHP34Hig",
+                  1
+                ]
+              ]
+            },
+            "memo_key": "TST5u69JnHZ3oznnwn71J6VA4r5oVJX6Xu3dpbFVoHpJoZXnbDfaW",
+            "json_metadata": "",
+            "extensions": [
+
+            ]
+          }
+        ]
+      ],
+      "ref_block_num": 253,
+      "ref_block_prefix": 3661700959,
+      "expiration": "2020-04-03T22:41:48"
+    }
+  ],
+  "id": 190281603835594
+}
+{
+  "jsonrpc": "2.0",
+  "error": {
+    "code": -32003,
+    "message": "Assert Exception:false: Cannot parse asset symbol",
+    "data": {
+      "code": 10,
+      "name": "assert_exception",
+      "message": "Assert Exception",
+      "stack": [
+        {
+          "context": {
+            "level": "error",
+            "file": "network_broadcast_api_legacy_asset.cpp",
+            "line": 63,
+            "method": "string_to_asset_num",
+            "hostname": "",
+            "timestamp": "2020-04-03T22:31:49"
+          },
+          "format": "false: Cannot parse asset symbol",
+          "data": {
+          }
+        },
+        {
+          "context": {
+            "level": "warn",
+            "file": "network_broadcast_api_legacy_asset.cpp",
+            "line": 187,
+            "method": "from_string",
+            "hostname": "",
+            "timestamp": "2020-04-03T22:31:49"
+          },
+          "format": "",
+          "data": {
+            "from": "0.000 TESTS"
+          }
+        }
+      ]
+    }
+  },
+  "id": "190281603835594"
+}
+{
+  "jsonrpc": "2.0",
+  "method": "database_api.get_dynamic_global_properties",
+  "params": {
+  },
+  "id": 274789762747093
+}
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "id": 0,
+    "head_block_number": 272,
+    "head_block_id": "00000110816ba308537fe79af24c71ceb4f5c541",
+    "time": "2020-04-03T22:32:12",
+    "current_witness": "XGT0000000000000",
+    "total_pow": "18446744073709551615",
+    "num_pow_witnesses": 0,
+    "virtual_supply": {
+      "amount": "250000594048",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "current_supply": {
+      "amount": "250000530944",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "confidential_supply": {
+      "amount": "0",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "init_sbd_supply": {
+      "amount": "7000000000",
+      "precision": 3,
+      "nai": "@@000000013"
+    },
+    "current_sbd_supply": {
+      "amount": "63104",
+      "precision": 3,
+      "nai": "@@000000013"
+    },
+    "confidential_sbd_supply": {
+      "amount": "0",
+      "precision": 3,
+      "nai": "@@000000013"
+    },
+    "total_vesting_fund_steem": {
+      "amount": "119952",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "total_vesting_shares": {
+      "amount": "281549",
+      "precision": 6,
+      "nai": "@@000000037"
+    },
+    "total_reward_fund_steem": {
+      "amount": "0",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "total_reward_shares2": "0",
+    "pending_rewarded_vesting_shares": {
+      "amount": "0",
+      "precision": 6,
+      "nai": "@@000000037"
+    },
+    "pending_rewarded_vesting_steem": {
+      "amount": "0",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "sbd_interest_rate": 0,
+    "sbd_print_rate": 10000,
+    "maximum_block_size": 393216000,
+    "required_actions_partition_percent": 2500,
+    "current_aslot": 272,
+    "recent_slots_filled": "340282366920938463463374607431768211455",
+    "participation_count": 128,
+    "last_irreversible_block_num": 262,
+    "target_votes_per_period": 50,
+    "delegation_return_period": 432000,
+    "reverse_auction_seconds": 300,
+    "available_account_subsidies": 216761,
+    "sbd_stop_percent": 1000,
+    "sbd_start_percent": 900,
+    "next_maintenance_time": "2020-04-03T23:18:39",
+    "last_budget_time": "2020-04-03T22:18:39",
+    "content_reward_percent": 6500,
+    "vesting_reward_percent": 1500,
+    "sps_fund_percent": 1000,
+    "sps_interval_ledger": {
+      "amount": "62872",
+      "precision": 3,
+      "nai": "@@000000013"
+    },
+    "downvote_pool_percent": 2500,
+    "smt_creation_fee": {
+      "amount": "1000",
+      "precision": 3,
+      "nai": "@@000000013"
+    }
+  },
+  "id": "274789762747093"
+}
+{
+  "jsonrpc": "2.0",
+  "method": "block_api.get_block_header",
+  "params": {
+    "block_num": 262
+  },
+  "id": 116105299181829
+}
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "header": {
+      "previous": "000001058b50e86b96b53203287bc5640e528208",
+      "timestamp": "2020-04-03T22:31:42",
+      "witness": "XGT0000000000000",
+      "transaction_merkle_root": "0000000000000000000000000000000000000000",
+      "extensions": [
+
+      ]
+    }
+  },
+  "id": "116105299181829"
+}
+{
+  "jsonrpc": "2.0",
+  "method": "network_broadcast_api.get_transaction_hex",
+  "params": [
+    {
+      "extensions": [
+
+      ],
+      "operations": [
+        [
+          "account_create",
+          {
+            "fee": "0.000 TESTS",
+            "creator": "initminer",
+            "new_account_name": "fooab4ec3345731",
+            "owner": {
+              "weight_threshold": 1,
+              "account_auths": [
+
+              ],
+              "key_auths": [
+                [
+                  "TST7xue5ESY1xHhDZj6dw2igXCwoHobA3cnxffacvp4XMzwfzLZu4",
+                  1
+                ]
+              ]
+            },
+            "active": {
+              "weight_threshold": 1,
+              "account_auths": [
+
+              ],
+              "key_auths": [
+                [
+                  "TST6Yp3zeaYNU7XJF2MxoHhDcWT4vGgVkzTLEvhMY6g5tvmwzn3tN",
+                  1
+                ]
+              ]
+            },
+            "posting": {
+              "weight_threshold": 1,
+              "account_auths": [
+
+              ],
+              "key_auths": [
+                [
+                  "TST5Q7ZdopjQWZMwiyZk11W5Yhvsfu1PG3f4qsQN58A7XfHP34Hig",
+                  1
+                ]
+              ]
+            },
+            "memo_key": "TST5u69JnHZ3oznnwn71J6VA4r5oVJX6Xu3dpbFVoHpJoZXnbDfaW",
+            "json_metadata": "hello",
+            "extensions": [
+
+            ]
+          }
+        ]
+      ],
+      "ref_block_num": 261,
+      "ref_block_prefix": 1810387083,
+      "expiration": "2020-04-03T22:42:12"
+    }
+  ],
+  "id": 21961009591014
+}
+{
+  "jsonrpc": "2.0",
+  "error": {
+    "code": -32003,
+    "message": "Assert Exception:false: Cannot parse asset symbol",
+    "data": {
+      "code": 10,
+      "name": "assert_exception",
+      "message": "Assert Exception",
+      "stack": [
+        {
+          "context": {
+            "level": "error",
+            "file": "network_broadcast_api_legacy_asset.cpp",
+            "line": 63,
+            "method": "string_to_asset_num",
+            "hostname": "",
+            "timestamp": "2020-04-03T22:32:13"
+          },
+          "format": "false: Cannot parse asset symbol",
+          "data": {
+          }
+        },
+        {
+          "context": {
+            "level": "warn",
+            "file": "network_broadcast_api_legacy_asset.cpp",
+            "line": 187,
+            "method": "from_string",
+            "hostname": "",
+            "timestamp": "2020-04-03T22:32:13"
+          },
+          "format": "",
+          "data": {
+            "from": "0.000 TESTS"
+          }
+        }
+      ]
+    }
+  },
+  "id": "21961009591014"
+}
+{
+  "jsonrpc": "2.0",
+  "method": "database_api.get_dynamic_global_properties",
+  "params": {
+  },
+  "id": 98167582281665
+}
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "id": 0,
+    "head_block_number": 354,
+    "head_block_id": "00000162e42189ea3f2f0084a5d00d6d9f3a285a",
+    "time": "2020-04-03T22:36:18",
+    "current_witness": "XGT0000000000000",
+    "total_pow": "18446744073709551615",
+    "num_pow_witnesses": 0,
+    "virtual_supply": {
+      "amount": "250000773136",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "current_supply": {
+      "amount": "250000691008",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "confidential_supply": {
+      "amount": "0",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "init_sbd_supply": {
+      "amount": "7000000000",
+      "precision": 3,
+      "nai": "@@000000013"
+    },
+    "current_sbd_supply": {
+      "amount": "82128",
+      "precision": 3,
+      "nai": "@@000000013"
+    },
+    "confidential_sbd_supply": {
+      "amount": "0",
+      "precision": 3,
+      "nai": "@@000000013"
+    },
+    "total_vesting_fund_steem": {
+      "amount": "156114",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "total_vesting_shares": {
+      "amount": "297572",
+      "precision": 6,
+      "nai": "@@000000037"
+    },
+    "total_reward_fund_steem": {
+      "amount": "0",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "total_reward_shares2": "0",
+    "pending_rewarded_vesting_shares": {
+      "amount": "0",
+      "precision": 6,
+      "nai": "@@000000037"
+    },
+    "pending_rewarded_vesting_steem": {
+      "amount": "0",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "sbd_interest_rate": 0,
+    "sbd_print_rate": 10000,
+    "maximum_block_size": 393216000,
+    "required_actions_partition_percent": 2500,
+    "current_aslot": 354,
+    "recent_slots_filled": "340282366920938463463374607431768211455",
+    "participation_count": 128,
+    "last_irreversible_block_num": 344,
+    "target_votes_per_period": 50,
+    "delegation_return_period": 432000,
+    "reverse_auction_seconds": 300,
+    "available_account_subsidies": 282033,
+    "sbd_stop_percent": 1000,
+    "sbd_start_percent": 900,
+    "next_maintenance_time": "2020-04-03T23:18:39",
+    "last_budget_time": "2020-04-03T22:18:39",
+    "content_reward_percent": 6500,
+    "vesting_reward_percent": 1500,
+    "sps_fund_percent": 1000,
+    "sps_interval_ledger": {
+      "amount": "81896",
+      "precision": 3,
+      "nai": "@@000000013"
+    },
+    "downvote_pool_percent": 2500,
+    "smt_creation_fee": {
+      "amount": "1000",
+      "precision": 3,
+      "nai": "@@000000013"
+    }
+  },
+  "id": "98167582281665"
+}
+{
+  "jsonrpc": "2.0",
+  "method": "block_api.get_block_header",
+  "params": {
+    "block_num": 344
+  },
+  "id": 195317234867190
+}
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "header": {
+      "previous": "000001574dce60c5fa8005a04da3b2fcd398385a",
+      "timestamp": "2020-04-03T22:35:48",
+      "witness": "XGT0000000000000",
+      "transaction_merkle_root": "0000000000000000000000000000000000000000",
+      "extensions": [
+
+      ]
+    }
+  },
+  "id": "195317234867190"
+}
+{
+  "jsonrpc": "2.0",
+  "method": "network_broadcast_api.get_transaction_hex",
+  "params": [
+    {
+      "expiration": "2020-04-03T22:46:18",
+      "extensions": [
+
+      ],
+      "operations": [
+        [
+          "account_create",
+          {
+            "fee": "0.000 TESTS",
+            "creator": "initminer",
+            "owner": {
+              "weight_threshold": 1,
+              "account_auths": [
+
+              ],
+              "key_auths": [
+                [
+                  "TST7xue5ESY1xHhDZj6dw2igXCwoHobA3cnxffacvp4XMzwfzLZu4",
+                  1
+                ]
+              ]
+            },
+            "active": {
+              "weight_threshold": 1,
+              "account_auths": [
+
+              ],
+              "key_auths": [
+                [
+                  "TST6Yp3zeaYNU7XJF2MxoHhDcWT4vGgVkzTLEvhMY6g5tvmwzn3tN",
+                  1
+                ]
+              ]
+            },
+            "posting": {
+              "weight_threshold": 1,
+              "account_auths": [
+
+              ],
+              "key_auths": [
+                [
+                  "TST5Q7ZdopjQWZMwiyZk11W5Yhvsfu1PG3f4qsQN58A7XfHP34Hig",
+                  1
+                ]
+              ]
+            },
+            "memo_key": "TST5u69JnHZ3oznnwn71J6VA4r5oVJX6Xu3dpbFVoHpJoZXnbDfaW",
+            "json_metadata": "",
+            "extensions": [
+
+            ]
+          }
+        ]
+      ],
+      "ref_block_num": 343,
+      "ref_block_prefix": 3311455821
+    }
+  ],
+  "id": 261986449610027
+}
+{
+  "jsonrpc": "2.0",
+  "error": {
+    "code": -32003,
+    "message": "Assert Exception:false: Cannot parse asset symbol",
+    "data": {
+      "code": 10,
+      "name": "assert_exception",
+      "message": "Assert Exception",
+      "stack": [
+        {
+          "context": {
+            "level": "error",
+            "file": "network_broadcast_api_legacy_asset.cpp",
+            "line": 63,
+            "method": "string_to_asset_num",
+            "hostname": "",
+            "timestamp": "2020-04-03T22:36:17"
+          },
+          "format": "false: Cannot parse asset symbol",
+          "data": {
+          }
+        },
+        {
+          "context": {
+            "level": "warn",
+            "file": "network_broadcast_api_legacy_asset.cpp",
+            "line": 187,
+            "method": "from_string",
+            "hostname": "",
+            "timestamp": "2020-04-03T22:36:17"
+          },
+          "format": "",
+          "data": {
+            "from": "0.000 TESTS"
+          }
+        }
+      ]
+    }
+  },
+  "id": "261986449610027"
+}
+{
+  "jsonrpc": "2.0",
+  "method": "database_api.get_dynamic_global_properties",
+  "params": {
+  },
+  "id": 213486866294809
+}
+{
+  "jsonrpc": "2.0",
+  "method": "database_api.get_dynamic_global_properties",
+  "params": {
+  },
+  "id": 32331618145111
+}
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "id": 0,
+    "head_block_number": 3,
+    "head_block_id": "000000037750c8ecf8541dd04ab3b509bb399378",
+    "time": "2020-04-03T22:43:48",
+    "current_witness": "XGT0000000000000",
+    "total_pow": "18446744073709551615",
+    "num_pow_witnesses": 0,
+    "virtual_supply": {
+      "amount": "250000006552",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "current_supply": {
+      "amount": "250000005856",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "confidential_supply": {
+      "amount": "0",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "init_sbd_supply": {
+      "amount": "7000000000",
+      "precision": 3,
+      "nai": "@@000000013"
+    },
+    "current_sbd_supply": {
+      "amount": "696",
+      "precision": 3,
+      "nai": "@@000000013"
+    },
+    "confidential_sbd_supply": {
+      "amount": "0",
+      "precision": 3,
+      "nai": "@@000000013"
+    },
+    "total_vesting_fund_steem": {
+      "amount": "1323",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "total_vesting_shares": {
+      "amount": "111821",
+      "precision": 6,
+      "nai": "@@000000037"
+    },
+    "total_reward_fund_steem": {
+      "amount": "0",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "total_reward_shares2": "0",
+    "pending_rewarded_vesting_shares": {
+      "amount": "0",
+      "precision": 6,
+      "nai": "@@000000037"
+    },
+    "pending_rewarded_vesting_steem": {
+      "amount": "0",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "sbd_interest_rate": 0,
+    "sbd_print_rate": 10000,
+    "maximum_block_size": 393216000,
+    "required_actions_partition_percent": 2500,
+    "current_aslot": 3,
+    "recent_slots_filled": "340282366920938463463374607431768211455",
+    "participation_count": 128,
+    "last_irreversible_block_num": 0,
+    "target_votes_per_period": 50,
+    "delegation_return_period": 432000,
+    "reverse_auction_seconds": 300,
+    "available_account_subsidies": 2391,
+    "sbd_stop_percent": 1000,
+    "sbd_start_percent": 900,
+    "next_maintenance_time": "2020-04-03T23:43:44",
+    "last_budget_time": "2020-04-03T22:43:44",
+    "content_reward_percent": 6500,
+    "vesting_reward_percent": 1500,
+    "sps_fund_percent": 1000,
+    "sps_interval_ledger": {
+      "amount": "464",
+      "precision": 3,
+      "nai": "@@000000013"
+    },
+    "downvote_pool_percent": 2500,
+    "smt_creation_fee": {
+      "amount": "1000",
+      "precision": 3,
+      "nai": "@@000000013"
+    }
+  },
+  "id": "32331618145111"
+}
+{
+  "jsonrpc": "2.0",
+  "method": "block_api.get_block_header",
+  "params": {
+    "block_num": 0
+  },
+  "id": 58362758974886
+}
+{
+  "jsonrpc": "2.0",
+  "result": {
+  },
+  "id": "58362758974886"
+}
+{
+  "jsonrpc": "2.0",
+  "method": "network_broadcast_api.get_transaction_hex",
+  "params": [
+    {
+      "expiration": "2020-04-03T22:53:48",
+      "extensions": [
+
+      ],
+      "operations": [
+        [
+          "account_create",
+          {
+            "fee": "0.000 TESTS",
+            "creator": "initminer",
+            "owner": {
+              "weight_threshold": 1,
+              "account_auths": [
+
+              ],
+              "key_auths": [
+                [
+                  "TST7xue5ESY1xHhDZj6dw2igXCwoHobA3cnxffacvp4XMzwfzLZu4",
+                  1
+                ]
+              ]
+            },
+            "active": {
+              "weight_threshold": 1,
+              "account_auths": [
+
+              ],
+              "key_auths": [
+                [
+                  "TST6Yp3zeaYNU7XJF2MxoHhDcWT4vGgVkzTLEvhMY6g5tvmwzn3tN",
+                  1
+                ]
+              ]
+            },
+            "posting": {
+              "weight_threshold": 1,
+              "account_auths": [
+
+              ],
+              "key_auths": [
+                [
+                  "TST5Q7ZdopjQWZMwiyZk11W5Yhvsfu1PG3f4qsQN58A7XfHP34Hig",
+                  1
+                ]
+              ]
+            },
+            "memo_key": "TST5u69JnHZ3oznnwn71J6VA4r5oVJX6Xu3dpbFVoHpJoZXnbDfaW",
+            "json_metadata": "",
+            "extensions": [
+
+            ]
+          }
+        ]
+      ],
+      "ref_block_num": 65535,
+      "ref_block_prefix": 0
+    }
+  ],
+  "id": 174571890920618
+}
+{
+  "jsonrpc": "2.0",
+  "error": {
+    "code": -32003,
+    "message": "Assert Exception:false: Cannot parse asset symbol",
+    "data": {
+      "code": 10,
+      "name": "assert_exception",
+      "message": "Assert Exception",
+      "stack": [
+        {
+          "context": {
+            "level": "error",
+            "file": "network_broadcast_api_legacy_asset.cpp",
+            "line": 63,
+            "method": "string_to_asset_num",
+            "hostname": "",
+            "timestamp": "2020-04-03T22:43:50"
+          },
+          "format": "false: Cannot parse asset symbol",
+          "data": {
+          }
+        },
+        {
+          "context": {
+            "level": "warn",
+            "file": "network_broadcast_api_legacy_asset.cpp",
+            "line": 187,
+            "method": "from_string",
+            "hostname": "",
+            "timestamp": "2020-04-03T22:43:50"
+          },
+          "format": "",
+          "data": {
+            "from": "0.000 TESTS"
+          }
+        }
+      ]
+    }
+  },
+  "id": "174571890920618"
+}
+{
+  "jsonrpc": "2.0",
+  "method": "database_api.get_dynamic_global_properties",
+  "params": {
+  },
+  "id": 162246862201902
+}
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "id": 0,
+    "head_block_number": 4,
+    "head_block_id": "00000004fbfbb20210e9b4c6899ef59d324ff24f",
+    "time": "2020-04-03T22:43:51",
+    "current_witness": "XGT0000000000000",
+    "total_pow": "18446744073709551615",
+    "num_pow_witnesses": 0,
+    "virtual_supply": {
+      "amount": "250000008736",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "current_supply": {
+      "amount": "250000007808",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "confidential_supply": {
+      "amount": "0",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "init_sbd_supply": {
+      "amount": "7000000000",
+      "precision": 3,
+      "nai": "@@000000013"
+    },
+    "current_sbd_supply": {
+      "amount": "928",
+      "precision": 3,
+      "nai": "@@000000013"
+    },
+    "confidential_sbd_supply": {
+      "amount": "0",
+      "precision": 3,
+      "nai": "@@000000013"
+    },
+    "total_vesting_fund_steem": {
+      "amount": "1764",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "total_vesting_shares": {
+      "amount": "118044",
+      "precision": 6,
+      "nai": "@@000000037"
+    },
+    "total_reward_fund_steem": {
+      "amount": "0",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "total_reward_shares2": "0",
+    "pending_rewarded_vesting_shares": {
+      "amount": "0",
+      "precision": 6,
+      "nai": "@@000000037"
+    },
+    "pending_rewarded_vesting_steem": {
+      "amount": "0",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "sbd_interest_rate": 0,
+    "sbd_print_rate": 10000,
+    "maximum_block_size": 393216000,
+    "required_actions_partition_percent": 2500,
+    "current_aslot": 4,
+    "recent_slots_filled": "340282366920938463463374607431768211455",
+    "participation_count": 128,
+    "last_irreversible_block_num": 0,
+    "target_votes_per_period": 50,
+    "delegation_return_period": 432000,
+    "reverse_auction_seconds": 300,
+    "available_account_subsidies": 3188,
+    "sbd_stop_percent": 1000,
+    "sbd_start_percent": 900,
+    "next_maintenance_time": "2020-04-03T23:43:44",
+    "last_budget_time": "2020-04-03T22:43:44",
+    "content_reward_percent": 6500,
+    "vesting_reward_percent": 1500,
+    "sps_fund_percent": 1000,
+    "sps_interval_ledger": {
+      "amount": "696",
+      "precision": 3,
+      "nai": "@@000000013"
+    },
+    "downvote_pool_percent": 2500,
+    "smt_creation_fee": {
+      "amount": "1000",
+      "precision": 3,
+      "nai": "@@000000013"
+    }
+  },
+  "id": "162246862201902"
+}
+{
+  "jsonrpc": "2.0",
+  "method": "block_api.get_block_header",
+  "params": {
+    "block_num": 0
+  },
+  "id": 137842371587509
+}
+{
+  "jsonrpc": "2.0",
+  "result": {
+  },
+  "id": "137842371587509"
+}
+{
+  "jsonrpc": "2.0",
+  "method": "network_broadcast_api.get_transaction_hex",
+  "params": [
+    {
+      "expiration": "2020-04-03T22:53:51",
+      "extensions": [
+
+      ],
+      "operations": [
+        [
+          "account_create",
+          {
+            "fee": "0.000 TESTS",
+            "creator": "initminer",
+            "owner": {
+              "weight_threshold": 1,
+              "account_auths": [
+
+              ],
+              "key_auths": [
+                [
+                  "TST7xue5ESY1xHhDZj6dw2igXCwoHobA3cnxffacvp4XMzwfzLZu4",
+                  1
+                ]
+              ]
+            },
+            "active": {
+              "weight_threshold": 1,
+              "account_auths": [
+
+              ],
+              "key_auths": [
+                [
+                  "TST6Yp3zeaYNU7XJF2MxoHhDcWT4vGgVkzTLEvhMY6g5tvmwzn3tN",
+                  1
+                ]
+              ]
+            },
+            "posting": {
+              "weight_threshold": 1,
+              "account_auths": [
+
+              ],
+              "key_auths": [
+                [
+                  "TST5Q7ZdopjQWZMwiyZk11W5Yhvsfu1PG3f4qsQN58A7XfHP34Hig",
+                  1
+                ]
+              ]
+            },
+            "memo_key": "TST5u69JnHZ3oznnwn71J6VA4r5oVJX6Xu3dpbFVoHpJoZXnbDfaW",
+            "json_metadata": "",
+            "extensions": [
+
+            ]
+          }
+        ]
+      ],
+      "ref_block_num": 65535,
+      "ref_block_prefix": 0
+    }
+  ],
+  "id": 42105009963169
+}
+{
+  "jsonrpc": "2.0",
+  "error": {
+    "code": -32003,
+    "message": "Assert Exception:false: Cannot parse asset symbol",
+    "data": {
+      "code": 10,
+      "name": "assert_exception",
+      "message": "Assert Exception",
+      "stack": [
+        {
+          "context": {
+            "level": "error",
+            "file": "network_broadcast_api_legacy_asset.cpp",
+            "line": 63,
+            "method": "string_to_asset_num",
+            "hostname": "",
+            "timestamp": "2020-04-03T22:43:53"
+          },
+          "format": "false: Cannot parse asset symbol",
+          "data": {
+          }
+        },
+        {
+          "context": {
+            "level": "warn",
+            "file": "network_broadcast_api_legacy_asset.cpp",
+            "line": 187,
+            "method": "from_string",
+            "hostname": "",
+            "timestamp": "2020-04-03T22:43:53"
+          },
+          "format": "",
+          "data": {
+            "from": "0.000 TESTS"
+          }
+        }
+      ]
+    }
+  },
+  "id": "42105009963169"
+}
+{
+  "jsonrpc": "2.0",
+  "method": "database_api.get_dynamic_global_properties",
+  "params": {
+  },
+  "id": 23752499791823
+}
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "id": 0,
+    "head_block_number": 5,
+    "head_block_id": "000000051230df5711979cd6bf7f6ae02d39d1ea",
+    "time": "2020-04-03T22:43:54",
+    "current_witness": "XGT0000000000000",
+    "total_pow": "18446744073709551615",
+    "num_pow_witnesses": 0,
+    "virtual_supply": {
+      "amount": "250000010920",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "current_supply": {
+      "amount": "250000009760",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "confidential_supply": {
+      "amount": "0",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "init_sbd_supply": {
+      "amount": "7000000000",
+      "precision": 3,
+      "nai": "@@000000013"
+    },
+    "current_sbd_supply": {
+      "amount": "1160",
+      "precision": 3,
+      "nai": "@@000000013"
+    },
+    "confidential_sbd_supply": {
+      "amount": "0",
+      "precision": 3,
+      "nai": "@@000000013"
+    },
+    "total_vesting_fund_steem": {
+      "amount": "2205",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "total_vesting_shares": {
+      "amount": "123241",
+      "precision": 6,
+      "nai": "@@000000037"
+    },
+    "total_reward_fund_steem": {
+      "amount": "0",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "total_reward_shares2": "0",
+    "pending_rewarded_vesting_shares": {
+      "amount": "0",
+      "precision": 6,
+      "nai": "@@000000037"
+    },
+    "pending_rewarded_vesting_steem": {
+      "amount": "0",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "sbd_interest_rate": 0,
+    "sbd_print_rate": 10000,
+    "maximum_block_size": 393216000,
+    "required_actions_partition_percent": 2500,
+    "current_aslot": 5,
+    "recent_slots_filled": "340282366920938463463374607431768211455",
+    "participation_count": 128,
+    "last_irreversible_block_num": 0,
+    "target_votes_per_period": 50,
+    "delegation_return_period": 432000,
+    "reverse_auction_seconds": 300,
+    "available_account_subsidies": 3985,
+    "sbd_stop_percent": 1000,
+    "sbd_start_percent": 900,
+    "next_maintenance_time": "2020-04-03T23:43:44",
+    "last_budget_time": "2020-04-03T22:43:44",
+    "content_reward_percent": 6500,
+    "vesting_reward_percent": 1500,
+    "sps_fund_percent": 1000,
+    "sps_interval_ledger": {
+      "amount": "928",
+      "precision": 3,
+      "nai": "@@000000013"
+    },
+    "downvote_pool_percent": 2500,
+    "smt_creation_fee": {
+      "amount": "1000",
+      "precision": 3,
+      "nai": "@@000000013"
+    }
+  },
+  "id": "23752499791823"
+}
+{
+  "jsonrpc": "2.0",
+  "method": "block_api.get_block_header",
+  "params": {
+    "block_num": 0
+  },
+  "id": 230982820397419
+}
+{
+  "jsonrpc": "2.0",
+  "result": {
+  },
+  "id": "230982820397419"
+}
+{
+  "jsonrpc": "2.0",
+  "method": "network_broadcast_api.get_transaction_hex",
+  "params": [
+    {
+      "expiration": "2020-04-03T22:53:54",
+      "extensions": [
+
+      ],
+      "operations": [
+        [
+          "account_create",
+          {
+            "fee": "0.000 TESTS",
+            "creator": "initminer",
+            "owner": {
+              "weight_threshold": 1,
+              "account_auths": [
+
+              ],
+              "key_auths": [
+                [
+                  "TST7xue5ESY1xHhDZj6dw2igXCwoHobA3cnxffacvp4XMzwfzLZu4",
+                  1
+                ]
+              ]
+            },
+            "active": {
+              "weight_threshold": 1,
+              "account_auths": [
+
+              ],
+              "key_auths": [
+                [
+                  "TST6Yp3zeaYNU7XJF2MxoHhDcWT4vGgVkzTLEvhMY6g5tvmwzn3tN",
+                  1
+                ]
+              ]
+            },
+            "posting": {
+              "weight_threshold": 1,
+              "account_auths": [
+
+              ],
+              "key_auths": [
+                [
+                  "TST5Q7ZdopjQWZMwiyZk11W5Yhvsfu1PG3f4qsQN58A7XfHP34Hig",
+                  1
+                ]
+              ]
+            },
+            "memo_key": "TST5u69JnHZ3oznnwn71J6VA4r5oVJX6Xu3dpbFVoHpJoZXnbDfaW",
+            "json_metadata": "",
+            "extensions": [
+
+            ]
+          }
+        ]
+      ],
+      "ref_block_num": 65535,
+      "ref_block_prefix": 0
+    }
+  ],
+  "id": 154299366673981
+}
+{
+  "jsonrpc": "2.0",
+  "error": {
+    "code": -32003,
+    "message": "Assert Exception:false: Cannot parse asset symbol",
+    "data": {
+      "code": 10,
+      "name": "assert_exception",
+      "message": "Assert Exception",
+      "stack": [
+        {
+          "context": {
+            "level": "error",
+            "file": "network_broadcast_api_legacy_asset.cpp",
+            "line": 63,
+            "method": "string_to_asset_num",
+            "hostname": "",
+            "timestamp": "2020-04-03T22:43:53"
+          },
+          "format": "false: Cannot parse asset symbol",
+          "data": {
+          }
+        },
+        {
+          "context": {
+            "level": "warn",
+            "file": "network_broadcast_api_legacy_asset.cpp",
+            "line": 187,
+            "method": "from_string",
+            "hostname": "",
+            "timestamp": "2020-04-03T22:43:53"
+          },
+          "format": "",
+          "data": {
+            "from": "0.000 TESTS"
+          }
+        }
+      ]
+    }
+  },
+  "id": "154299366673981"
+}
+{
+  "jsonrpc": "2.0",
+  "method": "database_api.get_dynamic_global_properties",
+  "params": {
+  },
+  "id": 47260045557206
+}
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "id": 0,
+    "head_block_number": 5,
+    "head_block_id": "000000051230df5711979cd6bf7f6ae02d39d1ea",
+    "time": "2020-04-03T22:43:54",
+    "current_witness": "XGT0000000000000",
+    "total_pow": "18446744073709551615",
+    "num_pow_witnesses": 0,
+    "virtual_supply": {
+      "amount": "250000010920",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "current_supply": {
+      "amount": "250000009760",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "confidential_supply": {
+      "amount": "0",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "init_sbd_supply": {
+      "amount": "7000000000",
+      "precision": 3,
+      "nai": "@@000000013"
+    },
+    "current_sbd_supply": {
+      "amount": "1160",
+      "precision": 3,
+      "nai": "@@000000013"
+    },
+    "confidential_sbd_supply": {
+      "amount": "0",
+      "precision": 3,
+      "nai": "@@000000013"
+    },
+    "total_vesting_fund_steem": {
+      "amount": "2205",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "total_vesting_shares": {
+      "amount": "123241",
+      "precision": 6,
+      "nai": "@@000000037"
+    },
+    "total_reward_fund_steem": {
+      "amount": "0",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "total_reward_shares2": "0",
+    "pending_rewarded_vesting_shares": {
+      "amount": "0",
+      "precision": 6,
+      "nai": "@@000000037"
+    },
+    "pending_rewarded_vesting_steem": {
+      "amount": "0",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "sbd_interest_rate": 0,
+    "sbd_print_rate": 10000,
+    "maximum_block_size": 393216000,
+    "required_actions_partition_percent": 2500,
+    "current_aslot": 5,
+    "recent_slots_filled": "340282366920938463463374607431768211455",
+    "participation_count": 128,
+    "last_irreversible_block_num": 0,
+    "target_votes_per_period": 50,
+    "delegation_return_period": 432000,
+    "reverse_auction_seconds": 300,
+    "available_account_subsidies": 3985,
+    "sbd_stop_percent": 1000,
+    "sbd_start_percent": 900,
+    "next_maintenance_time": "2020-04-03T23:43:44",
+    "last_budget_time": "2020-04-03T22:43:44",
+    "content_reward_percent": 6500,
+    "vesting_reward_percent": 1500,
+    "sps_fund_percent": 1000,
+    "sps_interval_ledger": {
+      "amount": "928",
+      "precision": 3,
+      "nai": "@@000000013"
+    },
+    "downvote_pool_percent": 2500,
+    "smt_creation_fee": {
+      "amount": "1000",
+      "precision": 3,
+      "nai": "@@000000013"
+    }
+  },
+  "id": "47260045557206"
+}
+{
+  "jsonrpc": "2.0",
+  "method": "block_api.get_block_header",
+  "params": {
+    "block_num": 0
+  },
+  "id": 190749004618525
+}
+{
+  "jsonrpc": "2.0",
+  "result": {
+  },
+  "id": "190749004618525"
+}
+{
+  "jsonrpc": "2.0",
+  "method": "network_broadcast_api.get_transaction_hex",
+  "params": [
+    {
+      "expiration": "2020-04-03T22:53:54",
+      "extensions": [
+
+      ],
+      "operations": [
+        [
+          "account_create",
+          {
+            "fee": "0.000 TESTS",
+            "creator": "initminer",
+            "owner": {
+              "weight_threshold": 1,
+              "account_auths": [
+
+              ],
+              "key_auths": [
+                [
+                  "TST7xue5ESY1xHhDZj6dw2igXCwoHobA3cnxffacvp4XMzwfzLZu4",
+                  1
+                ]
+              ]
+            },
+            "active": {
+              "weight_threshold": 1,
+              "account_auths": [
+
+              ],
+              "key_auths": [
+                [
+                  "TST6Yp3zeaYNU7XJF2MxoHhDcWT4vGgVkzTLEvhMY6g5tvmwzn3tN",
+                  1
+                ]
+              ]
+            },
+            "posting": {
+              "weight_threshold": 1,
+              "account_auths": [
+
+              ],
+              "key_auths": [
+                [
+                  "TST5Q7ZdopjQWZMwiyZk11W5Yhvsfu1PG3f4qsQN58A7XfHP34Hig",
+                  1
+                ]
+              ]
+            },
+            "memo_key": "TST5u69JnHZ3oznnwn71J6VA4r5oVJX6Xu3dpbFVoHpJoZXnbDfaW",
+            "json_metadata": "",
+            "extensions": [
+
+            ]
+          }
+        ]
+      ],
+      "ref_block_num": 65535,
+      "ref_block_prefix": 0
+    }
+  ],
+  "id": 189776513235061
+}
+{
+  "jsonrpc": "2.0",
+  "error": {
+    "code": -32003,
+    "message": "Assert Exception:false: Cannot parse asset symbol",
+    "data": {
+      "code": 10,
+      "name": "assert_exception",
+      "message": "Assert Exception",
+      "stack": [
+        {
+          "context": {
+            "level": "error",
+            "file": "network_broadcast_api_legacy_asset.cpp",
+            "line": 63,
+            "method": "string_to_asset_num",
+            "hostname": "",
+            "timestamp": "2020-04-03T22:43:54"
+          },
+          "format": "false: Cannot parse asset symbol",
+          "data": {
+          }
+        },
+        {
+          "context": {
+            "level": "warn",
+            "file": "network_broadcast_api_legacy_asset.cpp",
+            "line": 187,
+            "method": "from_string",
+            "hostname": "",
+            "timestamp": "2020-04-03T22:43:54"
+          },
+          "format": "",
+          "data": {
+            "from": "0.000 TESTS"
+          }
+        }
+      ]
+    }
+  },
+  "id": "189776513235061"
+}
+{
+  "jsonrpc": "2.0",
+  "method": "database_api.get_dynamic_global_properties",
+  "params": {
+  },
+  "id": 193047134271840
+}
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "id": 0,
+    "head_block_number": 22,
+    "head_block_id": "00000016bd2b1bbad863754da38990079c3a4813",
+    "time": "2020-04-03T22:46:12",
+    "current_witness": "XGT0000000000000",
+    "total_pow": "18446744073709551615",
+    "num_pow_witnesses": 0,
+    "virtual_supply": {
+      "amount": "250000048048",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "current_supply": {
+      "amount": "250000042944",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "confidential_supply": {
+      "amount": "0",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "init_sbd_supply": {
+      "amount": "7000000000",
+      "precision": 3,
+      "nai": "@@000000013"
+    },
+    "current_sbd_supply": {
+      "amount": "5104",
+      "precision": 3,
+      "nai": "@@000000013"
+    },
+    "confidential_sbd_supply": {
+      "amount": "0",
+      "precision": 3,
+      "nai": "@@000000013"
+    },
+    "total_vesting_fund_steem": {
+      "amount": "9702",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "total_vesting_shares": {
+      "amount": "166333",
+      "precision": 6,
+      "nai": "@@000000037"
+    },
+    "total_reward_fund_steem": {
+      "amount": "0",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "total_reward_shares2": "0",
+    "pending_rewarded_vesting_shares": {
+      "amount": "0",
+      "precision": 6,
+      "nai": "@@000000037"
+    },
+    "pending_rewarded_vesting_steem": {
+      "amount": "0",
+      "precision": 3,
+      "nai": "@@000000021"
+    },
+    "sbd_interest_rate": 0,
+    "sbd_print_rate": 10000,
+    "maximum_block_size": 393216000,
+    "required_actions_partition_percent": 2500,
+    "current_aslot": 22,
+    "recent_slots_filled": "340282366920938463463374607431768211455",
+    "participation_count": 128,
+    "last_irreversible_block_num": 12,
+    "target_votes_per_period": 50,
+    "delegation_return_period": 432000,
+    "reverse_auction_seconds": 300,
+    "available_account_subsidies": 17534,
+    "sbd_stop_percent": 1000,
+    "sbd_start_percent": 900,
+    "next_maintenance_time": "2020-04-03T23:45:11",
+    "last_budget_time": "2020-04-03T22:45:11",
+    "content_reward_percent": 6500,
+    "vesting_reward_percent": 1500,
+    "sps_fund_percent": 1000,
+    "sps_interval_ledger": {
+      "amount": "4872",
+      "precision": 3,
+      "nai": "@@000000013"
+    },
+    "downvote_pool_percent": 2500,
+    "smt_creation_fee": {
+      "amount": "1000",
+      "precision": 3,
+      "nai": "@@000000013"
+    }
+  },
+  "id": "193047134271840"
+}
+{
+  "jsonrpc": "2.0",
+  "method": "block_api.get_block_header",
+  "params": {
+    "block_num": 12
+  },
+  "id": 132632634489231
+}
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "header": {
+      "previous": "0000000bb7b80fea3e6e66e1f7bbd7cda8c79668",
+      "timestamp": "2020-04-03T22:45:42",
+      "witness": "XGT0000000000000",
+      "transaction_merkle_root": "0000000000000000000000000000000000000000",
+      "extensions": [
+
+      ]
+    }
+  },
+  "id": "132632634489231"
+}
+{
+  "jsonrpc": "2.0",
+  "method": "network_broadcast_api.get_transaction_hex",
+  "params": [
+    {
+      "expiration": "2020-04-03T22:56:12",
+      "extensions": [
+
+      ],
+      "operations": [
+        [
+          "account_create",
+          {
+            "fee": "0.000 TESTS",
+            "creator": "initminer",
+            "owner": {
+              "weight_threshold": 1,
+              "account_auths": [
+
+              ],
+              "key_auths": [
+                [
+                  "TST7xue5ESY1xHhDZj6dw2igXCwoHobA3cnxffacvp4XMzwfzLZu4",
+                  1
+                ]
+              ]
+            },
+            "active": {
+              "weight_threshold": 1,
+              "account_auths": [
+
+              ],
+              "key_auths": [
+                [
+                  "TST6Yp3zeaYNU7XJF2MxoHhDcWT4vGgVkzTLEvhMY6g5tvmwzn3tN",
+                  1
+                ]
+              ]
+            },
+            "posting": {
+              "weight_threshold": 1,
+              "account_auths": [
+
+              ],
+              "key_auths": [
+                [
+                  "TST5Q7ZdopjQWZMwiyZk11W5Yhvsfu1PG3f4qsQN58A7XfHP34Hig",
+                  1
+                ]
+              ]
+            },
+            "memo_key": "TST5u69JnHZ3oznnwn71J6VA4r5oVJX6Xu3dpbFVoHpJoZXnbDfaW",
+            "json_metadata": "",
+            "extensions": [
+
+            ]
+          }
+        ]
+      ],
+      "ref_block_num": 11,
+      "ref_block_prefix": 3926898871
+    }
+  ],
+  "id": 131584769736878
+}
+{
+  "jsonrpc": "2.0",
+  "error": {
+    "code": -32003,
+    "message": "Assert Exception:false: Cannot parse asset symbol",
+    "data": {
+      "code": 10,
+      "name": "assert_exception",
+      "message": "Assert Exception",
+      "stack": [
+        {
+          "context": {
+            "level": "error",
+            "file": "network_broadcast_api_legacy_asset.cpp",
+            "line": 63,
+            "method": "string_to_asset_num",
+            "hostname": "",
+            "timestamp": "2020-04-03T22:46:14"
+          },
+          "format": "false: Cannot parse asset symbol",
+          "data": {
+          }
+        },
+        {
+          "context": {
+            "level": "warn",
+            "file": "network_broadcast_api_legacy_asset.cpp",
+            "line": 187,
+            "method": "from_string",
+            "hostname": "",
+            "timestamp": "2020-04-03T22:46:14"
+          },
+          "format": "",
+          "data": {
+            "from": "0.000 TESTS"
+          }
+        }
+      ]
+    }
+  },
+  "id": "131584769736878"
+}
+{
+  "jsonrpc": "2.0",
+  "method": "database_api.get_dynamic_global_properties",
+  "params": {
+  },
+  "id": 170929022376089
+}
+null

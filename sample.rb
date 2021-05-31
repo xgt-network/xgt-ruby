@@ -2,62 +2,40 @@ require 'bundler/setup'
 require 'time'
 require 'xgt/ruby'
 
-wif = '5JNHfZYKGaomSFvd4NUdQ9qMcEAC43kujbfjueTHpVapX1Kzq2n'
-address_prefix = 'TST'
-chain_id = '18dcf0a285365fc58b71f18b3d3fec954aa0c141c44e4e5cb4cf777b9eab274e'
-name = 'foo' + SecureRandom.hex(6)
-txn = {
-  'extensions' => [],
-  'operations' => [
-    [
-      'account_create',
-      {
-        'fee' => '0.000 TESTS',
-        'creator' => 'initminer',
-        'new_account_name' => name,
-        'owner' => {
-          'weight_threshold' => 1,
-          'account_auths' => [],
-          'key_auths' => [
-            [
-              'TST7xue5ESY1xHhDZj6dw2igXCwoHobA3cnxffacvp4XMzwfzLZu4',
-              1
-            ]
-          ]
-        },
-        'active' => {
-          'weight_threshold' => 1,
-          'account_auths' => [],
-          'key_auths' => [
-            [
-              'TST6Yp3zeaYNU7XJF2MxoHhDcWT4vGgVkzTLEvhMY6g5tvmwzn3tN',
-              1
-            ]
-          ]
-        },
-        'posting' => {
-          'weight_threshold' => 1,
-          'account_auths' => [],
-          'key_auths' => [
-            [
-              'TST5Q7ZdopjQWZMwiyZk11W5Yhvsfu1PG3f4qsQN58A7XfHP34Hig',
-              1
-            ]
-          ]
-        },
-        'memo_key' => 'TST5u69JnHZ3oznnwn71J6VA4r5oVJX6Xu3dpbFVoHpJoZXnbDfaW',
-        'json_metadata' => '',
-        'extensions' => []
-      }
-    ]
-  ]
+# -----
+# Setup
+# -----
+
+# XXX: A transaction may require multiple wifs, if using multisig!
+@wif = ENV['WIF'] || '5JNHfZYKGaomSFvd4NUdQ9qMcEAC43kujbfjueTHpVapX1Kzq2n'
+@name = ENV['NAME'] || 'XGT0000000000000000000000000000000000000000'
+@host = ENV['HOST'] || 'http://localhost:8751'
+@address_prefix = 'XGT'
+
+rpc = Xgt::Ruby::Rpc.new(@host)
+generate_keys = ->() {
+  master = Xgt::Ruby::Auth.random_wif
+  ks = { 'master' => master }
+  %w(recovery money social memo).each do |role|
+    private_key = Xgt::Ruby::Auth.generate_wif(@name, master, 'recovery')
+    public_key = Xgt::Ruby::Auth.wif_to_public_key(private_key, @address_prefix)
+    ks["#{role}_private"] = private_key
+    ks["#{role}_public"] = public_key
+  end
+  ks
 }
 
-rpc = Xgt::Ruby::Rpc.new('http://localhost:8751')
-signed = Xgt::Ruby::Auth.sign_transaction(rpc, txn, [wif], chain_id)
-puts %(Creating user named: #{name})
-response = rpc.call('call', ['condenser_api', 'broadcast_transaction_synchronous', [signed]])
-p response
-puts %(Verifying the account was created:)
-response = rpc.call('database_api.find_accounts', { 'accounts' => [name] })
-p response
+#master = Xgt::Ruby::Auth.random_wif
+#private_key = Xgt::Ruby::Auth.generate_wif(@name, master, 'recovery')
+private_key = '5Kb8kLf9zgWQnogidDA76MzL6TsZZY36hWXMssSzNydYXYB9KF'
+public_key = Xgt::Ruby::Auth.wif_to_public_key(private_key, @address_prefix)
+p ['private_key', private_key]
+p ['public_key', public_key]
+
+response = rpc.call('wallet_by_key_api.generate_wallet_name', {
+  'recovery_keys' => [public_key]
+})
+wallet_name = response['wallet_name']
+p wallet_name
+
+p Xgt::Ruby::Auth.generate_wallet_name(public_key)
