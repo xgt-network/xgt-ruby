@@ -432,7 +432,7 @@ def start_console
 end
 
 # Allows for this file to be run as a script or loaded as a library.
-if __FILE__ == $0
-  puts logo
-	start_console
-end
+# if __FILE__ == $0
+puts logo
+start_console
+# end
