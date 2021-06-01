@@ -1,8 +1,7 @@
 #!/usr/bin/env ruby
 
-require 'logger'
-require 'bundler/setup'
 require 'xgt/ruby'
+require 'logger'
 require 'bigdecimal'
 
 # ------
