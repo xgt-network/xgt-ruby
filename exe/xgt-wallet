@@ -214,6 +214,27 @@ def generate_keys(from_wallet_name=current_name, master_key=current_wifs.first)
   ks
 end
 
+def create_mining_wallet
+  keys = generate_keys
+  payload = {
+    'keys' => {
+      'recovery_public' => keys['recovery_public'],
+      'money_public' => keys['money_public'],
+      'social_public' => keys['social_public'],
+    }
+  }
+  host = ENV['XGT_FIRESTARTER_HOST']
+  uri = URI(host + "/wallet")
+
+  res = Net::HTTP.start(uri.hostname, uri.port) do |http|
+    req = Net::HTTP::Post.new(uri, 'Content-Type' => 'application/json')
+    req.body = payload.to_json
+    http.request(req)
+  end
+
+  { 'keys' => keys, 'body' => res.body }
+end
+
 def create_wallet
   keys = generate_keys
   txn = {
@@ -225,7 +246,8 @@ def create_wallet
           'precision' => precision,
           'nai' => '@@000000021'
         },
-        'creator' => keys['wallet_name'],
+        'creator' => current_name,
+        'new_wallet_name' => keys['wallet_name'],
         'recovery' => {
           'weight_threshold' => 1,
           'account_auths' => [],
@@ -247,7 +269,7 @@ def create_wallet
     }]
   }
 
-  output_result 
+  p current_wifs
 
   id = rpc.broadcast_transaction(txn, current_wifs, chain_id)
   (puts 'Waiting...' or sleep 1) until fetch_wallet_name(current_name)
