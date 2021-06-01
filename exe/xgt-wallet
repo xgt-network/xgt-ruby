@@ -120,12 +120,14 @@ def rpc
   Xgt::Ruby::Rpc.new(@host)
 end
 
+=begin
 def chain_properties
   return @chain_properties if @chain_properties
   witness_schedule = rpc.call('database_api.get_witness_schedule', {}) || {}
   @chain_properties = witness_schedule['median_props']
   @chain_properties
 end
+=end
 
 def config
   return @config if @config
@@ -134,25 +136,15 @@ def config
 end
 
 def address_prefix
-  return @address_prefix if @address_prefix
-  @address_prefix = config['XGT_ADDRESS_PREFIX']
-  logger.info(%(Retrieved address prefix... #{@address_prefix}))
-  @address_prefix
+  return "XGT"
 end
 
 def chain_id
-  return @chain_id if @chain_id
-  @chain_id = config['XGT_CHAIN_ID']
-  logger.info(%(Retrieved chain ID... #{@chain_id}))
-  @chain_id
+  "4e08b752aff5f66e1339cb8c0a8bca14c4ebb238655875db7dade86349091197"
 end
 
 def precision
-  8 # TODO: Make dynamic
-end
-
-def fee
-  (chain_properties['account_creation_fee'] || {})['amount']
+  8 
 end
 
 def currency_symbol
@@ -229,7 +221,7 @@ def create_wallet
       'type' => 'wallet_create_operation',
       'value' => {
         'fee' => {
-          'amount' => fee,
+          'amount' => '0',
           'precision' => precision,
           'nai' => '@@000000021'
         },
@@ -254,6 +246,8 @@ def create_wallet
       }
     }]
   }
+
+  output_result 
 
   id = rpc.broadcast_transaction(txn, current_wifs, chain_id)
   (puts 'Waiting...' or sleep 1) until fetch_wallet_name(current_name)
