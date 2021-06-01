@@ -395,43 +395,43 @@ end
 
 def start_console
   require 'irb'
-	ARGV.clear
-	IRB.setup nil
+  ARGV.clear
+  IRB.setup nil
 
-	IRB.conf[:PROMPT] = {}
-	IRB.conf[:IRB_NAME] = 'wallet'
-	IRB.conf[:PROMPT][:WALLET] = {
-		:PROMPT_I => '%N>> ',
-		:PROMPT_N => '%N>> ',
-		:PROMPT_S => '%N%l> ',
-		:PROMPT_C => '%N*> ',
-		:RETURN => "#=> %s\n"
-	}
-	IRB.conf[:PROMPT_MODE] = :WALLET
-	IRB.conf[:RC] = false
+  IRB.conf[:PROMPT] = {}
+  IRB.conf[:IRB_NAME] = 'wallet'
+  IRB.conf[:PROMPT][:WALLET] = {
+    :PROMPT_I => '%N>> ',
+    :PROMPT_N => '%N>> ',
+    :PROMPT_S => '%N%l> ',
+    :PROMPT_C => '%N*> ',
+    :RETURN => "#=> %s\n"
+  }
+  IRB.conf[:PROMPT_MODE] = :WALLET
+  IRB.conf[:RC] = false
 
-	require 'irb/completion'
-	require 'irb/ext/save-history'
-	IRB.conf[:READLINE] = true
+  require 'irb/completion'
+  require 'irb/ext/save-history'
+  IRB.conf[:READLINE] = true
 
-	irb = IRB::Irb.new(IRB::WorkSpace.new(self))
-	IRB.conf[:MAIN_CONTEXT] = irb.context
+  irb = IRB::Irb.new(IRB::WorkSpace.new(self))
+  IRB.conf[:MAIN_CONTEXT] = irb.context
 
-	trap('SIGINT') do
-		IRB.irb.signal_handle
-	end
+  trap('SIGINT') do
+    IRB.irb.signal_handle
+  end
 
-	begin
-		catch(:IRB_EXIT) do
-			irb.eval_input
-		end
-	ensure
-		IRB.irb_at_exit
-	end
+  begin
+    catch(:IRB_EXIT) do
+      irb.eval_input
+    end
+  ensure
+    IRB.irb_at_exit
+  end
 end
 
 # Allows for this file to be run as a script or loaded as a library.
 if File.basename(__FILE__) == File.basename($0)
   puts logo
-	start_console
+  start_console
 end
