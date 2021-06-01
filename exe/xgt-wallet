@@ -195,7 +195,7 @@ def info
   print(%(\n))
   puts(%(You can get an Xgt::Ruby::Rpc instance via `rpc`.))
   print(%(\n))
-  puts(%(Any method in `bin/wallet` is available from this CLI, so take a look!))
+  puts(%(Any method in `xgt-wallet` is available from this CLI, so take a look!))
   print(%(\n))
   true
 end
