@@ -28,6 +28,6 @@ COPY . /home/root/xgt-ruby
 
 RUN ["/bin/bash", "-c", "source /home/root/.bashrc && cd xgt-ruby && bundle"]
 
-CMD ["/bin/bash", "-c", "source /home/root/.bashrc && cd xgt-ruby && ./exe/xgt-wallet"]
+CMD ["/bin/bash", "-c", "source /home/root/.bashrc && cd xgt-ruby && bundle exec ./exe/xgt-wallet"]
 
 

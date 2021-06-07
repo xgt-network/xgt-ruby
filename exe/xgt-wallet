@@ -296,7 +296,7 @@ def create_mining_wallet
 
   # output_result(response)
   # @last_result = response
-  p "sudo docker run --publish 8751:8751 --publish 2001:2001 --env XGT_WALLET=#{keys["wallet_name"]} --env XGT_RECOVERY_PRIVATE_KEY=#{keys["recovery_private"]} --env XGT_HOST=98.33.76.100:2011 rjungemann/xgt:0.0.1" 
+  p "sudo docker run --publish 8751:8751 --publish 2001:2001 --env XGT_WALLET=#{keys["wallet_name"]} --env XGT_RECOVERY_PRIVATE_KEY=#{keys["recovery_private"]} --env XGT_WITNESS_PRIVATE_KEY=#{keys["recovery_private"]} --env XGT_SEED_HOST=98.33.76.100:2001 rjungemann/xgt:1.0.5" 
   output_result({ 'keys' => keys, 'body' => response.body })
 
   true
