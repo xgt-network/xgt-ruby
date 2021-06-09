@@ -24,8 +24,8 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'bundler', '~> 2.0'
   spec.add_development_dependency 'rake', '~> 13.0.3'
   spec.add_development_dependency 'rspec', '~> 3.0'
-  spec.add_dependency 'faraday', '~> 0.15.4'
-  spec.add_dependency 'faraday_middleware', '~> 0.13.1'
-  spec.add_dependency 'bitcoin-ruby', '~> 0.0.19'
+  spec.add_dependency 'faraday', '~> 1.4.2'
+  spec.add_dependency 'faraday_middleware', '~> 1.0.0'
+  spec.add_dependency 'bitcoin-ruby', '~> 0.0.20'
   spec.add_dependency 'base58', '~> 0.2.3'
 end
