@@ -370,6 +370,14 @@ def list_wallets(name=nil)
   true
 end
 
+def get_miner(name=current_name)
+  response = rpc.call('database_api.find_witnesses', { 'miners' => [name] })
+  miner = response['miners'][0]
+  output_result(miner)
+  @last_result = miner
+  true
+end
+
 def get_wallet(name=current_name)
   response = rpc.call('database_api.find_wallets', { 'wallets' => [name] })
   wallet = response['wallets'][0]
