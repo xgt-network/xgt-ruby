@@ -167,6 +167,8 @@ def info
   puts(%(#{colorize(:cyan, 'list_wallets NAME')} stream a full list of wallets, starting with NAME))
   puts(%(#{colorize(:cyan, 'get_wallet')} look up your wallet info))
   puts(%(#{colorize(:cyan, 'get_wallet NAME')} look up another user's wallet info))
+  puts(%(#{colorize(:cyan, 'get_miner')} look up your wallet's miner info))
+  puts(%(#{colorize(:cyan, 'get_miner NAME')} look up another wallets miner info))
   puts(%(#{colorize(:cyan, 'transfer TO, AMOUNT')} transfer money to another wallet))
   print(%(\n))
   puts(colorize(:yellow, %(---------------------)))
