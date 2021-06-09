@@ -10,7 +10,7 @@ GIT
 PATH
   remote: .
   specs:
-    xgt-ruby (0.1.4)
+    xgt-ruby (0.1.5)
       base58 (~> 0.2.3)
       bitcoin-ruby (~> 0.0.20)
       faraday (~> 1.4.2)
@@ -61,6 +61,7 @@ GEM
       ffi-compiler (>= 1.0, < 2.0)
 
 PLATFORMS
+  ruby
   x86_64-linux
 
 DEPENDENCIES
